@@ -1,0 +1,427 @@
+﻿@model Eco.Models.GreemPlantsPassport
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Create"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/lib/openlayers/ol.css" rel="stylesheet" />
+<script src="~/lib/openlayers/ol.js"></script>
+<h2>@SharedLocalizer["Create"]</h2>
+<h4>@SharedLocalizer["GreemPlantsPassport"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GreenObject" class="control-label"></label>
+                <input asp-for="GreenObject" class="form-control" />
+                <span asp-validation-for="GreenObject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityDistrictId" class="control-label"></label>
+                <select asp-for="CityDistrictId" class="form-control" asp-items="ViewBag.CityDistrictId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameOfPowersAttributed" class="control-label"></label>
+                <input asp-for="NameOfPowersAttributed" class="form-control" />
+                <span asp-validation-for="NameOfPowersAttributed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameOfRegistrationObject" class="control-label"></label>
+                <input asp-for="NameOfRegistrationObject" class="form-control" />
+                <span asp-validation-for="NameOfRegistrationObject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegalEntityUse" class="control-label"></label>
+                <input asp-for="LegalEntityUse" class="form-control" />
+                <span asp-validation-for="LegalEntityUse" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountNumber" class="control-label"></label>
+                <input asp-for="AccountNumber" class="form-control" />
+                <span asp-validation-for="AccountNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameAndLocation" class="control-label"></label>
+                <input asp-for="NameAndLocation" class="form-control" />
+                <span asp-validation-for="NameAndLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PresenceOfHistoricalObject" class="control-label"></label>
+                <input asp-for="PresenceOfHistoricalObject" class="form-control" />
+                <span asp-validation-for="PresenceOfHistoricalObject" class="text-danger"></span>
+            </div>
+            <hr />
+            <h3>@SharedLocalizer["GeneralInformation"]</h3>
+            <div class="form-group">
+                <label asp-for="GreenTotalAreaGa" class="control-label"></label>
+                <input asp-for="GreenTotalAreaGa" class="form-control" />
+                <span asp-validation-for="GreenTotalAreaGa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lawns" class="control-label"></label>
+                <input asp-for="Lawns" class="form-control" />
+                <span asp-validation-for="Lawns" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Flowerbeds" class="control-label"></label>
+                <input asp-for="Flowerbeds" class="form-control" />
+                <span asp-validation-for="Flowerbeds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TracksAndPlatforms" class="control-label"></label>
+                <input asp-for="TracksAndPlatforms" class="form-control" />
+                <span asp-validation-for="TracksAndPlatforms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tree" class="control-label"></label>
+                <input asp-for="Tree" class="form-control" />
+                <span asp-validation-for="Tree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shrubs" class="control-label"></label>
+                <input asp-for="Shrubs" class="form-control" />
+                <span asp-validation-for="Shrubs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SofasAndBenches" class="control-label"></label>
+                <input asp-for="SofasAndBenches" class="form-control" />
+                <span asp-validation-for="SofasAndBenches" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Urns" class="control-label"></label>
+                <input asp-for="Urns" class="form-control" />
+                <span asp-validation-for="Urns" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EquippedPlaygrounds" class="control-label"></label>
+                <input asp-for="EquippedPlaygrounds" class="form-control" />
+                <span asp-validation-for="EquippedPlaygrounds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EquippedSportsgrounds" class="control-label"></label>
+                <input asp-for="EquippedSportsgrounds" class="form-control" />
+                <span asp-validation-for="EquippedSportsgrounds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Monument" class="control-label"></label>
+                <input asp-for="Monument" class="form-control" />
+                <span asp-validation-for="Monument" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Toilets" class="control-label"></label>
+                <input asp-for="Toilets" class="form-control" />
+                <span asp-validation-for="Toilets" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OutdoorLighting" class="control-label"></label>
+                <input asp-for="OutdoorLighting" class="form-control" />
+                <span asp-validation-for="OutdoorLighting" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Billboards" class="control-label"></label>
+                <input asp-for="Billboards" class="form-control" />
+                <span asp-validation-for="Billboards" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OtherCapitalStructures" class="control-label"></label>
+                <input asp-for="OtherCapitalStructures" class="form-control" />
+                <span asp-validation-for="OtherCapitalStructures" class="text-danger"></span>
+            </div>
+            <hr />
+            <h3>@SharedLocalizer["InformationOnAreas"]</h3>
+            <div class="form-group">
+                <label asp-for="GreenTotalArea" class="control-label"></label>
+                <input asp-for="GreenTotalArea" class="form-control" />
+                <span asp-validation-for="GreenTotalArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaUnderGreenery" class="control-label"></label>
+                <input asp-for="AreaUnderGreenery" class="form-control" />
+                <span asp-validation-for="AreaUnderGreenery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaUnderLawn" class="control-label"></label>
+                <input asp-for="AreaUnderLawn" class="form-control" />
+                <span asp-validation-for="AreaUnderLawn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaUnderGroundlawn" class="control-label"></label>
+                <input asp-for="AreaUnderGroundlawn" class="form-control" />
+                <span asp-validation-for="AreaUnderGroundlawn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaUnderOrdinarylawn" class="control-label"></label>
+                <input asp-for="AreaUnderOrdinarylawn" class="form-control" />
+                <span asp-validation-for="AreaUnderOrdinarylawn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaUnderMeadowlawn" class="control-label"></label>
+                <input asp-for="AreaUnderMeadowlawn" class="form-control" />
+                <span asp-validation-for="AreaUnderMeadowlawn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaUnderTrees" class="control-label"></label>
+                <input asp-for="AreaUnderTrees" class="form-control" />
+                <span asp-validation-for="AreaUnderTrees" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaUnderShrubs" class="control-label"></label>
+                <input asp-for="AreaUnderShrubs" class="form-control" />
+                <span asp-validation-for="AreaUnderShrubs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaUndeFlowerbeds" class="control-label"></label>
+                <input asp-for="AreaUndeFlowerbeds" class="form-control" />
+                <span asp-validation-for="AreaUndeFlowerbeds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaUndeTracksAndPlatforms" class="control-label"></label>
+                <input asp-for="AreaUndeTracksAndPlatforms" class="form-control" />
+                <span asp-validation-for="AreaUndeTracksAndPlatforms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Asphalted" class="control-label"></label>
+                <input asp-for="Asphalted" class="form-control" />
+                <span asp-validation-for="Asphalted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PavingBlocks" class="control-label"></label>
+                <input asp-for="PavingBlocks" class="form-control" />
+                <span asp-validation-for="PavingBlocks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LengthOfTrays" class="control-label"></label>
+                <input asp-for="LengthOfTrays" class="form-control" />
+                <span asp-validation-for="LengthOfTrays" class="text-danger"></span>
+            </div>
+            <hr />
+            <h3>@SharedLocalizer["InformationOnTrees"]</h3>
+            <div class="form-group">
+                <label asp-for="AmountConiferousTrees" class="control-label"></label>
+                <input asp-for="AmountConiferousTrees" class="form-control" />
+                <span asp-validation-for="AmountConiferousTrees" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ListOfTreesConiferous" class="control-label"></label>
+                <input asp-for="ListOfTreesConiferous" class="form-control" />
+                <span asp-validation-for="ListOfTreesConiferous" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Upto10yearsConiferous" class="control-label"></label>
+                <input asp-for="Upto10yearsConiferous" class="form-control" />
+                <span asp-validation-for="Upto10yearsConiferous" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Betwen10_20yearsConiferous" class="control-label"></label>
+                <input asp-for="Betwen10_20yearsConiferous" class="form-control" />
+                <span asp-validation-for="Betwen10_20yearsConiferous" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Over10yearsConiferous" class="control-label"></label>
+                <input asp-for="Over10yearsConiferous" class="form-control" />
+                <span asp-validation-for="Over10yearsConiferous" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountDeciduousTrees" class="control-label"></label>
+                <input asp-for="AmountDeciduousTrees" class="form-control" />
+                <span asp-validation-for="AmountDeciduousTrees" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ListOfTreesDeciduous" class="control-label"></label>
+                <input asp-for="ListOfTreesDeciduous" class="form-control" />
+                <span asp-validation-for="ListOfTreesDeciduous" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Upto10yearsDeciduous" class="control-label"></label>
+                <input asp-for="Upto10yearsDeciduous" class="form-control" />
+                <span asp-validation-for="Upto10yearsDeciduous" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Betwen10_20yearsDeciduous" class="control-label"></label>
+                <input asp-for="Betwen10_20yearsDeciduous" class="form-control" />
+                <span asp-validation-for="Betwen10_20yearsDeciduous" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Over10yearsDeciduous" class="control-label"></label>
+                <input asp-for="Over10yearsDeciduous" class="form-control" />
+                <span asp-validation-for="Over10yearsDeciduous" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountFormedTrees" class="control-label"></label>
+                <input asp-for="AmountFormedTrees" class="form-control" />
+                <span asp-validation-for="AmountFormedTrees" class="text-danger"></span>
+            </div>
+            <hr />
+            <h3>@SharedLocalizer["InformationOnShrubs"]</h3>
+            <div class="form-group">
+                <label asp-for="TotallAmountShrubs" class="control-label"></label>
+                <input asp-for="TotallAmountShrubs" class="form-control" />
+                <span asp-validation-for="TotallAmountShrubs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountShrubs" class="control-label"></label>
+                <input asp-for="AmountShrubs" class="form-control" />
+                <span asp-validation-for="AmountShrubs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LengthOfHedges" class="control-label"></label>
+                <input asp-for="LengthOfHedges" class="form-control" />
+                <span asp-validation-for="LengthOfHedges" class="text-danger"></span>
+            </div>
+            <hr />
+            <h3>@SharedLocalizer["InformationOnOtherElements"]</h3>
+            <div class="form-group">
+                <label asp-for="AmountEquippedPlaygrounds" class="control-label"></label>
+                <input asp-for="AmountEquippedPlaygrounds" class="form-control" />
+                <span asp-validation-for="AmountEquippedPlaygrounds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountEquippedSportsgrounds" class="control-label"></label>
+                <input asp-for="AmountEquippedSportsgrounds" class="form-control" />
+                <span asp-validation-for="AmountEquippedSportsgrounds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountSofasAndBenches" class="control-label"></label>
+                <input asp-for="AmountSofasAndBenches" class="form-control" />
+                <span asp-validation-for="AmountSofasAndBenches" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountBenches" class="control-label"></label>
+                <input asp-for="AmountBenches" class="form-control" />
+                <span asp-validation-for="AmountBenches" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountSofas" class="control-label"></label>
+                <input asp-for="AmountSofas" class="form-control" />
+                <span asp-validation-for="AmountSofas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountArbours" class="control-label"></label>
+                <input asp-for="AmountArbours" class="form-control" />
+                <span asp-validation-for="AmountArbours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountOutdoorLighting" class="control-label"></label>
+                <input asp-for="AmountOutdoorLighting" class="form-control" />
+                <span asp-validation-for="AmountOutdoorLighting" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountToilets" class="control-label"></label>
+                <input asp-for="AmountToilets" class="form-control" />
+                <span asp-validation-for="AmountToilets" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountMonument" class="control-label"></label>
+                <input asp-for="AmountMonument" class="form-control" />
+                <span asp-validation-for="AmountMonument" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountBillboards" class="control-label"></label>
+                <input asp-for="AmountBillboards" class="form-control" />
+                <span asp-validation-for="AmountBillboards" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ListOfTreesByObjectBreedsCondition" class="control-label"></label>
+                <input asp-for="ListOfTreesByObjectBreedsCondition" class="form-control" />
+                <span asp-validation-for="ListOfTreesByObjectBreedsCondition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ListOfTreesByObjectEconomicMeasures" class="control-label"></label>
+                <input asp-for="ListOfTreesByObjectEconomicMeasures" class="form-control" />
+                <span asp-validation-for="ListOfTreesByObjectEconomicMeasures" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PassportGeneralInformation" class="control-label"></label>
+                @Html.TextArea("PassportGeneralInformation", null, new { @class = "form-control", rows = 25 })
+                <span asp-validation-for="PassportGeneralInformation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div id="map" style="height: 400px; width: 100%;"></div>
+            </div>
+            <div class="form-group">
+                <label asp-for="NorthLatitude" class="control-label"></label>
+                <input id="NorthLatitude" asp-for="NorthLatitude" class="form-control" onchange="ChangeCoordinates()" />
+                <span asp-validation-for="NorthLatitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EastLongitude" class="control-label"></label>
+                <input id="EastLongitude" asp-for="EastLongitude" class="form-control" onchange="ChangeCoordinates()" />
+                <span asp-validation-for="EastLongitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Create"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+<script>
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>
+<script type="text/javascript">
+    var source = new ol.source.Vector();
+    var layer = new ol.layer.Vector({
+        source: source
+    });
+
+    var map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            }),
+            layer
+        ],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([76.9455, 43.2357]),
+            zoom: 10
+        })
+    });
+
+    map.on('click', function (event) {
+        var coordinates = event.coordinate;
+        var thing = new ol.geom.Point(
+            coordinates
+        );
+        var featurething = new ol.Feature({
+            geometry: thing
+        });
+        source.clear();
+        source.addFeature(featurething);
+        $('#NorthLatitude').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+        $('#EastLongitude').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+    });
+
+    function ChangeCoordinates() {
+        var coordinates = [parseFloat($('#EastLongitude').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude').val().toString().replace(',', '.'))];
+        coordinates = ol.proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857');
+        var thing = new ol.geom.Point(
+            [coordinates[0], coordinates[1]]
+        );
+        var featurething = new ol.Feature({
+            geometry: thing
+        });
+        source.clear();
+        source.addFeature(featurething);
+    };
+
+    $(document).ready(function () {
+        ChangeCoordinates();
+    });
+</script>

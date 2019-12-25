@@ -1,0 +1,52 @@
+﻿@model Eco.Models.PlantationsState
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Edit"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Edit"]</h2>
+<h4>@SharedLocalizer["PlantationsState"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CityDistrictId" class="control-label"></label>
+                <select asp-for="CityDistrictId" class="form-control" asp-items="ViewBag.CityDistrictId"></select>
+                <span asp-validation-for="CityDistrictId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlantationsStateTypeId" class="control-label"></label>
+                <select asp-for="PlantationsStateTypeId" class="form-control" asp-items="ViewBag.PlantationsStateTypeId"></select>
+                <span asp-validation-for="PlantationsStateTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TreesNumber" class="control-label"></label>
+                <input asp-for="TreesNumber" class="form-control" />
+                <span asp-validation-for="TreesNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Save"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
+<script>
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>

@@ -1,0 +1,154 @@
+﻿@model Eco.Models.TransportPostDataIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["TransportPostDatas"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["TransportPostDatas"]</h2>
+
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a>  | <a asp-action="TransportPostDatasReport" asp-controller="Reports">@SharedLocalizer["Report"]</a> @*| <a asp-action="Upload">@SharedLocalizer["Upload"]</a> | <a asp-action="DeleteMany">@SharedLocalizer["Delete"]</a>*@
+</p>
+
+@using (Html.BeginForm("Index", "TransportPostDatas", new { SortOrder = ViewBag.SortOrdert, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().TransportPost.Name).ToString(), "Index",
+                        new { SortOrder = ViewBag.TransportPostNameSort, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                    <br />
+                    @Html.Editor("TransportPostName", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().Year).ToString(), "Index",
+                        new { SortOrder = ViewBag.YearSort, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                    <br />
+                    @Html.DropDownList("Year", (IEnumerable<SelectListItem>)ViewBag.Year, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().Month).ToString(), "Index",
+                        new { SortOrder = ViewBag.MonthSort, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                    <br />
+                    @Html.DropDownList("Month", (IEnumerable<SelectListItem>)ViewBag.Month, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().Day).ToString(), "Index",
+                        new { SortOrder = ViewBag.DaySort, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                    <br />
+                    @Html.DropDownList("Day", (IEnumerable<SelectListItem>)ViewBag.Day, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().TotalNumberOfVehiclesIn20Minutes)
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransportPost.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime.Day)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalNumberOfVehiclesIn20Minutes)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, TransportPostName = ViewBag.TransportPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter })
+                </li>
+            }
+        </ul>
+    }
+}

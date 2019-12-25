@@ -1,0 +1,58 @@
+﻿@model Eco.Models.SoilPostData
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Delete"]</h2>
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["SoilPostData"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoilPost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoilPost.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SoilContaminant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoilContaminant.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfSampling)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfSampling)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GammaBackgroundOfTheSoil)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GammaBackgroundOfTheSoil)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ConcentrationValuemgkg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ConcentrationValuemgkg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MultiplicityOfExcessOfNormative)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MultiplicityOfExcessOfNormative)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" /> |
+        <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

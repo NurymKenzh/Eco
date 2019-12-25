@@ -1,0 +1,88 @@
+﻿@model Eco.Models.TreesByFacilityManagementMeasuresList
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Create"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Create"]</h2>
+<h4>@SharedLocalizer["TreesByFacilityManagementMeasuresList"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GreemPlantsPassportId" class="control-label"></label>
+                <select asp-for="GreemPlantsPassportId" class="form-control" asp-items="ViewBag.GreemPlantsPassportId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlantationsTypeId" class="control-label"></label>
+                <select asp-for="PlantationsTypeId" class="form-control" asp-items="ViewBag.PlantationsTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BusinessEvents" class="control-label"></label>
+                <div class="form-control" style="height: auto;">
+                    @Html.RadioButtonFor(model => model.BusinessEvents, true, new { @name = "BusinessEvents", @onclick = "ChangeBusinessEvents()" }) @SharedLocalizer["BusinessEvents"]
+                    @Html.RadioButtonFor(model => model.BusinessEvents, false, new { @name = "BusinessEvents", @onclick = "ChangeBusinessEvents()" }) @SharedLocalizer["PlantationsType"]
+                </div>
+                <span asp-validation-for="BusinessEvents" class="text-danger"></span>
+            </div>
+            <div class="form-group PlantationsType">
+                <label asp-for="BusinessEventsPlantationsTypeId" class="control-label"></label>
+                <select asp-for="BusinessEventsPlantationsTypeId" class="form-control" asp-items="ViewBag.BusinessEventsPlantationsTypeId"></select>
+            </div>
+            <div class="form-group BusinessEvents">
+                <label asp-for="SanitaryPruning" class="control-label"></label>
+                <input asp-for="SanitaryPruning" class="form-control" />
+                <span asp-validation-for="SanitaryPruning" class="text-danger"></span>
+            </div>
+            <div class="form-group BusinessEvents">
+                <label asp-for="CrownFormation" class="control-label"></label>
+                <input asp-for="CrownFormation" class="form-control" />
+                <span asp-validation-for="CrownFormation" class="text-danger"></span>
+            </div>
+            <div class="form-group BusinessEvents">
+                <label asp-for="SanitaryFelling" class="control-label"></label>
+                <input asp-for="SanitaryFelling" class="form-control" />
+                <span asp-validation-for="SanitaryFelling" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaintenanceWork" class="control-label"></label>
+                <input asp-for="MaintenanceWork" class="form-control" />
+                <span asp-validation-for="MaintenanceWork" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Create"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+    function ChangeBusinessEvents() {
+        if ($("input[name='BusinessEvents']:checked").val() == "True") {
+            $('.BusinessEvents').show();
+            $('.PlantationsType').hide();
+        }
+        else {
+            $('.BusinessEvents').hide();
+            $('.PlantationsType').show();
+        }
+    };
+
+    $(document).ready(function () {
+        ChangeBusinessEvents();
+    });
+</script>

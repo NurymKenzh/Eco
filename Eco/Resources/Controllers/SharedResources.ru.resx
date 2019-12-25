@@ -1,0 +1,2352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AActivities" xml:space="preserve">
+    <value>Мероприятия</value>
+  </data>
+  <data name="AActivity" xml:space="preserve">
+    <value>Мероприятие</value>
+  </data>
+  <data name="AbbreviatedName" xml:space="preserve">
+    <value>Сокращенное название</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>О проекте</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Действующий</value>
+  </data>
+  <data name="ActivityType" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Actual" xml:space="preserve">
+    <value>Фактическое</value>
+  </data>
+  <data name="ActualAddress" xml:space="preserve">
+    <value>Фактический адрес</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AdditionalInformation" xml:space="preserve">
+    <value>Дополнительная информация</value>
+  </data>
+  <data name="AdditionalInformationKK" xml:space="preserve">
+    <value>Дополнительная информация (казахский)</value>
+  </data>
+  <data name="AdditionalInformationRU" xml:space="preserve">
+    <value>Дополнительная информация (русский)</value>
+  </data>
+  <data name="AddressContactInformation" xml:space="preserve">
+    <value>Адрес, контактные данные</value>
+  </data>
+  <data name="Administration" xml:space="preserve">
+    <value>Администрирование</value>
+  </data>
+  <data name="AirContaminant" xml:space="preserve">
+    <value>Вещество, загрязняющее атмосферный воздух</value>
+  </data>
+  <data name="AirContaminants" xml:space="preserve">
+    <value>Вещества, загрязняющие атмосферный воздух</value>
+  </data>
+  <data name="AirPollutionIndicator" xml:space="preserve">
+    <value>Показатель загрязнения атмосферного воздуха</value>
+  </data>
+  <data name="AirPollutionIndicators" xml:space="preserve">
+    <value>Показатели загрязнения атмосферного воздуха</value>
+  </data>
+  <data name="AirPost" xml:space="preserve">
+    <value>Пост измерения фонового загрязнения атмосферного воздуха</value>
+  </data>
+  <data name="AirPostData" xml:space="preserve">
+    <value>Уровень загрязнения атмосферного воздуха по данным специальных исследований</value>
+  </data>
+  <data name="AirPostDatas" xml:space="preserve">
+    <value>Уровень загрязнения атмосферного воздуха по данным специальных исследований</value>
+  </data>
+  <data name="AirPostDatasReport" xml:space="preserve">
+    <value>Отчет по данным уровня загрязнения атмосферного воздуха постов измерения</value>
+  </data>
+  <data name="AirPostDataUploadDescription" xml:space="preserve">
+    <value>Формат файла – Microsoft Excel.
+Будет обработан только первый лист с файла.
+Столбцы с данными в файле должны быть в следующем порядке:
+1 – дата;
+2 – время;
+3 – Температура, t°C;
+4 – Атмосферное давление, кПа;
+5 – Влажность, %;
+6 – Скорость ветра, м/с;
+7 – Направление ветра;
+8 – Общие погодные условия;
+9 – Значение.</value>
+  </data>
+  <data name="AirPosts" xml:space="preserve">
+    <value>Посты измерения фонового загрязнения атмосферного воздуха</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Analyst" xml:space="preserve">
+    <value>Аналитик</value>
+  </data>
+  <data name="AnnualMaximumPermissibleEmissionsVolume" xml:space="preserve">
+    <value>Годовой объем предельно допустимых выбросов</value>
+  </data>
+  <data name="AnnualMaximumPermissibleEmissionsVolumes" xml:space="preserve">
+    <value>Годовые объемы предельно допустимых выбросов</value>
+  </data>
+  <data name="ApproximateSafeExposureLevel" xml:space="preserve">
+    <value>Значение ориентировочного безопасного уровеня воздействия, мг/м³</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Площадь, км²</value>
+  </data>
+  <data name="Areahectares" xml:space="preserve">
+    <value>Площадь, га</value>
+  </data>
+  <data name="AreaOfGreenCommonAreas" xml:space="preserve">
+    <value>Площадь зеленых насаждений общего пользования, тыс. га</value>
+  </data>
+  <data name="AreaOfGreenPlantationsOfLimitedUse" xml:space="preserve">
+    <value>Площадь зеленых насаждений ограниченного пользования, тыс. га</value>
+  </data>
+  <data name="AreaOfGreenPlantationsOfSpecialUse" xml:space="preserve">
+    <value>Площадь зеленых насаждений специального пользования, тыс. га</value>
+  </data>
+  <data name="AtmosphericPressurekPa" xml:space="preserve">
+    <value>Атмосферное давление, кПа</value>
+  </data>
+  <data name="AtTheCrossroads" xml:space="preserve">
+    <value>На перекрестке</value>
+  </data>
+  <data name="AuthorizedAuthorities" xml:space="preserve">
+    <value>Уполномоченные органы</value>
+  </data>
+  <data name="AuthorizedAuthority" xml:space="preserve">
+    <value>Уполномоченный орган</value>
+  </data>
+  <data name="Automated" xml:space="preserve">
+    <value>Автоматизированный</value>
+  </data>
+  <data name="Autumn" xml:space="preserve">
+    <value>Осень</value>
+  </data>
+  <data name="AverageAnnualConcentrationmgl" xml:space="preserve">
+    <value>Среднегодовая концентрация, мг/л</value>
+  </data>
+  <data name="AverageAnnualConcentrationmgm3" xml:space="preserve">
+    <value>Среднегодовая концентрация, мг/м³</value>
+  </data>
+  <data name="AverageOperatingDegreeOfPurification" xml:space="preserve">
+    <value>Среднеэксплуатационная степень очистки, %</value>
+  </data>
+  <data name="AverageSeasonalConcentrationAutumnmgl" xml:space="preserve">
+    <value>Среднесезонная концентрация, осень, мг/л</value>
+  </data>
+  <data name="AverageSeasonalConcentrationAutumnmgm3" xml:space="preserve">
+    <value>Среднесезонная концентрация, осень, мг/м³</value>
+  </data>
+  <data name="AverageSeasonalConcentrationSpringmgl" xml:space="preserve">
+    <value>Среднесезонная концентрация, весна, мг/л</value>
+  </data>
+  <data name="AverageSeasonalConcentrationSpringmgm3" xml:space="preserve">
+    <value>Среднесезонная концентрация, весна, мг/м³</value>
+  </data>
+  <data name="AverageSeasonalConcentrationSummermgl" xml:space="preserve">
+    <value>Среднесезонная концентрация, лето, мг/л</value>
+  </data>
+  <data name="AverageSeasonalConcentrationSummermgm3" xml:space="preserve">
+    <value>Среднесезонная концентрация, лето, мг/м³</value>
+  </data>
+  <data name="AverageSeasonalConcentrationWintermgl" xml:space="preserve">
+    <value>Среднесезонная концентрация, зима, мг/л</value>
+  </data>
+  <data name="AverageSeasonalConcentrationWintermgm3" xml:space="preserve">
+    <value>Среднесезонная концентрация, зима, мг/м³</value>
+  </data>
+  <data name="AverageSpeedkmh" xml:space="preserve">
+    <value>Средняя скорость движения, км/ч</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Обратно к списку</value>
+  </data>
+  <data name="BIK" xml:space="preserve">
+    <value>Бизнес-идентификационный номер</value>
+  </data>
+  <data name="BusesDieselNumber" xml:space="preserve">
+    <value>Количество автобусов (дизельные)</value>
+  </data>
+  <data name="BusinessDirectories" xml:space="preserve">
+    <value>Справочники предприятий</value>
+  </data>
+  <data name="CalculationOfSurfaceConcentrations" xml:space="preserve">
+    <value>Расчет приземных концентраций</value>
+  </data>
+  <data name="CalculationOfSurfaceConcentrationsSummary" xml:space="preserve">
+    <value>Расчет приземных концентраций (сводные)</value>
+  </data>
+  <data name="CalculationOfSurfaceConcentrationsSummer" xml:space="preserve">
+    <value>Расчет приземных концентраций (лето)</value>
+  </data>
+  <data name="CalculationOfSurfaceConcentrationsVehicles" xml:space="preserve">
+    <value>Расчет приземных концентраций (автотранспорт)</value>
+  </data>
+  <data name="CalculationOfSurfaceConcentrationsWinter" xml:space="preserve">
+    <value>Расчет приземных концентраций (зима)</value>
+  </data>
+  <data name="CarsDieselNumber" xml:space="preserve">
+    <value>Количество легкового транспорта на дизеле</value>
+  </data>
+  <data name="CarsGasolineNumber" xml:space="preserve">
+    <value>Количество легкового транспорта на бензине</value>
+  </data>
+  <data name="CarsNumber" xml:space="preserve">
+    <value>Общее количество легкового транспорта</value>
+  </data>
+  <data name="CATO" xml:space="preserve">
+    <value>КАТО</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Изменить пароль</value>
+  </data>
+  <data name="ChangeYourAccountSettings" xml:space="preserve">
+    <value>Изменение настроек аккаунта</value>
+  </data>
+  <data name="CharacteristicsOfSourceOfEmissions" xml:space="preserve">
+    <value>Характеристика источника выбросов</value>
+  </data>
+  <data name="Charts" xml:space="preserve">
+    <value>Диаграммы</value>
+  </data>
+  <data name="CityDistrict" xml:space="preserve">
+    <value>Район города</value>
+  </data>
+  <data name="CityDistricts" xml:space="preserve">
+    <value>Районы города</value>
+  </data>
+  <data name="Class" xml:space="preserve">
+    <value>Класс</value>
+  </data>
+  <data name="Class1From" xml:space="preserve">
+    <value>1 класс, от</value>
+  </data>
+  <data name="Class1To" xml:space="preserve">
+    <value>1 класс, до</value>
+  </data>
+  <data name="Class2From" xml:space="preserve">
+    <value>2 класс, от</value>
+  </data>
+  <data name="Class2To" xml:space="preserve">
+    <value>2 класс, до</value>
+  </data>
+  <data name="Class3From" xml:space="preserve">
+    <value>3 класс, от</value>
+  </data>
+  <data name="Class3To" xml:space="preserve">
+    <value>3 класс, до</value>
+  </data>
+  <data name="Class4From" xml:space="preserve">
+    <value>4 класс, от</value>
+  </data>
+  <data name="Class4To" xml:space="preserve">
+    <value>4 класс, до</value>
+  </data>
+  <data name="Class5From" xml:space="preserve">
+    <value>5 класс, от</value>
+  </data>
+  <data name="Class5To" xml:space="preserve">
+    <value>5 класс, до</value>
+  </data>
+  <data name="CoefficientOfGasCleaningActual" xml:space="preserve">
+    <value>Коэффициент обеспеченности газоочисткой (фактический), %</value>
+  </data>
+  <data name="CoefficientOfGasCleaningPlanned" xml:space="preserve">
+    <value>Коэффициент обеспеченности газоочисткой (плановый), %</value>
+  </data>
+  <data name="CoefficientOfPotentiation" xml:space="preserve">
+    <value>Коэффициент потенцирования</value>
+  </data>
+  <data name="CoefficientOfSettlement" xml:space="preserve">
+    <value>Коэффициент оседания</value>
+  </data>
+  <data name="Column" xml:space="preserve">
+    <value>Колонка</value>
+  </data>
+  <data name="Companies" xml:space="preserve">
+    <value>Предприятия</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Предприятие</value>
+  </data>
+  <data name="CompanyEmissionsValue" xml:space="preserve">
+    <value>Значение предельно допустимых выбросов загрязняющего вещества по предприятию</value>
+  </data>
+  <data name="CompanyEmissionsValues" xml:space="preserve">
+    <value>Значения предельно допустимых выбросов загрязняющих веществ по предприятиям</value>
+  </data>
+  <data name="ConcentrationValuemgkg" xml:space="preserve">
+    <value>Значение концентрации, мг/кг</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Подтвердите новый пароль</value>
+  </data>
+  <data name="ContaminantCodeERA" xml:space="preserve">
+    <value>Код ЗВ</value>
+  </data>
+  <data name="Coordinates" xml:space="preserve">
+    <value>Координаты</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="CreateANewAccount" xml:space="preserve">
+    <value>Создать новый аккаунт.</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Текущий пароль</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Данные</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="DateOfAnalysis" xml:space="preserve">
+    <value>Дата анализа пробы</value>
+  </data>
+  <data name="DateOfIssueOfPermit" xml:space="preserve">
+    <value>Дата выдачи разрешения</value>
+  </data>
+  <data name="DateOfSampling" xml:space="preserve">
+    <value>Дата отбора пробы</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Дата, время</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>День</value>
+  </data>
+  <data name="DayOfAnalysis" xml:space="preserve">
+    <value>День анализа пробы</value>
+  </data>
+  <data name="DayOfSampling" xml:space="preserve">
+    <value>День отбора пробы</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Удалено</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Подробно</value>
+  </data>
+  <data name="DiameterOfMouthOfPipesOrWidth" xml:space="preserve">
+    <value>Диаметр устья труб (или ширина), м</value>
+  </data>
+  <data name="Direct" xml:space="preserve">
+    <value>Прямой</value>
+  </data>
+  <data name="Directories" xml:space="preserve">
+    <value>Справочники</value>
+  </data>
+  <data name="DirectoriesOnPollutants" xml:space="preserve">
+    <value>Справочники по загрязняющим веществам</value>
+  </data>
+  <data name="DirectoriesOnTargets" xml:space="preserve">
+    <value>Справочники по целевым показателям</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="DryTrees" xml:space="preserve">
+    <value>Сухостой, шт</value>
+  </data>
+  <data name="EastLongitude" xml:space="preserve">
+    <value>Восточная долгота</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Эл. адрес</value>
+  </data>
+  <data name="EmissionSource" xml:space="preserve">
+    <value>Источник выбросов</value>
+  </data>
+  <data name="EmissionSourceHeight" xml:space="preserve">
+    <value>Высота источника выбросов, м</value>
+  </data>
+  <data name="EmissionSourceMapNumber" xml:space="preserve">
+    <value>Номер источника выброса на карте</value>
+  </data>
+  <data name="EmissionSourceName" xml:space="preserve">
+    <value>Наименование источника выброса</value>
+  </data>
+  <data name="EmissionSources" xml:space="preserve">
+    <value>Источники выбросов</value>
+  </data>
+  <data name="EmissionSourceType" xml:space="preserve">
+    <value>Тип источника выбросов</value>
+  </data>
+  <data name="EmissionSourceTypes" xml:space="preserve">
+    <value>Типы источников выбросов</value>
+  </data>
+  <data name="EmissionsTonsPerYear" xml:space="preserve">
+    <value>Объем выбросов, тонн в год</value>
+  </data>
+  <data name="ErrorAccessDenied" xml:space="preserve">
+    <value>Доступ закрыт</value>
+  </data>
+  <data name="ErrorDublicateValue" xml:space="preserve">
+    <value>Объект с таким значением уже существует!</value>
+  </data>
+  <data name="ErrorIncorrectPassword" xml:space="preserve">
+    <value>Неверный пароль</value>
+  </data>
+  <data name="ErrorInputStringWasNotInACorrectFormat" xml:space="preserve">
+    <value>Строка ввода не была в правильном формате.</value>
+  </data>
+  <data name="ErrorInvalidLoginAttempt" xml:space="preserve">
+    <value>Неверная попытка входа.</value>
+  </data>
+  <data name="ErrorNeedToInput" xml:space="preserve">
+    <value>Поле обязательно для ввода!</value>
+  </data>
+  <data name="ErrorNumberRangeMustBe" xml:space="preserve">
+    <value>Значение {0} должно быть в диапазоне от {1} до {2}.</value>
+  </data>
+  <data name="ErrorStringLengthMustBe" xml:space="preserve">
+    <value>{0} должен быть не менее {2} и не более {1} символов (-а).</value>
+  </data>
+  <data name="ErrorTheFieldIsNotAValidEmailAddress" xml:space="preserve">
+    <value>Поле {0} не является действительным адресом электронной почты.</value>
+  </data>
+  <data name="ErrorThePasswordAndConfirmationPasswordDoNotMatch" xml:space="preserve">
+    <value>Пароль и подтверждение пароля не совпадают.</value>
+  </data>
+  <data name="ErrorUserNameIsAlreadyTaken" xml:space="preserve">
+    <value>Имя пользователя уже используется.</value>
+  </data>
+  <data name="ErrorValueNotFound" xml:space="preserve">
+    <value>Значение не найдено</value>
+  </data>
+  <data name="ErrorYouDoNotHaveAccessToThisResource" xml:space="preserve">
+    <value>У вас нет доступа к этому ресурсу.</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Мероприятие</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Мероприятия</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="FirstRowHeader" xml:space="preserve">
+    <value>Первый столбец - заголовок</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Полное название</value>
+  </data>
+  <data name="GammaBackgroundOfTheSoil" xml:space="preserve">
+    <value>Значение гамма-фона почвы</value>
+  </data>
+  <data name="GasCleaningFacilities" xml:space="preserve">
+    <value>Газоочистные сооружения</value>
+  </data>
+  <data name="GeneralWeatherCondition" xml:space="preserve">
+    <value>Общие погодные условия</value>
+  </data>
+  <data name="GeneralWeatherConditions" xml:space="preserve">
+    <value>Общие погодные условия</value>
+  </data>
+  <data name="GISConnectionCode" xml:space="preserve">
+    <value>Код связи с ГИС</value>
+  </data>
+  <data name="GoTo" xml:space="preserve">
+    <value>Перейти &gt;&gt;&gt;</value>
+  </data>
+  <data name="GreenPlantationsAreaAndSpeciesDiversities" xml:space="preserve">
+    <value>Площади и видовые разнообразия зеленых насаждений</value>
+  </data>
+  <data name="GreenPlantationsAreaAndSpeciesDiversity" xml:space="preserve">
+    <value>Площадь и видовое разнообразие зеленых насаждений</value>
+  </data>
+  <data name="GreenPlantationsState" xml:space="preserve">
+    <value>Состояние зеленых насаждений</value>
+  </data>
+  <data name="GreenPlantationsStates" xml:space="preserve">
+    <value>Состояния зеленых насаждений</value>
+  </data>
+  <data name="GreenPlantationsType" xml:space="preserve">
+    <value>Тип зеленых насаждений</value>
+  </data>
+  <data name="GreenPlantationsTypes" xml:space="preserve">
+    <value>Типы зеленых насаждений</value>
+  </data>
+  <data name="GreenSpaces" xml:space="preserve">
+    <value>Зеленые насаждения</value>
+  </data>
+  <data name="Ground" xml:space="preserve">
+    <value>Наземный</value>
+  </data>
+  <data name="HazardClass" xml:space="preserve">
+    <value>Класс опасности</value>
+  </data>
+  <data name="HazardClasses" xml:space="preserve">
+    <value>Классы опасности</value>
+  </data>
+  <data name="HeadCompanies" xml:space="preserve">
+    <value>Головные предприятия</value>
+  </data>
+  <data name="HeadCompany" xml:space="preserve">
+    <value>Головное предприятие</value>
+  </data>
+  <data name="HierarchicalStructure" xml:space="preserve">
+    <value>Иерархическая структура</value>
+  </data>
+  <data name="HighAltitude" xml:space="preserve">
+    <value>Высотный</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Час</value>
+  </data>
+  <data name="House" xml:space="preserve">
+    <value>Дом</value>
+  </data>
+  <data name="Humidity" xml:space="preserve">
+    <value>Влажность, %</value>
+  </data>
+  <data name="ImplementationPercentage" xml:space="preserve">
+    <value>Процент реализации</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Недействующий</value>
+  </data>
+  <data name="IndustrialSite" xml:space="preserve">
+    <value>Промышленная площадка</value>
+  </data>
+  <data name="IndustrialSites" xml:space="preserve">
+    <value>Промышленные площадки</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="IssuingPermitsStateAuthorities" xml:space="preserve">
+    <value>Государственные органы, выдающие разрешения</value>
+  </data>
+  <data name="IssuingPermitsStateAuthority" xml:space="preserve">
+    <value>Государственный орган, выдающий разрешения</value>
+  </data>
+  <data name="KazHydrometAirPost" xml:space="preserve">
+    <value>Пост наблюдения за уровнем загрязнения атмосферного воздуха КазГидромета</value>
+  </data>
+  <data name="KazHydrometAirPostData" xml:space="preserve">
+    <value>Данные уровня загрязнения атмосферного воздуха поста наблюдения КазГидромета</value>
+  </data>
+  <data name="KazHydrometAirPostDatas" xml:space="preserve">
+    <value>Данные уровня загрязнения атмосферного воздуха постов наблюдения КазГидромета</value>
+  </data>
+  <data name="KazHydrometAirPostDatasReport" xml:space="preserve">
+    <value>Отчет по данным уровня загрязнения атмосферного воздуха постов наблюдения КазГидромета</value>
+  </data>
+  <data name="KazHydrometAirPostDataUploadDescription" xml:space="preserve">
+    <value>Формат файла – Microsoft Excel.
+Будет обработан только первый лист с файла.
+Столбцы с данными в файле должны быть в следующем порядке:
+1 – год;
+2 – месяц;
+3 – среднемесячная концентрация загрязняющего вещества, мг/м³;
+4 – максимально-разовая концентрация загрязняющего вещества, мг/м³ за месяц;
+5 – день регистрации максимально-разовой концентрации по загрязняющему веществу.</value>
+  </data>
+  <data name="KazHydrometAirPosts" xml:space="preserve">
+    <value>Посты наблюдения за уровнем загрязнения атмосферного воздуха КазГидромета</value>
+  </data>
+  <data name="KazHydrometSoilPost" xml:space="preserve">
+    <value>Пост мониторинга загрязнения почв КазГидромета</value>
+  </data>
+  <data name="KazHydrometSoilPostData" xml:space="preserve">
+    <value>Данные загрязнения почв по пунктам мониторинга Казгидромета</value>
+  </data>
+  <data name="KazHydrometSoilPostDatas" xml:space="preserve">
+    <value>Данные загрязнения почв по пунктам мониторинга Казгидромета</value>
+  </data>
+  <data name="KazHydrometSoilPostDatasReport" xml:space="preserve">
+    <value>Отчет по данным загрязнения почв по пунктам мониторинга Казгидромета</value>
+  </data>
+  <data name="KazHydrometSoilPosts" xml:space="preserve">
+    <value>Посты мониторинга загрязнения почв КазГидромета</value>
+  </data>
+  <data name="KazHydrometWaterPost" xml:space="preserve">
+    <value>Пост наблюдения за уровнем загрязнения воды КазГидромета</value>
+  </data>
+  <data name="KazHydrometWaterPostData" xml:space="preserve">
+    <value>Данные качества поверхностных вод по постам мониторинга Казгидромета</value>
+  </data>
+  <data name="KazHydrometWaterPostDatas" xml:space="preserve">
+    <value>Данные качества поверхностных вод по постам мониторинга Казгидромета</value>
+  </data>
+  <data name="KazHydrometWaterPostDatasReport" xml:space="preserve">
+    <value>Отчет по данным качества поверхностных вод по постам мониторинга Казгидромета</value>
+  </data>
+  <data name="KazHydrometWaterPosts" xml:space="preserve">
+    <value>Посты наблюдения за уровнем загрязнения воды КазГидромета</value>
+  </data>
+  <data name="KindOfActivity" xml:space="preserve">
+    <value>Вид деятельности</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Layers" xml:space="preserve">
+    <value>Слои</value>
+  </data>
+  <data name="LegalAddress" xml:space="preserve">
+    <value>Юридический адрес</value>
+  </data>
+  <data name="Legend" xml:space="preserve">
+    <value>Легенда</value>
+  </data>
+  <data name="LengthOfMouth" xml:space="preserve">
+    <value>Длина устья, м</value>
+  </data>
+  <data name="LimitingIndicator" xml:space="preserve">
+    <value>Лимитирующий показатель</value>
+  </data>
+  <data name="LimitingIndicators" xml:space="preserve">
+    <value>Лимитирующие показатели</value>
+  </data>
+  <data name="LimitingSoilIndicator" xml:space="preserve">
+    <value>Лимитирующий показатель для почвы</value>
+  </data>
+  <data name="LimitingSoilIndicators" xml:space="preserve">
+    <value>Лимитирующие показатели для почвы</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>Журналы</value>
+  </data>
+  <data name="Look" xml:space="preserve">
+    <value>Смотреть</value>
+  </data>
+  <data name="ManageYourAccount" xml:space="preserve">
+    <value>Настройте свой аккаунт</value>
+  </data>
+  <data name="Manual" xml:space="preserve">
+    <value>Ручной</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="Maps" xml:space="preserve">
+    <value>Карты</value>
+  </data>
+  <data name="Maps1" xml:space="preserve">
+    <value>Основные факторы воздействия и оценка современного состояния и качества атмосферного воздуха города Алматы</value>
+  </data>
+  <data name="Maps1_1" xml:space="preserve">
+    <value>Посты наблюдения КазГидромет</value>
+  </data>
+  <data name="Maps1_2" xml:space="preserve">
+    <value>Точки натурных замеров</value>
+  </data>
+  <data name="Maps1_3" xml:space="preserve">
+    <value>Стационарные источники выбросов </value>
+  </data>
+  <data name="Maps1_3_1" xml:space="preserve">
+    <value>Предприятия г. Алматы</value>
+  </data>
+  <data name="Maps1_3_2" xml:space="preserve">
+    <value>Источники выбросов</value>
+  </data>
+  <data name="Maps1_3_3" xml:space="preserve">
+    <value>Сводный расчет рассеивания</value>
+  </data>
+  <data name="Maps1_3_3_1" xml:space="preserve">
+    <value>Зимний период</value>
+  </data>
+  <data name="Maps1_3_3_1_1" xml:space="preserve">
+    <value>Азота (IV) диоксид</value>
+  </data>
+  <data name="Maps1_3_3_1_2" xml:space="preserve">
+    <value>Сера диоксид </value>
+  </data>
+  <data name="Maps1_3_3_1_3" xml:space="preserve">
+    <value>Углерод оксид </value>
+  </data>
+  <data name="Maps1_3_3_1_4" xml:space="preserve">
+    <value>Гидроксибензол (Фенол) (155)</value>
+  </data>
+  <data name="Maps1_3_3_1_5" xml:space="preserve">
+    <value>Формальдегид (Метаналь) (609)</value>
+  </data>
+  <data name="Maps1_3_3_1_6" xml:space="preserve">
+    <value>Взвешенные частицы (116)</value>
+  </data>
+  <data name="Maps1_3_3_1_7" xml:space="preserve">
+    <value>Группы суммации 0301+0304+0330+2904</value>
+  </data>
+  <data name="Maps1_3_3_1_8" xml:space="preserve">
+    <value>Группы суммации ПЛ</value>
+  </data>
+  <data name="Maps1_3_3_2" xml:space="preserve">
+    <value>Летний период</value>
+  </data>
+  <data name="Maps1_3_3_2_1" xml:space="preserve">
+    <value>Азота (IV) диоксид</value>
+  </data>
+  <data name="Maps1_3_3_2_2" xml:space="preserve">
+    <value>Сера диоксид </value>
+  </data>
+  <data name="Maps1_3_3_2_3" xml:space="preserve">
+    <value>Углерод оксид </value>
+  </data>
+  <data name="Maps1_3_3_2_4" xml:space="preserve">
+    <value>Гидроксибензол (Фенол) (155)</value>
+  </data>
+  <data name="Maps1_3_3_2_5" xml:space="preserve">
+    <value>Формальдегид (Метаналь) (609)</value>
+  </data>
+  <data name="Maps1_3_3_2_6" xml:space="preserve">
+    <value>Взвешенные частицы (116)</value>
+  </data>
+  <data name="Maps1_3_3_2_7" xml:space="preserve">
+    <value>Группы суммации 0301+0304+0330+2904</value>
+  </data>
+  <data name="Maps1_3_3_2_8" xml:space="preserve">
+    <value>Группы суммации ПЛ</value>
+  </data>
+  <data name="Maps1_3_4" xml:space="preserve">
+    <value>Сводный расчет рассеивания (с учетом ГДЦ)</value>
+  </data>
+  <data name="Maps1_3_4_1" xml:space="preserve">
+    <value>Зимний период</value>
+  </data>
+  <data name="Maps1_3_4_1_1" xml:space="preserve">
+    <value>Сера диоксид</value>
+  </data>
+  <data name="Maps1_3_4_1_1_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_3_4_1_1_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_3_4_1_1_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_3_4_1_1_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_3_4_1_1_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_3_4_1_1_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_3_4_1_2" xml:space="preserve">
+    <value>Азота (IV) диоксид</value>
+  </data>
+  <data name="Maps1_3_4_1_2_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_3_4_1_2_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_3_4_1_2_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_3_4_1_2_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_3_4_1_2_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_3_4_1_2_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_3_4_1_3" xml:space="preserve">
+    <value>Азот (II) оксид</value>
+  </data>
+  <data name="Maps1_3_4_1_3_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_3_4_1_3_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_3_4_1_3_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_3_4_1_3_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_3_4_1_3_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_3_4_1_3_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_3_4_1_4" xml:space="preserve">
+    <value>Взвешенные частицы pm70-20</value>
+  </data>
+  <data name="Maps1_3_4_1_4_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_3_4_1_4_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_3_4_1_4_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_3_4_1_4_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_3_4_1_4_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_3_4_1_4_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_3_4_1_5" xml:space="preserve">
+    <value>Суммарная концентрация ЗВ</value>
+  </data>
+  <data name="Maps1_3_4_1_5_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_3_4_1_5_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_3_4_1_5_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_3_4_1_5_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_3_4_1_5_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_3_4_1_5_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_3_4_2" xml:space="preserve">
+    <value>Летний период</value>
+  </data>
+  <data name="Maps1_3_4_2_1" xml:space="preserve">
+    <value>Сера диоксид</value>
+  </data>
+  <data name="Maps1_3_4_2_1_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_3_4_2_1_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_3_4_2_1_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_3_4_2_1_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_3_4_2_1_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_3_4_2_1_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_3_4_2_2" xml:space="preserve">
+    <value>Азота (IV) диоксид</value>
+  </data>
+  <data name="Maps1_3_4_2_2_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_3_4_2_2_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_3_4_2_2_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_3_4_2_2_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_3_4_2_2_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_3_4_2_2_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_3_4_2_3" xml:space="preserve">
+    <value>Азот (II) оксид</value>
+  </data>
+  <data name="Maps1_3_4_2_3_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_3_4_2_3_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_3_4_2_3_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_3_4_2_3_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_3_4_2_3_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_3_4_2_3_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_3_4_2_4" xml:space="preserve">
+    <value>Взвешенные частицы pm70-20</value>
+  </data>
+  <data name="Maps1_3_4_2_4_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_3_4_2_4_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_3_4_2_4_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_3_4_2_4_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_3_4_2_4_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_3_4_2_4_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_3_4_2_5" xml:space="preserve">
+    <value>Суммарная концентрация ЗВ</value>
+  </data>
+  <data name="Maps1_3_4_2_5_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_3_4_2_5_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_3_4_2_5_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_3_4_2_5_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_3_4_2_5_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_3_4_2_5_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_4" xml:space="preserve">
+    <value>Передвижные источники выбросов </value>
+  </data>
+  <data name="Maps1_4_1" xml:space="preserve">
+    <value>Интенсивность движения автотранспорта</value>
+  </data>
+  <data name="Maps1_4_2" xml:space="preserve">
+    <value>Сводный расчет рассеивания</value>
+  </data>
+  <data name="Maps1_4_2_1" xml:space="preserve">
+    <value>Азота (IV) диоксид </value>
+  </data>
+  <data name="Maps1_4_2_2" xml:space="preserve">
+    <value>Сера диоксид</value>
+  </data>
+  <data name="Maps1_4_2_3" xml:space="preserve">
+    <value>Углерод оксид (584)  </value>
+  </data>
+  <data name="Maps1_4_2_4" xml:space="preserve">
+    <value>Формальдегид (Метаналь) (609)                          </value>
+  </data>
+  <data name="Maps1_4_2_5" xml:space="preserve">
+    <value>Группы суммации 0301* + 0330*         </value>
+  </data>
+  <data name="Maps1_4_3" xml:space="preserve">
+    <value>Сводный расчет рассеивания (с учетом ГДЦ)</value>
+  </data>
+  <data name="Maps1_4_3_1" xml:space="preserve">
+    <value>Зимний период</value>
+  </data>
+  <data name="Maps1_4_3_1_1" xml:space="preserve">
+    <value>Азота (IV) диоксид</value>
+  </data>
+  <data name="Maps1_4_3_1_1_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_4_3_1_1_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_4_3_1_1_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_4_3_1_1_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_4_3_1_1_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_4_3_1_1_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_4_3_1_2" xml:space="preserve">
+    <value>Углерод оксид </value>
+  </data>
+  <data name="Maps1_4_3_1_2_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_4_3_1_2_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_4_3_1_2_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_4_3_1_2_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_4_3_1_2_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_4_3_1_2_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_4_3_2" xml:space="preserve">
+    <value>Летний период</value>
+  </data>
+  <data name="Maps1_4_3_2_1" xml:space="preserve">
+    <value>Азота (IV) диоксид</value>
+  </data>
+  <data name="Maps1_4_3_2_1_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_4_3_2_1_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_4_3_2_1_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_4_3_2_1_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_4_3_2_1_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_4_3_2_1_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_4_3_2_2" xml:space="preserve">
+    <value>Углерод оксид </value>
+  </data>
+  <data name="Maps1_4_3_2_2_1" xml:space="preserve">
+    <value>время 00:00</value>
+  </data>
+  <data name="Maps1_4_3_2_2_2" xml:space="preserve">
+    <value>время 09:00</value>
+  </data>
+  <data name="Maps1_4_3_2_2_3" xml:space="preserve">
+    <value>время 12:00</value>
+  </data>
+  <data name="Maps1_4_3_2_2_4" xml:space="preserve">
+    <value>время 15:00</value>
+  </data>
+  <data name="Maps1_4_3_2_2_5" xml:space="preserve">
+    <value>время 18:00</value>
+  </data>
+  <data name="Maps1_4_3_2_2_6" xml:space="preserve">
+    <value>время 21:00</value>
+  </data>
+  <data name="Maps1_5" xml:space="preserve">
+    <value>Интегральная  оценка уровня загрязнения</value>
+  </data>
+  <data name="Maps1_5_1" xml:space="preserve">
+    <value>Сводный расчет рассеивания</value>
+  </data>
+  <data name="Maps1_5_1_1" xml:space="preserve">
+    <value>Свинец (513)</value>
+  </data>
+  <data name="Maps1_5_1_10" xml:space="preserve">
+    <value>Группы суммации 0301+0304+0330+2904</value>
+  </data>
+  <data name="Maps1_5_1_11" xml:space="preserve">
+    <value>Группы суммации 0301+0330</value>
+  </data>
+  <data name="Maps1_5_1_2" xml:space="preserve">
+    <value>Азота (IV) диоксид (4)  </value>
+  </data>
+  <data name="Maps1_5_1_3" xml:space="preserve">
+    <value>Азот (II) оксид (6)</value>
+  </data>
+  <data name="Maps1_5_1_4" xml:space="preserve">
+    <value>Углерод (Сажа, Углерод черный) (583)</value>
+  </data>
+  <data name="Maps1_5_1_5" xml:space="preserve">
+    <value>Сера диоксид  (516)</value>
+  </data>
+  <data name="Maps1_5_1_6" xml:space="preserve">
+    <value>Углерод оксид  (584)  </value>
+  </data>
+  <data name="Maps1_5_1_7" xml:space="preserve">
+    <value>Бенз/а/пирен (3,4-Бензпирен) (54)</value>
+  </data>
+  <data name="Maps1_5_1_8" xml:space="preserve">
+    <value>Формальдегид (Метаналь) (609)</value>
+  </data>
+  <data name="Maps1_5_1_9" xml:space="preserve">
+    <value>Углеводороды предельные С12-С19</value>
+  </data>
+  <data name="Maps1_5_2" xml:space="preserve">
+    <value>Сводный расчет рассеивания (с учетом ГДЦ)</value>
+  </data>
+  <data name="Maps1_5_2_1" xml:space="preserve">
+    <value>Зимний период</value>
+  </data>
+  <data name="Maps1_5_2_2" xml:space="preserve">
+    <value>Летний период</value>
+  </data>
+  <data name="Maps2" xml:space="preserve">
+    <value>Оценка современного состояния и качества водных ресурсов</value>
+  </data>
+  <data name="Maps2_1" xml:space="preserve">
+    <value>Точки натурных замеров</value>
+  </data>
+  <data name="Maps2_2" xml:space="preserve">
+    <value>Посты наблюдения КазГидромет</value>
+  </data>
+  <data name="Maps2_3" xml:space="preserve">
+    <value>Водоохранная полоса г. Алматы</value>
+  </data>
+  <data name="Maps2_4" xml:space="preserve">
+    <value>Водоохранная зона г. Алматы</value>
+  </data>
+  <data name="Maps3" xml:space="preserve">
+    <value>Оценка современного состояния растительного покрова</value>
+  </data>
+  <data name="Maps3_1" xml:space="preserve">
+    <value>Зеленые насаждения (современного состояния)</value>
+  </data>
+  <data name="Maps4" xml:space="preserve">
+    <value>Оценка современного состояния и загрязнения почвенного покрова</value>
+  </data>
+  <data name="Maps4_1" xml:space="preserve">
+    <value>Точки натурных замеров</value>
+  </data>
+  <data name="Maps4_2" xml:space="preserve">
+    <value>Посты наблюдения КазГидромет</value>
+  </data>
+  <data name="Maps4_3" xml:space="preserve">
+    <value>Загрязнение почвы по ингредиентам (натурные)</value>
+  </data>
+  <data name="Maps4_3_1" xml:space="preserve">
+    <value>Скандий</value>
+  </data>
+  <data name="Maps4_3_10" xml:space="preserve">
+    <value>Бериллий</value>
+  </data>
+  <data name="Maps4_3_11" xml:space="preserve">
+    <value>Молибден</value>
+  </data>
+  <data name="Maps4_3_12" xml:space="preserve">
+    <value>Олово</value>
+  </data>
+  <data name="Maps4_3_13" xml:space="preserve">
+    <value>Ванадий</value>
+  </data>
+  <data name="Maps4_3_14" xml:space="preserve">
+    <value>Литий</value>
+  </data>
+  <data name="Maps4_3_15" xml:space="preserve">
+    <value>Медь</value>
+  </data>
+  <data name="Maps4_3_16" xml:space="preserve">
+    <value>Цинк</value>
+  </data>
+  <data name="Maps4_3_17" xml:space="preserve">
+    <value>Серебро</value>
+  </data>
+  <data name="Maps4_3_18" xml:space="preserve">
+    <value>Кобальт</value>
+  </data>
+  <data name="Maps4_3_19" xml:space="preserve">
+    <value>Галлий (Ga)</value>
+  </data>
+  <data name="Maps4_3_2" xml:space="preserve">
+    <value>Фосфор</value>
+  </data>
+  <data name="Maps4_3_20" xml:space="preserve">
+    <value>Германий (Ge)</value>
+  </data>
+  <data name="Maps4_3_21" xml:space="preserve">
+    <value>Ниобий (Nb)</value>
+  </data>
+  <data name="Maps4_3_22" xml:space="preserve">
+    <value>Стронций (Sr)</value>
+  </data>
+  <data name="Maps4_3_23" xml:space="preserve">
+    <value>Иттербий  (Yb)</value>
+  </data>
+  <data name="Maps4_3_24" xml:space="preserve">
+    <value>Иттрий (Y)</value>
+  </data>
+  <data name="Maps4_3_25" xml:space="preserve">
+    <value>Суммарный показатель Zc</value>
+  </data>
+  <data name="Maps4_3_26" xml:space="preserve">
+    <value>Гамма-фона</value>
+  </data>
+  <data name="Maps4_3_27" xml:space="preserve">
+    <value>Нефтепродукы</value>
+  </data>
+  <data name="Maps4_3_3" xml:space="preserve">
+    <value>Марганец</value>
+  </data>
+  <data name="Maps4_3_4" xml:space="preserve">
+    <value>Свинец</value>
+  </data>
+  <data name="Maps4_3_5" xml:space="preserve">
+    <value>Титан</value>
+  </data>
+  <data name="Maps4_3_6" xml:space="preserve">
+    <value>Цирконий</value>
+  </data>
+  <data name="Maps4_3_7" xml:space="preserve">
+    <value>Хром</value>
+  </data>
+  <data name="Maps4_3_8" xml:space="preserve">
+    <value>Никель</value>
+  </data>
+  <data name="Maps4_3_9" xml:space="preserve">
+    <value>Барий</value>
+  </data>
+  <data name="Maps5" xml:space="preserve">
+    <value>Анализ существующего положения по сбору, утилизации и хранению твердых бытовых отходов (ТБО) на территории города Алматы</value>
+  </data>
+  <data name="Maps5_1" xml:space="preserve">
+    <value>Предприятия по сбору и переработке вторсырья</value>
+  </data>
+  <data name="Maps5_2" xml:space="preserve">
+    <value>Предприятия по утилизации отходов</value>
+  </data>
+  <data name="Maps6" xml:space="preserve">
+    <value>Комплексное экологическое районирование территории города Алматы</value>
+  </data>
+  <data name="Maps6_1" xml:space="preserve">
+    <value>Комплексное экологическое районирование территории города Алматы</value>
+  </data>
+  <data name="MapsWind" xml:space="preserve">
+    <value>Ветер</value>
+  </data>
+  <data name="MaximumDegreeOfPurification" xml:space="preserve">
+    <value>Максимальная степень очистки, %</value>
+  </data>
+  <data name="MaximumMonthlyConcentrationmgl" xml:space="preserve">
+    <value>Максимальная месячная концентрация, мг/л</value>
+  </data>
+  <data name="MaximumOneTimeConcentrationPerYearDate" xml:space="preserve">
+    <value>Дата регистрации максимально-разовой концентрации за год</value>
+  </data>
+  <data name="MaximumOneTimeConcentrationPerYearmgm3" xml:space="preserve">
+    <value>Максимально-разовая концентрация мг/м³ за год</value>
+  </data>
+  <data name="MaximumOneTimeValue" xml:space="preserve">
+    <value>Максимально-разовая концентрация мг/м³</value>
+  </data>
+  <data name="MaximumOneTimeValueDate" xml:space="preserve">
+    <value>Дата регистрации максимально-разовой концентрации</value>
+  </data>
+  <data name="MaximumPermissibleConcentrationDailyAverage" xml:space="preserve">
+    <value>Значение предельно допустимой концентрации среднесуточное, мг/м³</value>
+  </data>
+  <data name="MaximumPermissibleConcentrationExcessMultiplicityDailyAverage" xml:space="preserve">
+    <value>Кратность превышения предельно допустимой концентрации среднесуточной</value>
+  </data>
+  <data name="MaximumPermissibleConcentrationExcessMultiplicityMaximumOneTime" xml:space="preserve">
+    <value>Кратность превышения предельно допустимой концентрации максимально разовой</value>
+  </data>
+  <data name="MaximumPermissibleConcentrationOneTimemaximum" xml:space="preserve">
+    <value>Значение  предельно допустимой концентрации максимально-разовое, мг/м³</value>
+  </data>
+  <data name="MaximumPermissibleConcentrationSoil" xml:space="preserve">
+    <value>Значение предельно допустимой концентрации, мг/кг</value>
+  </data>
+  <data name="MaximumPermissibleConcentrationWater" xml:space="preserve">
+    <value>Значение предельно допустимой концентрации, мг/л</value>
+  </data>
+  <data name="MeasurementUnit" xml:space="preserve">
+    <value>Единица измерения</value>
+  </data>
+  <data name="MeasurementUnits" xml:space="preserve">
+    <value>Единицы измерения</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Минута</value>
+  </data>
+  <data name="MobileAirPost" xml:space="preserve">
+    <value>Пункт измерения фонового загрязнения атмосферного воздуха от передвижных источников</value>
+  </data>
+  <data name="MobileAirPosts" xml:space="preserve">
+    <value>Пункты измерения фонового загрязнения атмосферного воздуха от передвижных источников</value>
+  </data>
+  <data name="Monitoring" xml:space="preserve">
+    <value>Мониторинг</value>
+  </data>
+  <data name="Monitorings" xml:space="preserve">
+    <value>Мониторинги</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Месяц</value>
+  </data>
+  <data name="MonthOfAnalysis" xml:space="preserve">
+    <value>Месяц анализа пробы</value>
+  </data>
+  <data name="MonthOfSampling" xml:space="preserve">
+    <value>Месяц отбора пробы</value>
+  </data>
+  <data name="MovementDirection" xml:space="preserve">
+    <value>Направление движения</value>
+  </data>
+  <data name="MovementDirections" xml:space="preserve">
+    <value>Направления движений</value>
+  </data>
+  <data name="ms1" xml:space="preserve">
+    <value>1 м/с</value>
+  </data>
+  <data name="ms2" xml:space="preserve">
+    <value>2 м/с</value>
+  </data>
+  <data name="ms3" xml:space="preserve">
+    <value>3 м/с</value>
+  </data>
+  <data name="ms4" xml:space="preserve">
+    <value>4 м/с</value>
+  </data>
+  <data name="ms5" xml:space="preserve">
+    <value>5 м/с</value>
+  </data>
+  <data name="MultiplicityOfExcessOfNormative" xml:space="preserve">
+    <value>Кратность превышения норматива</value>
+  </data>
+  <data name="MultiplicityOfExcessOfTheMaximumPermissibleConcentration" xml:space="preserve">
+    <value>Кратность превышения предельно допустимой концентрации</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="NameKK" xml:space="preserve">
+    <value>Название (казахский)</value>
+  </data>
+  <data name="NameOfGasTreatmentPlantsTypeAndMeasuresToReduceEmissions" xml:space="preserve">
+    <value>Наименование газоочистных установок, тип и мероприятия по сокращению выбросов</value>
+  </data>
+  <data name="NameRU" xml:space="preserve">
+    <value>Название (русский)</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="NewValues" xml:space="preserve">
+    <value>Новые значения</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="NormativeSoilType" xml:space="preserve">
+    <value>Тип норматива по почве</value>
+  </data>
+  <data name="NormativeSoilTypes" xml:space="preserve">
+    <value>Типы нормативов по почве</value>
+  </data>
+  <data name="NormativeValue" xml:space="preserve">
+    <value>Значение норматива, мг/кг</value>
+  </data>
+  <data name="NorthLatitude" xml:space="preserve">
+    <value>Северная широта</value>
+  </data>
+  <data name="NotDetected" xml:space="preserve">
+    <value>Не обнаружено</value>
+  </data>
+  <data name="NothingSelected" xml:space="preserve">
+    <value>Ничего не выбрано</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="Number104" xml:space="preserve">
+    <value>Номер ЗВ по перечню Приказа №151 КВР МСХ</value>
+  </data>
+  <data name="Number168" xml:space="preserve">
+    <value>Код ЗВ по перечню Таблицы 1 Приложения 1 Приказа МЗ №168</value>
+  </data>
+  <data name="Number25012012" xml:space="preserve">
+    <value>Порядковый номер группы суммации по казахстанскому СП от 25.01.2012</value>
+  </data>
+  <data name="NumberCAS" xml:space="preserve">
+    <value>Номер CAS</value>
+  </data>
+  <data name="NumberOfBands" xml:space="preserve">
+    <value>Количество полос</value>
+  </data>
+  <data name="NumberOfDepressedTrees" xml:space="preserve">
+    <value>Количество угнетенных деревьев, шт</value>
+  </data>
+  <data name="NumberOfEmergencyTrees" xml:space="preserve">
+    <value>Количество аварийных деревьев, шт</value>
+  </data>
+  <data name="NumberOfHealthyTrees" xml:space="preserve">
+    <value>Количество здоровых деревьев, шт</value>
+  </data>
+  <data name="NumberOfShrinkingTrees" xml:space="preserve">
+    <value>Количество усыхающих деревьев, шт</value>
+  </data>
+  <data name="NumberOfTreeSpecies" xml:space="preserve">
+    <value>Количество видов деревьев</value>
+  </data>
+  <data name="NumberOfWeakenedTrees" xml:space="preserve">
+    <value>Количество ослабленных деревьев, шт</value>
+  </data>
+  <data name="OldValues" xml:space="preserve">
+    <value>Старые значения</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Операция</value>
+  </data>
+  <data name="ParametersOfGasAirMixtureAtOutletOfPipeAtMaximumSingleLoad" xml:space="preserve">
+    <value>Параметры газовоздушной смеси на выходе из трубы при максимально разовой нагрузке</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Planned" xml:space="preserve">
+    <value>Планируемое</value>
+  </data>
+  <data name="PlantationsState" xml:space="preserve">
+    <value>Состояние зеленых насаждений</value>
+  </data>
+  <data name="PlantationsStates" xml:space="preserve">
+    <value>Состояния зеленых насаждений</value>
+  </data>
+  <data name="PlantationsStateType" xml:space="preserve">
+    <value>Тип состояния зеленых насаждений</value>
+  </data>
+  <data name="PlantationsStateTypes" xml:space="preserve">
+    <value>Типы состояний зеленых насаждений</value>
+  </data>
+  <data name="PlantationsType" xml:space="preserve">
+    <value>Тип насаждений</value>
+  </data>
+  <data name="PlantationsTypes" xml:space="preserve">
+    <value>Типы насаждений</value>
+  </data>
+  <data name="PointsAmount" xml:space="preserve">
+    <value>Количество точек</value>
+  </data>
+  <data name="PointsOfPollutionMonitoring" xml:space="preserve">
+    <value>Пункты мониторинга за загрязнением</value>
+  </data>
+  <data name="PollutantConcentrationMaximumOneTimeMonth" xml:space="preserve">
+    <value>Месяц регистрации максимально-разовой концентрации по загрязняющему веществу</value>
+  </data>
+  <data name="PollutantConcentrationMaximumOneTimePerMonth" xml:space="preserve">
+    <value>Максимально-разовая концентрация загрязняющего вещества, мг/м³ за месяц</value>
+  </data>
+  <data name="PollutantConcentrationMaximumOneTimePerMonthDay" xml:space="preserve">
+    <value>День регистрации максимально-разовой концентрации по загрязняющему веществу</value>
+  </data>
+  <data name="PollutantConcentrationMaximumOneTimePerYear" xml:space="preserve">
+    <value>Максимально-разовая концентрация загрязняющего вещества, мг/м³ за год</value>
+  </data>
+  <data name="PollutantConcentrationmgl" xml:space="preserve">
+    <value>Концентрация загрязняющего вещества, мг/л</value>
+  </data>
+  <data name="PollutantConcentrationMonthlyAverage" xml:space="preserve">
+    <value>Среднемесячная концентрация загрязняющего вещества, мг/м³</value>
+  </data>
+  <data name="PollutantConcentrationYearlyAverage" xml:space="preserve">
+    <value>Среднегодовая концентрация загрязняющего вещества мг/м³</value>
+  </data>
+  <data name="PollutionFromStationarySources" xml:space="preserve">
+    <value>Загрязнение от стационарных источников</value>
+  </data>
+  <data name="PollutionFromTransport" xml:space="preserve">
+    <value>Загрязнение от транспорта</value>
+  </data>
+  <data name="PollutionOfAtmosphericAir" xml:space="preserve">
+    <value>Загрязнение атмосферного воздуха</value>
+  </data>
+  <data name="PollutionSource" xml:space="preserve">
+    <value>Источник загрязнения</value>
+  </data>
+  <data name="Population" xml:space="preserve">
+    <value>Численность населения</value>
+  </data>
+  <data name="Post" xml:space="preserve">
+    <value>Пост, точка отбора, место мониторинга</value>
+  </data>
+  <data name="PostName" xml:space="preserve">
+    <value>Название поста</value>
+  </data>
+  <data name="PostNameKK" xml:space="preserve">
+    <value>Название поста (казахский)</value>
+  </data>
+  <data name="PostNameRU" xml:space="preserve">
+    <value>Название поста (русский)</value>
+  </data>
+  <data name="PostNumber" xml:space="preserve">
+    <value>Номер поста</value>
+  </data>
+  <data name="PresenceOfTheMaximumPermissibleConcentration" xml:space="preserve">
+    <value>Наличие предельно допустимой концентрации</value>
+  </data>
+  <data name="RawMaterialsCompanies" xml:space="preserve">
+    <value>Предприятия по сбору и переработке вторсырья</value>
+  </data>
+  <data name="RawMaterialsCompany" xml:space="preserve">
+    <value>Предприятие по сбору и переработке вторсырья</value>
+  </data>
+  <data name="ReceiptPointNumber" xml:space="preserve">
+    <value>Номер пункта приема</value>
+  </data>
+  <data name="RecyclableWasteType" xml:space="preserve">
+    <value>Вид утилизируемых отходов</value>
+  </data>
+  <data name="RecyclableWasteTypes" xml:space="preserve">
+    <value>Виды утилизируемых отходов</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="RegisterAsANewUser" xml:space="preserve">
+    <value>Зарегистрироваться как новый пользователь?</value>
+  </data>
+  <data name="RelatedItems" xml:space="preserve">
+    <value>Связанные элементы</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомнить?</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Отчеты</value>
+  </data>
+  <data name="Reverse" xml:space="preserve">
+    <value>Обратный</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+  <data name="Row" xml:space="preserve">
+    <value>Ряд</value>
+  </data>
+  <data name="RunningLengthm" xml:space="preserve">
+    <value>Протяженность прогона, м</value>
+  </data>
+  <data name="SamplingTerm" xml:space="preserve">
+    <value>Срок отбора проб</value>
+  </data>
+  <data name="SamplingTerms" xml:space="preserve">
+    <value>Сроки отбора проб</value>
+  </data>
+  <data name="SamplingType" xml:space="preserve">
+    <value>Вид отбора проб</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Season" xml:space="preserve">
+    <value>Сезон</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>Секунда</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Выбрать все</value>
+  </data>
+  <data name="selected" xml:space="preserve">
+    <value>выбрано</value>
+  </data>
+  <data name="SoilContaminant" xml:space="preserve">
+    <value>Вещество, загрязняющее почву</value>
+  </data>
+  <data name="SoilContaminants" xml:space="preserve">
+    <value>Вещества, загрязняющие почву</value>
+  </data>
+  <data name="SoilContamination" xml:space="preserve">
+    <value>Загрязнение почв</value>
+  </data>
+  <data name="SoilPost" xml:space="preserve">
+    <value>Место мониторинга загрязнения почвы</value>
+  </data>
+  <data name="SoilPostData" xml:space="preserve">
+    <value>Показетель загрязнения почвы по материалам специального исследования</value>
+  </data>
+  <data name="SoilPostDatas" xml:space="preserve">
+    <value>Показетели загрязнения почвы по материалам специального исследования</value>
+  </data>
+  <data name="SoilPostDatasReport" xml:space="preserve">
+    <value>Отчет по данным загрязнения почв по площадкам отбора проб почв</value>
+  </data>
+  <data name="SoilPosts" xml:space="preserve">
+    <value>Места мониторинга загрязнения почвы</value>
+  </data>
+  <data name="SourcesNumber" xml:space="preserve">
+    <value>Число источников выделения загрязняющих веществ</value>
+  </data>
+  <data name="SpeciallyProtectedNaturalTerritories" xml:space="preserve">
+    <value>Особо охраняемые природные территории</value>
+  </data>
+  <data name="SpeciallyProtectedNaturalTerritory" xml:space="preserve">
+    <value>Особо охраняемая природная территория</value>
+  </data>
+  <data name="SpeciesDiversities" xml:space="preserve">
+    <value>Видовые разнообразия</value>
+  </data>
+  <data name="SpeciesDiversity" xml:space="preserve">
+    <value>Видовое разнообразие</value>
+  </data>
+  <data name="SpeedOfGasAirMixture" xml:space="preserve">
+    <value>Скорость газовоздушной смеси, м/с</value>
+  </data>
+  <data name="Speedy" xml:space="preserve">
+    <value>Скоростомерный</value>
+  </data>
+  <data name="Spring" xml:space="preserve">
+    <value>Весна</value>
+  </data>
+  <data name="StandardIndex" xml:space="preserve">
+    <value>Стандартный индекс</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Улица</value>
+  </data>
+  <data name="SubsidiaryCompanies" xml:space="preserve">
+    <value>Дочерние предприятия</value>
+  </data>
+  <data name="SubsidiaryCompany" xml:space="preserve">
+    <value>Дочернее предприятие</value>
+  </data>
+  <data name="SubstanceHazardClass" xml:space="preserve">
+    <value>Класс опасности вещества</value>
+  </data>
+  <data name="SubstanceHazardClasses" xml:space="preserve">
+    <value>Классы опасности вещества</value>
+  </data>
+  <data name="SummationAirContaminantsGroup" xml:space="preserve">
+    <value>Группа суммации веществ, загрязняющих атмосферный воздух</value>
+  </data>
+  <data name="SummationAirContaminantsGroups" xml:space="preserve">
+    <value>Группы суммации веществ, загрязняющих атмосферный воздух</value>
+  </data>
+  <data name="SummationGroupCodeERA" xml:space="preserve">
+    <value>Код группы суммации</value>
+  </data>
+  <data name="SurfaceWaterPollution" xml:space="preserve">
+    <value>Загрязнение поверхностных вод</value>
+  </data>
+  <data name="Synonym" xml:space="preserve">
+    <value>Синоним</value>
+  </data>
+  <data name="Synonyms" xml:space="preserve">
+    <value>Синонимы</value>
+  </data>
+  <data name="Target" xml:space="preserve">
+    <value>Целевой показатель</value>
+  </data>
+  <data name="Targets" xml:space="preserve">
+    <value>Целевые показатели</value>
+  </data>
+  <data name="TargetsAndActivities" xml:space="preserve">
+    <value>Целевые показатели и мероприятия</value>
+  </data>
+  <data name="TargetsAndIndicatorsOfEnvironmentalPollution" xml:space="preserve">
+    <value>Целевые показатели и показатели загрязнения окружающей среды</value>
+  </data>
+  <data name="TargetsReport" xml:space="preserve">
+    <value>Отчет по целевым показателям</value>
+  </data>
+  <data name="TargetTerritories" xml:space="preserve">
+    <value>Территории достижения ЦП</value>
+  </data>
+  <data name="TargetTerritory" xml:space="preserve">
+    <value>Территория достижения ЦП</value>
+  </data>
+  <data name="TargetValue" xml:space="preserve">
+    <value>Значение целевого показателя</value>
+  </data>
+  <data name="TargetValues" xml:space="preserve">
+    <value>Значения целевых показателей</value>
+  </data>
+  <data name="TargetValueType" xml:space="preserve">
+    <value>Тип значения</value>
+  </data>
+  <data name="TemperatureC" xml:space="preserve">
+    <value>Температура, t°C</value>
+  </data>
+  <data name="TemperatureOfMixture" xml:space="preserve">
+    <value>Температура смеси, °С</value>
+  </data>
+  <data name="TerritoryName" xml:space="preserve">
+    <value>Наименование территории</value>
+  </data>
+  <data name="TerritoryNameKK" xml:space="preserve">
+    <value>Наименование территории (казахский)</value>
+  </data>
+  <data name="TerritoryNameRU" xml:space="preserve">
+    <value>Наименование территории (русский)</value>
+  </data>
+  <data name="TerritoryType" xml:space="preserve">
+    <value>Тип территории</value>
+  </data>
+  <data name="TerritoryTypes" xml:space="preserve">
+    <value>Типы территорий</value>
+  </data>
+  <data name="TheLengthOfTheInhibitorySignalSec" xml:space="preserve">
+    <value>Длительность запрещающего сигнала, с.</value>
+  </data>
+  <data name="TheMaximumFrequencyOfExceedingTheMaximumPermissibleConcentrationIsMaximumOneTime" xml:space="preserve">
+    <value>Максимальная кратность превышения предельно допустимой концентрации максимально-разовая</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="TotalNumberOfVehiclesIn20Minutes" xml:space="preserve">
+    <value>Общее количество автотранспорта за 20 минут</value>
+  </data>
+  <data name="TransportPost" xml:space="preserve">
+    <value>Пост видеонаблюдения за количеством транспорта</value>
+  </data>
+  <data name="TransportPostData" xml:space="preserve">
+    <value>Данные по транспорту по посту видеонаблюдения</value>
+  </data>
+  <data name="TransportPostDatas" xml:space="preserve">
+    <value>Данные по транспорту по постам видеонаблюдения</value>
+  </data>
+  <data name="TransportPostDatasReport" xml:space="preserve">
+    <value>Отчет по данным по транспорту по постам видеонаблюдения</value>
+  </data>
+  <data name="TransportPostDataUploadDescription" xml:space="preserve">
+    <value>Формат файла – Microsoft Excel.
+Будет обработан только первый лист с файла.
+Столбцы с данными в файле должны быть в следующем порядке:
+1 – дата;
+2 – время;
+3 – Длительность запрещающего сигнала, с.;
+4 – Общее количество автотранспорта за 20 минут;
+5 – Протяженность прогона, м;
+6 – Средняя скорость движения, км/ч.</value>
+  </data>
+  <data name="TransportPosts" xml:space="preserve">
+    <value>Посты видеонаблюдения за количеством транспорта</value>
+  </data>
+  <data name="TreesNumber" xml:space="preserve">
+    <value>Количество деревьев</value>
+  </data>
+  <data name="TrucksDieselNumber" xml:space="preserve">
+    <value>Количество грузового транспорта на дизеле</value>
+  </data>
+  <data name="TrucksGasNumber" xml:space="preserve">
+    <value>Количество грузового транспорта на газе</value>
+  </data>
+  <data name="TrucksGasolineNumber" xml:space="preserve">
+    <value>Количество грузового транспорта на бензине</value>
+  </data>
+  <data name="TrucksNumber" xml:space="preserve">
+    <value>Общее количество грузового транспорта</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="TypeOfAchievement" xml:space="preserve">
+    <value>Тип достижения</value>
+  </data>
+  <data name="TypeOfAirPollutionIndicator" xml:space="preserve">
+    <value>Тип показателя загрязнения атмосферного воздуха</value>
+  </data>
+  <data name="TypeOfTarget" xml:space="preserve">
+    <value>Вид целевого показателя</value>
+  </data>
+  <data name="TypesOfAirPollutionIndicators" xml:space="preserve">
+    <value>Типы показателей загрязнения атмосферного воздуха</value>
+  </data>
+  <data name="TypesOfTargets" xml:space="preserve">
+    <value>Виды целевых показателей</value>
+  </data>
+  <data name="UpdatePassword" xml:space="preserve">
+    <value>Обновить пароль</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="Uploaded" xml:space="preserve">
+    <value>Загружено</value>
+  </data>
+  <data name="UseALocalAccountToLogIn" xml:space="preserve">
+    <value>Использовать локальную учетную запись для входа в систему</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="ValuesMaximumPermissibleEmissionsgs" xml:space="preserve">
+    <value>Значения предельно допустимых выбросов, г/с</value>
+  </data>
+  <data name="ValuesMaximumPermissibleEmissionsmgm3" xml:space="preserve">
+    <value>Значения предельно допустимых выбросов, мг/м³</value>
+  </data>
+  <data name="ValuesMaximumPermissibleEmissionstyear" xml:space="preserve">
+    <value>Значения предельно допустимых выбросов, т/год</value>
+  </data>
+  <data name="VolumeOfGasAirMixture" xml:space="preserve">
+    <value>Объем газовоздушной смеси м³/с</value>
+  </data>
+  <data name="Waste" xml:space="preserve">
+    <value>Отходы</value>
+  </data>
+  <data name="WasteRecyclingCompanies" xml:space="preserve">
+    <value>Предприятия по утилизации отходов</value>
+  </data>
+  <data name="WasteRecyclingCompany" xml:space="preserve">
+    <value>Предприятие по утилизации отходов</value>
+  </data>
+  <data name="WasteType" xml:space="preserve">
+    <value>Вид принимаемых отходов</value>
+  </data>
+  <data name="WasteTypes" xml:space="preserve">
+    <value>Виды принимаемых отходов</value>
+  </data>
+  <data name="WaterContaminant" xml:space="preserve">
+    <value>Вещество, загрязняющее воду</value>
+  </data>
+  <data name="WaterContaminants" xml:space="preserve">
+    <value>Вещества, загрязняющие воду</value>
+  </data>
+  <data name="WaterObject" xml:space="preserve">
+    <value>Водный объект</value>
+  </data>
+  <data name="WaterObjects" xml:space="preserve">
+    <value>Водные объекты</value>
+  </data>
+  <data name="WaterPost" xml:space="preserve">
+    <value>Место мониторинга загрязнения воды</value>
+  </data>
+  <data name="WaterPosts" xml:space="preserve">
+    <value>Места мониторинга загрязнения воды</value>
+  </data>
+  <data name="WaterQualityStandardsByQualityClasses" xml:space="preserve">
+    <value>Стандарты качества вод по классам качества</value>
+  </data>
+  <data name="WaterSurfacePost" xml:space="preserve">
+    <value>Точка отбора проб поверхностных вод</value>
+  </data>
+  <data name="WaterSurfacePostData" xml:space="preserve">
+    <value>Результат анализа проб поверхностных вод по данным специального исследования</value>
+  </data>
+  <data name="WaterSurfacePostDatas" xml:space="preserve">
+    <value>Результаты анализа проб поверхностных вод по данным специального исследования</value>
+  </data>
+  <data name="WaterSurfacePostDatasReport" xml:space="preserve">
+    <value>Отчет по результатам анализа проб поверхностных вод по точкам отбора</value>
+  </data>
+  <data name="WaterSurfacePostDataUploadDescription" xml:space="preserve">
+    <value>Формат файла – Microsoft Excel.
+Будет обработан только первый лист с файла.
+Столбцы с данными в файле должны быть в следующем порядке:
+1 – Дата отбора пробы;
+2 – Дата анализа пробы;
+3 – Значение.</value>
+  </data>
+  <data name="WaterSurfacePosts" xml:space="preserve">
+    <value>Точки отбора проб поверхностных вод</value>
+  </data>
+  <data name="WhoIssuedPermit" xml:space="preserve">
+    <value>Кем выдано разрешение</value>
+  </data>
+  <data name="WindDirection" xml:space="preserve">
+    <value>Направление ветра</value>
+  </data>
+  <data name="WindDirections" xml:space="preserve">
+    <value>Направления ветров</value>
+  </data>
+  <data name="WindSpeedms" xml:space="preserve">
+    <value>Скорость ветра, м/с</value>
+  </data>
+  <data name="WorkHoursPerYear" xml:space="preserve">
+    <value>Число часов работы в году, ч</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="YearOfAchievementMaximumPermissibleEmissions" xml:space="preserve">
+    <value>Год достижения предельно допустимых выбросов</value>
+  </data>
+  <data name="YearOfAnalysis" xml:space="preserve">
+    <value>Год анализа пробы</value>
+  </data>
+  <data name="YearOfSampling" xml:space="preserve">
+    <value>Год отбора пробы</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="YourPasswordHasBeenChanged" xml:space="preserve">
+    <value>Ваш пароль был изменен.</value>
+  </data>
+  <data name="Maps3_2" xml:space="preserve">
+    <value>Зеленые насаждения (план)</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="TheMaximumFrequencyOfExceedingTheMaximumPermissibleConcentration" xml:space="preserve">
+    <value>Максимальная кратность превышения предельно допустимой концентрации</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Отчет</value>
+  </data>
+  <data name="AccountNumber" xml:space="preserve">
+    <value>Номер учетного объекта</value>
+  </data>
+  <data name="AmountArbours" xml:space="preserve">
+    <value>Количество беседок, шт.</value>
+  </data>
+  <data name="AmountBenches" xml:space="preserve">
+    <value>Количество скамеек, шт.</value>
+  </data>
+  <data name="AmountBillboards" xml:space="preserve">
+    <value>Количество рекламно-информационных щитов, шт.</value>
+  </data>
+  <data name="AmountConiferousTrees" xml:space="preserve">
+    <value>Количество хвойных деревьев по видам ,шт</value>
+  </data>
+  <data name="AmountDeciduousTrees" xml:space="preserve">
+    <value>Количество лиственных деревьев по видам ,шт</value>
+  </data>
+  <data name="AmountEquippedPlaygrounds" xml:space="preserve">
+    <value>Количество оборудованных детских площадок, шт.</value>
+  </data>
+  <data name="AmountEquippedSportsgrounds" xml:space="preserve">
+    <value>Количество оборудованных спортивных площадок, шт.</value>
+  </data>
+  <data name="AmountFormedTrees" xml:space="preserve">
+    <value> в т. ч. Количество формированных деревьев, шт</value>
+  </data>
+  <data name="AmountMonument" xml:space="preserve">
+    <value>Количество МАФ, шт.</value>
+  </data>
+  <data name="AmountOutdoorLighting" xml:space="preserve">
+    <value>Количество фонарей, шт.</value>
+  </data>
+  <data name="AmountShrubs" xml:space="preserve">
+    <value>Количество кустарников одиночных и в группах</value>
+  </data>
+  <data name="AmountSofas" xml:space="preserve">
+    <value>Количество диванов, шт.</value>
+  </data>
+  <data name="AmountSofasAndBenches" xml:space="preserve">
+    <value>Количество скамеек и диванов, шт</value>
+  </data>
+  <data name="AmountToilets" xml:space="preserve">
+    <value>Количество туалетов, шт.</value>
+  </data>
+  <data name="AreaUndeFlowerbeds" xml:space="preserve">
+    <value>Площадь под цветниками, м2</value>
+  </data>
+  <data name="AreaUnderGreenery" xml:space="preserve">
+    <value>Площадь под зелеными насаждениями, м2</value>
+  </data>
+  <data name="AreaUnderGroundlawn" xml:space="preserve">
+    <value>Площадь под партерными газонами, м2</value>
+  </data>
+  <data name="AreaUnderLawn" xml:space="preserve">
+    <value>Площадь под газонами, м2</value>
+  </data>
+  <data name="AreaUnderMeadowlawn" xml:space="preserve">
+    <value>Площадь под луговыми газонами и прочих, м2</value>
+  </data>
+  <data name="AreaUnderOrdinarylawn" xml:space="preserve">
+    <value>Площадь под обыкновенными газонами, м2</value>
+  </data>
+  <data name="AreaUnderShrubs" xml:space="preserve">
+    <value>Площадь под кустарниками, м2</value>
+  </data>
+  <data name="AreaUnderTrees" xml:space="preserve">
+    <value>Площадь под деревьями, м2</value>
+  </data>
+  <data name="AreaUndeTracksAndPlatforms" xml:space="preserve">
+    <value>Площадь под дорожками и площадками, м2</value>
+  </data>
+  <data name="Asphalted" xml:space="preserve">
+    <value>Асфальтированный</value>
+  </data>
+  <data name="Betwen10_20yearsConiferous" xml:space="preserve">
+    <value>10-20 лет</value>
+  </data>
+  <data name="Betwen10_20yearsDeciduous" xml:space="preserve">
+    <value>10-20 лет</value>
+  </data>
+  <data name="Billboards" xml:space="preserve">
+    <value>Визуальная информация (рекламные щиты), шт.</value>
+  </data>
+  <data name="EquippedPlaygrounds" xml:space="preserve">
+    <value>Оборудованные детские площадки, шт.</value>
+  </data>
+  <data name="EquippedSportsgrounds" xml:space="preserve">
+    <value>Оборудованные спортивные площадки, шт.</value>
+  </data>
+  <data name="Flowerbeds" xml:space="preserve">
+    <value>Цветники, м2</value>
+  </data>
+  <data name="GeneralInformation" xml:space="preserve">
+    <value>Общие сведения </value>
+  </data>
+  <data name="GreemPlantsPassport" xml:space="preserve">
+    <value>Паспорт территории зеленых насаждений</value>
+  </data>
+  <data name="GreemPlantsPassports" xml:space="preserve">
+    <value>Паспортa территории зеленых насаждений</value>
+  </data>
+  <data name="GreenObject" xml:space="preserve">
+    <value>Объект</value>
+  </data>
+  <data name="GreenTotalArea" xml:space="preserve">
+    <value>Общая площадь, м2</value>
+  </data>
+  <data name="InformationOnAreas" xml:space="preserve">
+    <value>Сведения по площадям</value>
+  </data>
+  <data name="InformationOnOtherElements" xml:space="preserve">
+    <value>Сведения по прочим элементам благоустройства</value>
+  </data>
+  <data name="InformationOnShrubs" xml:space="preserve">
+    <value>Сведения по кустарникам</value>
+  </data>
+  <data name="InformationOnTrees" xml:space="preserve">
+    <value>Сведения по деревьям</value>
+  </data>
+  <data name="Lawns" xml:space="preserve">
+    <value>Газоны, м2</value>
+  </data>
+  <data name="LegalEntityUse" xml:space="preserve">
+    <value>Юридическое лицо, в пользовании которого находится территория зеленых насаждений (форма собственности объекта, балансодержатель и прочие)</value>
+  </data>
+  <data name="LengthOfHedges" xml:space="preserve">
+    <value>Протяженность живой изгороди, п.м.</value>
+  </data>
+  <data name="LengthOfTrays" xml:space="preserve">
+    <value>Протяженность лотков арыков, п.м.</value>
+  </data>
+  <data name="ListOfTreesByObjectBreedsCondition" xml:space="preserve">
+    <value>Перечень деревьев по объекту  таблица  породы, состояние</value>
+  </data>
+  <data name="ListOfTreesByObjectEconomicMeasures" xml:space="preserve">
+    <value>Перечень деревьев по объекту, хоз.меры</value>
+  </data>
+  <data name="ListOfTreesConiferous" xml:space="preserve">
+    <value>Перечень деревьев (см. таб. породы), шт. из них: </value>
+  </data>
+  <data name="ListOfTreesDeciduous" xml:space="preserve">
+    <value>Перечень деревьев, (см. таб. породы), шт. из них:</value>
+  </data>
+  <data name="Monument" xml:space="preserve">
+    <value>МАФ, шт. (памятник)</value>
+  </data>
+  <data name="NameAndLocation" xml:space="preserve">
+    <value>Наименование, местоположение территории зеленых насаждений</value>
+  </data>
+  <data name="NameOfAdmDistrict" xml:space="preserve">
+    <value>Наименование административного района г.Алматы</value>
+  </data>
+  <data name="NameOfPowersAttributed" xml:space="preserve">
+    <value>Наименование государственного органа 
+г.Алматы, к полномочиям которого отнесено
+содержание территории зеленых насаждений</value>
+  </data>
+  <data name="NameOfRegistrationObject" xml:space="preserve">
+    <value>Наименование учетного объекта</value>
+  </data>
+  <data name="OtherCapitalStructures" xml:space="preserve">
+    <value>Прочие капитальные строение, шт</value>
+  </data>
+  <data name="OutdoorLighting" xml:space="preserve">
+    <value>Наружное освещение (фонари) шт.</value>
+  </data>
+  <data name="Over10yearsConiferous" xml:space="preserve">
+    <value>Св. 20 лет</value>
+  </data>
+  <data name="Over10yearsDeciduous" xml:space="preserve">
+    <value>Св. 20 лет</value>
+  </data>
+  <data name="PassportGeneralInformation" xml:space="preserve">
+    <value>Обшие сведения</value>
+  </data>
+  <data name="PavingBlocks" xml:space="preserve">
+    <value>Брусчатки и прочие  </value>
+  </data>
+  <data name="PresenceOfHistoricalObject" xml:space="preserve">
+    <value>Наличие объекта историко - культурного наследия и его статус</value>
+  </data>
+  <data name="Shrubs" xml:space="preserve">
+    <value>Кустарники, шт. </value>
+  </data>
+  <data name="SofasAndBenches" xml:space="preserve">
+    <value>Диваны и скамейки, шт.</value>
+  </data>
+  <data name="Toilets" xml:space="preserve">
+    <value>Туалеты, шт.</value>
+  </data>
+  <data name="GreenTotalAreaGa" xml:space="preserve">
+    <value>Общая площадь, га.</value>
+  </data>
+  <data name="TotallAmountShrubs" xml:space="preserve">
+    <value>Общее количество кустарников, шт.</value>
+  </data>
+  <data name="TracksAndPlatforms" xml:space="preserve">
+    <value>Дорожки и площадки, м2</value>
+  </data>
+  <data name="Tree" xml:space="preserve">
+    <value>Деревья, шт.</value>
+  </data>
+  <data name="Upto10yearsConiferous" xml:space="preserve">
+    <value>до 10лет</value>
+  </data>
+  <data name="Upto10yearsDeciduous" xml:space="preserve">
+    <value>до 10лет</value>
+  </data>
+  <data name="Urns" xml:space="preserve">
+    <value>Урны, шт.</value>
+  </data>
+  <data name="BusinessEvents" xml:space="preserve">
+    <value>Хозяйственные мероприятия</value>
+  </data>
+  <data name="CrownFormation" xml:space="preserve">
+    <value>Формирование кроны</value>
+  </data>
+  <data name="MaintenanceWork" xml:space="preserve">
+    <value>Уходные работы</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Количество (шт.)</value>
+  </data>
+  <data name="SanitaryFelling" xml:space="preserve">
+    <value>Санитарная рубка</value>
+  </data>
+  <data name="SanitaryPruning" xml:space="preserve">
+    <value>Санитарная обрезка</value>
+  </data>
+  <data name="StateOfCSR15" xml:space="preserve">
+    <value>Состояние КСО-1-5</value>
+  </data>
+  <data name="TreesByFacilityManagementMeasuresList" xml:space="preserve">
+    <value>Перечень деревьев по объекту, хозяйственные мероприятия</value>
+  </data>
+  <data name="TreesByFacilityManagementMeasuresLists" xml:space="preserve">
+    <value>Перечени деревьев по объекту, хозяйственные мероприятия</value>
+  </data>
+  <data name="TreesByObjectTableOfTheBreedStateList" xml:space="preserve">
+    <value>Перечень деревьев по объекту таблица породы, состояние</value>
+  </data>
+  <data name="TreesByObjectTableOfTheBreedStateLists" xml:space="preserve">
+    <value>Перечени деревьев по объекту таблица породы, состояние</value>
+  </data>
+  <data name="Planvegpol1" xml:space="preserve">
+    <value>1-очередь (2023г.)</value>
+  </data>
+  <data name="Planvegpol2" xml:space="preserve">
+    <value>1-2-очереди (2023-30гг.)</value>
+  </data>
+  <data name="Planvegpol3" xml:space="preserve">
+    <value>2-очередь (2030г.)</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="AirTemperature" xml:space="preserve">
+    <value>Температура воздуха</value>
+  </data>
+  <data name="AtmosphericPressure" xml:space="preserve">
+    <value>Атмосферное давление</value>
+  </data>
+  <data name="CO" xml:space="preserve">
+    <value>Концентрация CO (мг/м³)</value>
+  </data>
+  <data name="EcomonDatas" xml:space="preserve">
+    <value>Данные по точкам мониторинга</value>
+  </data>
+  <data name="EcomonNumber" xml:space="preserve">
+    <value>Номер точки</value>
+  </data>
+  <data name="EcomonPoints" xml:space="preserve">
+    <value>Точки мониторинга</value>
+  </data>
+  <data name="EcomonType" xml:space="preserve">
+    <value>Тип данных</value>
+  </data>
+  <data name="NO2" xml:space="preserve">
+    <value>Концентрация NO2 (мг/м³)</value>
+  </data>
+  <data name="Ozone" xml:space="preserve">
+    <value>Концентрация озона (мг/м³)</value>
+  </data>
+  <data name="PM10" xml:space="preserve">
+    <value>Взвешенные частицы PM10</value>
+  </data>
+  <data name="PM25" xml:space="preserve">
+    <value>Взвешенные частицы PM2.5</value>
+  </data>
+  <data name="SO2" xml:space="preserve">
+    <value>Концентрация SO2 (мг/м³)</value>
+  </data>
+  <data name="WindSpeed" xml:space="preserve">
+    <value>Скорость ветра</value>
+  </data>
+</root>

@@ -1,0 +1,15 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Administration"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="sectiontar">
+    <h2>@SharedLocalizer["Administration"]</h2>
+</div>
+
+<table>
+    <tr><td>1</td><td>@SharedLocalizer["Users"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "Users", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>2</td><td>@SharedLocalizer["Logs"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "Logs", null, new { @class = "btn btn-default" })</td></tr>
+</table>

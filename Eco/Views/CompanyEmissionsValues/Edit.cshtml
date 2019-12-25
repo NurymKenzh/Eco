@@ -1,0 +1,160 @@
+﻿@model Eco.Models.CompanyEmissionsValue
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Edit"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Edit"]</h2>
+<h4>@SharedLocalizer["CompanyEmissionsValue"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="EmissionSource.CompanyId" class="control-label"></label>
+                <select id="CompanyId" asp-for="EmissionSource.CompanyId" class="form-control" asp-items="ViewBag.CompanyId" onchange="ChangeCompany()"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmissionSource.SubsidiaryCompanyId" class="control-label"></label>
+                <select id="SubsidiaryCompanyId" asp-for="EmissionSource.SubsidiaryCompanyId" class="form-control" asp-items="ViewBag.SubsidiaryCompanyId" onchange="ChangeCompany()"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmissionSourceId" class="control-label"></label>
+                <select asp-for="EmissionSourceId" class="form-control" asp-items="ViewBag.EmissionSourceId"></select>
+                <span asp-validation-for="EmissionSourceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirContaminantId" class="control-label"></label>
+                <select asp-for="AirContaminantId" class="form-control" asp-items="ViewBag.AirContaminantId"></select>
+                <span asp-validation-for="AirContaminantId" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="CoefficientOfSettlement" class="control-label"></label>
+                <input asp-for="CoefficientOfSettlement" class="form-control" />
+                <span asp-validation-for="CoefficientOfSettlement" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ValuesMaximumPermissibleEmissionsgs" class="control-label"></label>
+                <input asp-for="ValuesMaximumPermissibleEmissionsgs" class="form-control" />
+                <span asp-validation-for="ValuesMaximumPermissibleEmissionsgs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValuesMaximumPermissibleEmissionstyear" class="control-label"></label>
+                <input asp-for="ValuesMaximumPermissibleEmissionstyear" class="form-control" />
+                <span asp-validation-for="ValuesMaximumPermissibleEmissionstyear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValuesMaximumPermissibleEmissionsmgm3" class="control-label"></label>
+                <input asp-for="ValuesMaximumPermissibleEmissionsmgm3" class="form-control" />
+                <span asp-validation-for="ValuesMaximumPermissibleEmissionsmgm3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YearOfAchievementMaximumPermissibleEmissions" class="control-label"></label>
+                <input asp-for="YearOfAchievementMaximumPermissibleEmissions" class="form-control" />
+                <span asp-validation-for="YearOfAchievementMaximumPermissibleEmissions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoefficientOfGasCleaningPlanned" class="control-label"></label>
+                <input asp-for="CoefficientOfGasCleaningPlanned" class="form-control" />
+                <span asp-validation-for="CoefficientOfGasCleaningPlanned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoefficientOfGasCleaningActual" class="control-label"></label>
+                <input asp-for="CoefficientOfGasCleaningActual" class="form-control" />
+                <span asp-validation-for="CoefficientOfGasCleaningActual" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AverageOperatingDegreeOfPurification" class="control-label"></label>
+                <input asp-for="AverageOperatingDegreeOfPurification" class="form-control" />
+                <span asp-validation-for="AverageOperatingDegreeOfPurification" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaximumDegreeOfPurification" class="control-label"></label>
+                <input asp-for="MaximumDegreeOfPurification" class="form-control" />
+                <span asp-validation-for="MaximumDegreeOfPurification" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Save"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+<script>
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>
+<script>
+    function ChangeCompany() {
+        $.ajax({
+            url: '@Url.Action("HasCompanyEmission", "EmissionSources")',
+            data: { CompanyId: $('#CompanyId').val() },
+            type: 'POST',
+            success: function (hasEmission) {
+                $.ajax({
+                    url: '@Url.Action("GetSubsidiaryCompaniesByCompanyId", "EmissionSources")',
+                    data: { CompanyId: $('#CompanyId').val() },
+                    type: 'POST',
+                    success: function (data) {
+                        var optionhtml = '<option value=""></option>';
+                        if (!hasEmission) {
+                            optionhtml = '';
+                        }
+                        $.each(data, function (i) {
+                            optionhtml += '<option value="' + data[i]['id'] + '"' +
+                                (data[i]['id'] == $('#SubsidiaryCompanyId').val() ? 'selected' : '') +
+                                '>' + data[i]['abbreviatedName'] +
+                                '</option>';
+                        });
+                        $("#SubsidiaryCompanyId").empty();
+                        $('#SubsidiaryCompanyId').append(optionhtml);
+                        var CompanySubsidiaryId = $('#CompanyId').val();
+                        if ($('#SubsidiaryCompanyId').val() != '') {
+                            CompanySubsidiaryId = $('#SubsidiaryCompanyId').val();
+                        }
+                        $.ajax({
+                            url: '@Url.Action("GetEmissionSourcesByCompanyOrSubsidiaryId")',
+                            data: { CompanySubsidiaryId: CompanySubsidiaryId },
+                            type: 'POST',
+                            success: function (data2) {
+                                var optionhtml2 = '';
+                                $.each(data2, function (i) {
+                                    optionhtml2 += '<option value="' + data2[i]['id'] + '"' +
+                                        (data2[i]['id'] == $('#EmissionSourceId').val() ? 'selected' : '') +
+                                        '>' + data2[i]['emissionSourceName'] +
+                                        '</option>';
+                                });
+                                $("#EmissionSourceId").empty();
+                                $('#EmissionSourceId').append(optionhtml2);
+                            },
+                            error: function () {
+                            }
+                        });
+                    },
+                    error: function () {
+                    }
+                });
+            },
+            error: function () {
+            }
+        });
+    };
+
+    $(document).ready(function () {
+        //ChangeCompany();
+    });
+</script>

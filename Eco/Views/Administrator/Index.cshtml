@@ -1,0 +1,133 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Administration"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Administration"]</h2>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["Users"], "Index", "Users", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["Logs"], "Index", "Logs", null, new { @class = "btn btn-default" })
+</div>
+
+<h2>@SharedLocalizer["Directories"]</h2>
+
+<h4>@SharedLocalizer["DirectoriesOnTargets"]</h4>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["TerritoryTypes"], "Index", "TerritoryTypes", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["CityDistricts"], "Index", "CityDistricts", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["TargetTerritories"], "Index", "TargetTerritories", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["TypesOfTargets"], "Index", "TypeOfTargets", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["Targets"], "Index", "Targets", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["MeasurementUnits"], "Index", "MeasurementUnits", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["Events"], "Index", "Events", null, new { @class = "btn btn-default" })
+</div>
+
+<h4>@SharedLocalizer["BusinessDirectories"]</h4>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["Companies"], "Index", "Companies", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["SubsidiaryCompanies"], "Index", "SubsidiaryCompanies", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["IndustrialSites"], "Index", "IndustrialSites", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["HazardClasses"], "Index", "HazardClasses", null, new { @class = "btn btn-default" })
+</div>
+
+<h4>@SharedLocalizer["DirectoriesOnPollutants"]</h4>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["AirContaminants"], "Index", "AirContaminants", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["SummationAirContaminantsGroups"], "Index", "SummationAirContaminantsGroups", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["AirPollutionIndicators"], "Index", "AirPollutionIndicators", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["TypesOfAirPollutionIndicators"], "Index", "TypeOfAirPollutionIndicators", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["WaterContaminants"], "Index", "WaterContaminants", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["NormativeSoilTypes"], "Index", "NormativeSoilTypes", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["SoilContaminants"], "Index", "SoilContaminants", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["SubstanceHazardClasses"], "Index", "SubstanceHazardClasses", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["LimitingIndicators"], "Index", "LimitingIndicators", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["LimitingSoilIndicators"], "Index", "LimitingSoilIndicators", null, new { @class = "btn btn-default" })
+</div>
+
+<h4>@SharedLocalizer["PointsOfPollutionMonitoring"]</h4>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["MovementDirections"], "Index", "MovementDirections", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["SamplingTerms"], "Index", "SamplingTerms", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["WaterObjects"], "Index", "WaterObjects", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["KazHydrometAirPosts"], "Index", "KazHydrometAirPosts", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["AirPosts"], "Index", "AirPosts", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["MobileAirPosts"], "Index", "MobileAirPosts", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["WaterPosts"], "Index", "WaterPosts", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["SoilPosts"], "Index", "SoilPosts", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["TransportPosts"], "Index", "TransportPosts", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["KazHydrometWaterPosts"], "Index", "KazHydrometWaterPosts", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["WaterSurfacePosts"], "Index", "WaterSurfacePosts", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["KazHydrometSoilPosts"], "Index", "KazHydrometSoilPosts", null, new { @class = "btn btn-default" })
+</div>
+
+<h2>@SharedLocalizer["TargetsAndIndicatorsOfEnvironmentalPollution"]</h2>
+
+<h4>@SharedLocalizer["TargetsAndActivities"]</h4>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["TargetValues"], "Index", "TargetValues", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["AActivities"], "Index", "AActivities", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["Charts"], "Index", "Charts", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["Reports"], "Index", "Reports", null, new { @class = "btn btn-default" })
+</div>
+
+<h4>@SharedLocalizer["PollutionOfAtmosphericAir"]</h4>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["KazHydrometAirPostDatas"], "Index", "KazHydrometAirPostDatas", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["WindDirections"], "Index", "WindDirections", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["GeneralWeatherConditions"], "Index", "GeneralWeatherConditions", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["AirPostDatas"], "Index", "AirPostDatas", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["TransportPostDatas"], "Index", "TransportPostDatas", null, new { @class = "btn btn-default" })
+</div>
+
+<h4>@SharedLocalizer["SurfaceWaterPollution"]</h4>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["WaterSurfacePostDatas"], "Index", "WaterSurfacePostDatas", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["KazHydrometWaterPostDatas"], "Index", "KazHydrometWaterPostDatas", null, new { @class = "btn btn-default" })
+</div>
+
+<h4>@SharedLocalizer["SoilContamination"]</h4>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["KazHydrometSoilPostDatas"], "Index", "KazHydrometSoilPostDatas", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["SoilPostDatas"], "Index", "SoilPostDatas", null, new { @class = "btn btn-default" })
+</div>
+
+<h4>@SharedLocalizer["EmissionSources"]</h4>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["AnnualMaximumPermissibleEmissionsVolumes"], "Index", "AnnualMaximumPermissibleEmissionsVolumes", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["IssuingPermitsStateAuthorities"], "Index", "IssuingPermitsStateAuthorities", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["EmissionSourceTypes"], "Index", "EmissionSourceTypes", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["EmissionSources"], "Index", "EmissionSources", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["CompanyEmissionsValues"], "Index", "CompanyEmissionsValues", null, new { @class = "btn btn-default" })
+</div>
+
+<h2>@SharedLocalizer["GreenSpaces"]</h2>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["AuthorizedAuthorities"], "Index", "AuthorizedAuthorities", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["SpeciallyProtectedNaturalTerritories"], "Index", "SpeciallyProtectedNaturalTerritories", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["GreenPlantationsAreaAndSpeciesDiversities"], "Index", "GreenPlantationsAreaAndSpeciesDiversities", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["GreenPlantationsTypes"], "Index", "GreenPlantationsTypes", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["GreenPlantationsStates"], "Index", "GreenPlantationsStates", null, new { @class = "btn btn-default" })
+</div>
+
+<h2>@SharedLocalizer["Waste"]</h2>
+
+<div>
+    @Html.ActionLink(SharedLocalizer["WasteTypes"], "Index", "WasteTypes", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["RecyclableWasteTypes"], "Index", "RecyclableWasteTypes", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["RawMaterialsCompanies"], "Index", "RawMaterialsCompanies", null, new { @class = "btn btn-default" })
+    @Html.ActionLink(SharedLocalizer["WasteRecyclingCompanies"], "Index", "WasteRecyclingCompanies", null, new { @class = "btn btn-default" })
+</div>

@@ -1,0 +1,138 @@
+﻿@model Eco.Models.SummationAirContaminantsGroupIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["SummationAirContaminantsGroups"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["SummationAirContaminantsGroups"]</h2>
+
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a>
+</p>
+
+@using (Html.BeginForm("Index", "SummationAirContaminantsGroups", new { SortOrder = ViewBag.SortOrdert, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().SummationGroupCodeERA).ToString(), "Index",
+                        new { SortOrder = ViewBag.SummationGroupCodeERASort, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                    <br />
+                    @Html.Editor("SummationGroupCodeERA", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().Number25012012).ToString(), "Index",
+                        new { SortOrder = ViewBag.Number25012012Sort, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                    <br />
+                    @Html.Editor("Number25012012", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().CoefficientOfPotentiation).ToString(), "Index",
+                        new { SortOrder = ViewBag.CoefficientOfPotentiationSort, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                    <br />
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SummationGroupCodeERA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number25012012)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CoefficientOfPotentiation)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, SummationGroupCodeERA = ViewBag.SummationGroupCodeERAFilter, Number25012012 = ViewBag.Number25012012Filter })
+                </li>
+            }
+        </ul>
+    }
+}

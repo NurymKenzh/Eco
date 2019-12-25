@@ -1,0 +1,152 @@
+﻿@model Eco.Models.EcomonDataIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["EcomonDatas"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["EcomonDatas"]</h2>
+
+@*<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a>
+</p>*@
+
+@using (Html.BeginForm("Index", "EcomonDatas", new { SortOrder = ViewBag.SortOrder, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrder, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrder, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrder, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrder, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrder, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().EcomonNumber).ToString(), "Index",
+                        new { SortOrder = ViewBag.EcomonNumberSort, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                    <br />
+                    @*@Html.Editor("EcomonNumber", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })*@
+                    @*@Html.DropDownList("EcomonNumber", (SelectList)ViewBag.EcomonNumber, "", htmlAttributes: new { @class = "form-control" })*@
+                    @*@Html.DropDownList("EcomonNumber", (IEnumerable<SelectListItem>)ViewBag.EcomonNumber, "", htmlAttributes: new { @class = "form-control" })*@
+                    <select name="EcomonNumber" asp-items="@ViewBag.EcomonNumber" class="form-control"></select>
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().EcomonType).ToString(), "Index",
+                        new { SortOrder = ViewBag.EcomonTypeSort, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                    <br />
+                    @*@Html.Editor("EcomonType", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })*@
+                    @*@Html.DropDownList("NameKK", (IEnumerable<SelectListItem>)ViewBag.NameKK, "", htmlAttributes: new { @class = "form-control" })*@
+                    @*<select name="EcomonType" class="form-control" asp-items="@new  SelectList(Enum.GetNames(typeof(Eco.Models.EcomonType)))"></select>*@
+                    @*<select name="EcomonType" class="form-control" asp-items="@Html.GetEnumSelectList<EcomonType>()"></select>*@
+                    @*<select name="EcomonType" asp-items="@ViewBag.EcomonType" class="form-control"></select>*@
+                    @Html.DropDownList("EcomonType", (IEnumerable<SelectListItem>)ViewBag.EcomonType, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(b => b.Items.FirstOrDefault().DateTime)*@
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().DateTime).ToString(), "Index",
+                        new { SortOrder = ViewBag.DateTimeSort, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(b => b.Items.FirstOrDefault().value)
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EcomonNumber)
+                </td>
+                <td>
+                    @SharedLocalizer[item.EcomonType.ToString()]
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.value)
+                </td>
+                <td>
+                    @*<a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>*@
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrder, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrder, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrder, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrder, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrder, EcomonNumber = ViewBag.EcomonNumberFilter, EcomonType = ViewBag.EcomonTypeFilter })
+                </li>
+            }
+        </ul>
+    }
+}

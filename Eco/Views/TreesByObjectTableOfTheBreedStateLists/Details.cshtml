@@ -1,0 +1,73 @@
+﻿@model Eco.Models.TreesByObjectTableOfTheBreedStateList
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Details"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Details"]</h2>
+<div>
+    <h4>@SharedLocalizer["TreesByObjectTableOfTheBreedStateList"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GreemPlantsPassport)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GreemPlantsPassport.GreenObject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PlantationsType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlantationsType.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateOfCSR15PlantationsType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateOfCSR15PlantationsType.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateOfCSR15_1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateOfCSR15_1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateOfCSR15_2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateOfCSR15_2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateOfCSR15_3)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateOfCSR15_3)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateOfCSR15_4)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateOfCSR15_4)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateOfCSR15_5)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateOfCSR15_5)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@SharedLocalizer["Edit"]</a> |
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>

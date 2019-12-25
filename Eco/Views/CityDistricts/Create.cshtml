@@ -1,0 +1,151 @@
+﻿@model Eco.Models.CityDistrict
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Create"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Create"]</h2>
+
+<h4>@SharedLocalizer["CityDistrict"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CATO" class="control-label"></label>
+                <input asp-for="CATO" class="form-control" />
+                <span asp-validation-for="CATO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameKK" class="control-label"></label>
+                <input asp-for="NameKK" class="form-control" />
+                <span asp-validation-for="NameKK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameRU" class="control-label"></label>
+                <input asp-for="NameRU" class="form-control" />
+                <span asp-validation-for="NameRU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Area" class="control-label"></label>
+                <input asp-for="Area" class="form-control" />
+                <span asp-validation-for="Area" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Populations" class="control-label"></label>
+                <div class="col-md-10">
+                    <table id="Populations" class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @SharedLocalizer["Year"]
+                                    <br />
+                                    <input id="Year" type="number" class="form-control" style="min-width: 75px;">
+                                </th>
+                                <th>
+                                    @SharedLocalizer["Population"]
+                                    <br />
+                                    <input id="Population" type="number" class="form-control">
+                                </th>
+                                <th>
+                                    <input type="button" value="@SharedLocalizer["Add"]" class="btn btn-default" onclick="AddYear()" />
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Years != null)
+                            {
+                                for (int i = 0; i < Model.Years.Count(); i++)
+                                {
+                                    string Year = "Year" + i.ToString(),
+                                        yearid = "YearInput" + i.ToString(),
+                                        populationid = "PopulationInput" + i.ToString();
+                                    <tr id="@Year">
+                                        <td>
+                                            @Model.Years[i]
+                                            <input id="@yearid" type="hidden" name="Years[@i]" value="@Model.Years[i]" />
+                                            <span asp-validation-for="Years[i]" class="text-danger"></span>
+                                        </td>
+                                        <td>
+                                            @Model.Populations[i]
+                                            <input id="@populationid" type="hidden" name="Populations[@i]" value="@Model.Populations[i]" />
+                                            <span asp-validation-for="Populations[i]" class="text-danger"></span>
+                                        </td>
+                                        <td>
+                                            <input type="button" value="@SharedLocalizer["Remove"]" class="btn btn-default" onclick="RemoveYear(@i)" />
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Create"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+<div hidden="hidden">
+    <div id="YearsCount">@Model.Years.Count()</div>
+    <div id="Remove">@SharedLocalizer["Remove"]</div>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
+
+<script>
+    var YearsCount = parseInt($('#YearsCount').html()); // last value
+    var YearsCountTotal = parseInt($('#YearsCount').html()); // total count
+    function AddYear() {
+        var tr =
+            '<tr id="Year' + YearsCount + '">' +
+                '<td>' +
+                    $('#Year').val() +
+                    '<input id="YearInput' + YearsCount +'" type="hidden" name="Years[' + YearsCount + ']" value="' + $('#Year').val() + '" />' +
+                    '<span class="field-validation-valid text-danger" data-valmsg-replace="true" data-valmsg-for="Years[' + YearsCount + ']"></span>' +
+                '</td>' +
+                '<td>' +
+                    $('#Population').val() +
+                    '<input id="PopulationInput' + YearsCount + '" type="hidden" name="Populations[' + YearsCount + ']" value="' + $('#Population').val() + '" />' +
+                    '<span class="field-validation-valid text-danger" data-valmsg-replace="true" data-valmsg-for="Populations[' + YearsCount + ']"></span>' +
+                '</td>' +
+                '<td>' +
+                    '<input type="button" value="' + $('#Remove').html() + '" class="btn btn-default" onclick="RemoveYear(' + YearsCount + ')" />' +
+                '</td>' +
+            '</tr>';
+        $('#Populations > tbody:last-child').append(tr);
+        YearsCount++;
+        YearsCountTotal++;
+    };
+
+    function RemoveYear(row) {
+        $('#YearInput' + row).val(0);
+        $('#Year' + row).hide();
+        YearsCountTotal--;
+    };
+
+    $('form').submit(function () {
+        $('#Year').val('');
+        $('#Population').val('');
+    });
+
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>

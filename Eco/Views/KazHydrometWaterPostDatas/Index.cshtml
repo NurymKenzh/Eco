@@ -1,0 +1,165 @@
+﻿@model Eco.Models.KazHydrometWaterPostDataIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["KazHydrometWaterPostDatas"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["KazHydrometWaterPostDatas"]</h2>
+
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a> | <a asp-action="KazHydrometWaterPostDatasReport" asp-controller="Reports">@SharedLocalizer["Report"]</a>
+</p>
+
+@using (Html.BeginForm("Index", "KazHydrometWaterPostDatas", new { SortOrder = ViewBag.SortOrdert, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                             new { SortOrder = ViewBag.SortOrdert, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                             new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                             new { Page = page, SortOrder = ViewBag.SortOrdert, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                             new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                             new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().KazHydrometWaterPost.Number).ToString(), "Index",
+                             new { SortOrder = ViewBag.KazHydrometWaterPostNumberSort, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                    <br />
+                    @*@Html.Editor("KazHydrometWaterPostNumber", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })*@
+                    @Html.DropDownList("KazHydrometWaterPostNumber", (IEnumerable<SelectListItem>)ViewBag.KazHydrometAirPostName, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().KazHydrometWaterPost.Name).ToString(), "Index",
+                             new { SortOrder = ViewBag.KazHydrometWaterPostNameSort, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                    <br />
+                    @*@Html.Editor("KazHydrometWaterPostName", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })*@
+                    @Html.DropDownList("KazHydrometWaterPostName", (IEnumerable<SelectListItem>)ViewBag.KazHydrometAirPostName, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().WaterContaminant).ToString(), "Index",
+                             new { SortOrder = ViewBag.WaterContaminantNameSort, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                    <br />
+                    @Html.DropDownList("WaterContaminantId", (IEnumerable<SelectListItem>)ViewBag.WaterContaminantId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().Year).ToString(), "Index",
+                             new { SortOrder = ViewBag.YearSort, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                    <br />
+                    @Html.DropDownList("Year", (IEnumerable<SelectListItem>)ViewBag.Year, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().Month).ToString(), "Index",
+                             new { SortOrder = ViewBag.MonthSort, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                    <br />
+                    @Html.DropDownList("Month", (IEnumerable<SelectListItem>)ViewBag.Month, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().PollutantConcentrationmgl)
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KazHydrometWaterPost.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KazHydrometWaterPost.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WaterContaminant.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PollutantConcentrationmgl)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                             new { SortOrder = ViewBag.SortOrdert, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                             new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                             new { Page = page, SortOrder = ViewBag.SortOrdert, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                             new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                             new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, WaterContaminantName = ViewBag.WaterContaminantNameFilter, KazHydrometWaterPostNumber = ViewBag.KazHydrometWaterPostNumberFilter, KazHydrometWaterPostName = ViewBag.KazHydrometWaterPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+        </ul>
+    }
+}

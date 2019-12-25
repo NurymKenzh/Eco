@@ -1,0 +1,73 @@
+﻿@model Eco.Models.WaterSurfacePostData
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Details"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Details"]</h2>
+
+<div>
+    <h4>@SharedLocalizer["WaterSurfacePostData"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WaterSurfacePost.WaterObject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WaterSurfacePost.WaterObject.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WaterSurfacePost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WaterSurfacePost.Number)
+            @Html.ActionLink(SharedLocalizer["Look"], "Details", "WaterSurfacePosts", new { @id = Model.WaterSurfacePostId })
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WaterContaminant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WaterContaminant.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfSampling)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfSampling)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfAnalysis)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfAnalysis)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Value)
+        </dt>
+        @if(Model.Value != null)
+        {
+            <dd>
+                @Html.DisplayFor(model => model.Value)
+            </dd>
+        }
+        else
+        {
+            <dd>
+                @SharedLocalizer["NotDetected"]
+            </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.Class)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@SharedLocalizer["Edit"]</a> |
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>

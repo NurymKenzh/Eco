@@ -1,0 +1,166 @@
+﻿@model Eco.Models.AirContaminantIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["AirContaminants"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["AirContaminants"]</h2>
+
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a>
+</p>
+
+@using (Html.BeginForm("Index", "AirContaminants", new { SortOrder = ViewBag.SortOrdert, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().SubstanceHazardClassId).ToString(), "Index",
+                        new { SortOrder = ViewBag.SubstanceHazardClassIdSort, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                    <br />
+                    @Html.DropDownList("SubstanceHazardClassId", (IEnumerable<SelectListItem>)ViewBag.SubstanceHazardClassId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().Name).ToString(), "Index",
+                        new { SortOrder = ViewBag.NameSort, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                    <br />
+                    @Html.Editor("Name", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().Number168).ToString(), "Index",
+                        new { SortOrder = ViewBag.Number168Sort, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                    <br />
+                    @Html.Editor("Number168", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().Number104).ToString(), "Index",
+                        new { SortOrder = ViewBag.Number104Sort, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                    <br />
+                    @Html.Editor("Number104", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                @*<th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().ContaminantCodeERA).ToString(), "Index",
+                        new { SortOrder = ViewBag.ContaminantCodeERASort, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                    <br />
+                    @Html.Editor("ContaminantCodeERA", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>*@
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().NumberCAS).ToString(), "Index",
+                        new { SortOrder = ViewBag.NumberCASSort, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                    <br />
+                    @Html.Editor("NumberCAS", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubstanceHazardClass.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number168)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number104)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.ContaminantCodeERA)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberCAS)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, SubstanceHazardClassId = ViewBag.SubstanceHazardClassIdFilter, Name = ViewBag.NameFilter, Number168 = ViewBag.Number168Filter, Number104 = ViewBag.Number104Filter, NumberCAS = ViewBag.NumberCASFilter })
+                </li>
+            }
+        </ul>
+    }
+}

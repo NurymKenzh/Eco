@@ -1,0 +1,78 @@
+﻿@model Eco.Models.CityDistrict
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Details"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Details"]</h2>
+
+<div>
+    <h4>@SharedLocalizer["CityDistrict"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CATO)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CATO)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameKK)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameKK)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameRU)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameRU)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Area)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Area)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Populations)
+        </dt>
+        <dd>
+            <table id="Populations" class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @SharedLocalizer["Year"]
+                        </th>
+                        <th>
+                            @SharedLocalizer["Population"]
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Years != null)
+                    {
+                        for (int i = 0; i < Model.Years.Count(); i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Model.Years[i]
+                                </td>
+                                <td>
+                                    @Model.Populations[i]
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@SharedLocalizer["Edit"]</a> |
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>

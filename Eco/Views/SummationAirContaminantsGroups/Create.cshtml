@@ -1,0 +1,161 @@
+﻿@model Eco.Models.SummationAirContaminantsGroup
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Create"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Create"]</h2>
+
+<h4>@SharedLocalizer["SummationAirContaminantsGroup"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SubstanceHazardClassId" class="control-label"></label>
+                <select asp-for="SubstanceHazardClassId" class="form-control" asp-items="ViewBag.SubstanceHazardClassId"></select>
+                <span asp-validation-for="SubstanceHazardClassId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SummationGroupCodeERA" class="control-label"></label>
+                <input asp-for="SummationGroupCodeERA" class="form-control" />
+                <span asp-validation-for="SummationGroupCodeERA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Number25012012" class="control-label"></label>
+                <input asp-for="Number25012012" class="form-control" />
+                <span asp-validation-for="Number25012012" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoefficientOfPotentiation" class="control-label"></label>
+                <input asp-for="CoefficientOfPotentiation" class="form-control" type="text" />
+                <span asp-validation-for="CoefficientOfPotentiation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PresenceOfTheMaximumPermissibleConcentration" class="control-label"></label>
+                <input asp-for="PresenceOfTheMaximumPermissibleConcentration" id="PresenceOfTheMaximumPermissibleConcentration" onchange="ChangePresenceOfTheMaximumPermissibleConcentration()" />
+                <span asp-validation-for="PresenceOfTheMaximumPermissibleConcentration" class="text-danger"></span>
+            </div>
+            <div class="form-group PresenceOfTheMaximumPermissibleConcentration">
+                <label asp-for="LimitingIndicatorId" class="control-label"></label>
+                <select asp-for="LimitingIndicatorId" class="form-control" asp-items="ViewBag.LimitingIndicatorId"></select>
+                <span asp-validation-for="LimitingIndicatorId" class="text-danger"></span>
+            </div>
+            <div class="form-group PresenceOfTheMaximumPermissibleConcentration">
+                <label asp-for="MaximumPermissibleConcentrationOneTimemaximum" class="control-label"></label>
+                <input asp-for="MaximumPermissibleConcentrationOneTimemaximum" class="form-control" type="text" />
+                <span asp-validation-for="MaximumPermissibleConcentrationOneTimemaximum" class="text-danger"></span>
+            </div>
+            <div class="form-group PresenceOfTheMaximumPermissibleConcentration">
+                <label asp-for="MaximumPermissibleConcentrationDailyAverage" class="control-label"></label>
+                <input asp-for="MaximumPermissibleConcentrationDailyAverage" class="form-control" type="text" />
+                <span asp-validation-for="MaximumPermissibleConcentrationDailyAverage" class="text-danger"></span>
+            </div>
+            <div class="form-group ApproximateSafeExposureLevel">
+                <label asp-for="ApproximateSafeExposureLevel" class="control-label"></label>
+                <input asp-for="ApproximateSafeExposureLevel" class="form-control" type="text" />
+                <span asp-validation-for="ApproximateSafeExposureLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirContaminantsList" class="control-label"></label>
+                <div class="col-md-10">
+                    <table id="AirContaminants" class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DropDownList("AirContaminantId", (IEnumerable<SelectListItem>)ViewBag.AirContaminantId, htmlAttributes: new { @class = "form-control", @id = "AirContaminantId" })
+                                </th>
+                                <th>
+                                    <input type="button" value="@SharedLocalizer["Add"]" class="btn btn-default" onclick="AddAirContaminant()" />
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.AirContaminantsList != null)
+                    {
+                        for (int i = 0; i < Model.AirContaminantsList.Count(); i++)
+                        {
+                            string AirContaminant = "AirContaminant" + i.ToString(),
+                                inputid = "AirContaminantInput" + i.ToString();
+                            <tr id="@AirContaminant">
+                                <td>
+                                    @Model.AirContaminantsList[i].Name
+                                    <input id="@inputid" type="hidden" name="AirContaminantsList[@i].Id" value="@Model.AirContaminantsList[i].Id" class="form-control" />
+                                    <span class="field-validation-valid text-danger" data-valmsg-replace="true" data-valmsg-for="AirContaminantsList[@i].Id"></span>
+                                </td>
+                                <td>
+                                    <input type="button" value="@SharedLocalizer["Remove"]" class="btn btn-default" onclick="RemoveAirContaminant(@i)" />
+                                </td>
+                            </tr>
+                }
+            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Create"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+<div hidden="hidden">
+    <div id="AirContaminantsCount">@Model.AirContaminantsList.Count()</div>
+    <div id="Remove">@SharedLocalizer["Remove"]</div>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
+
+<script>
+    var AirContaminantsCount = parseInt($('#AirContaminantsCount').html()); // last value
+    var AirContaminantsCountTotal = parseInt($('#AirContaminantsCount').html()); // total count
+    function AddAirContaminant() {
+        var tr = '<tr id="AirContaminant' + AirContaminantsCount + '"><td>' + $('#AirContaminantId :selected').text() +
+            '<input id="AirContaminantInput' + AirContaminantsCount + '" type="hidden" name="AirContaminantsList[' + AirContaminantsCount + '].Id" value="' + $('#AirContaminantId :selected').val() + '" class="form-control" />' +
+            '<span class="field-validation-valid text-danger" data-valmsg-replace="true" data-valmsg-for="AirContaminants[' + AirContaminantsCount + '].Id"></span></td>' +
+            '<td><input type="button" value="' + $('#Remove').html() + '" class="btn btn-default" onclick="RemoveAirContaminant(' + AirContaminantsCount + ')" /></td></tr>'
+        $('#AirContaminants > tbody:last-child').append(tr);
+        AirContaminantsCount++;
+        AirContaminantsCountTotal++;
+    };
+
+    function RemoveAirContaminant(row) {
+        $('#AirContaminantInput' + row).val(0);
+        $('#AirContaminant' + row).hide();
+        AirContaminantsCountTotal--;
+    };
+
+    function ChangePresenceOfTheMaximumPermissibleConcentration() {
+        if ($('#PresenceOfTheMaximumPermissibleConcentration').is(":checked") == false) {
+            $('.PresenceOfTheMaximumPermissibleConcentration').hide();
+            $('.ApproximateSafeExposureLevel').show();
+        }
+        if ($('#PresenceOfTheMaximumPermissibleConcentration').is(":checked") == true) {
+            $('.PresenceOfTheMaximumPermissibleConcentration').show();
+            $('.ApproximateSafeExposureLevel').hide();
+        }
+    };
+
+    $(document).ready(function (e) {
+        ChangePresenceOfTheMaximumPermissibleConcentration();
+    });
+
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>

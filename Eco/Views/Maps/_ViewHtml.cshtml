@@ -1,0 +1,16 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+<div style="width: 100%; height: 100%; display: inline-block;">
+    <div id="map" style="width: calc(100% - 350px); float: right;"></div>
+    <div id="sidepanel" style="width: 340px; float: right;">
+        <ul id="tabLinks">
+            <li><a href="#tabLayers">@SharedLocalizer["Layers"]</a></li>
+            <li><a href="#tabLegend">@SharedLocalizer["Legend"]</a></li>
+            <li><a href="#tabInfo">@SharedLocalizer["Information"]</a></li>
+        </ul>
+        @await Html.PartialAsync("_ViewHtmlTree")
+        @await Html.PartialAsync("_ViewHtmlLegend")
+        @await Html.PartialAsync("_ViewHtmlInfo")
+    </div>
+</div>

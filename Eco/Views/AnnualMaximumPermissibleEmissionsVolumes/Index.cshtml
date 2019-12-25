@@ -1,0 +1,191 @@
+﻿@model Eco.Models.AnnualMaximumPermissibleEmissionsVolumeIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["AnnualMaximumPermissibleEmissionsVolumes"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["AnnualMaximumPermissibleEmissionsVolumes"]</h2>
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a>
+</p>
+
+@using (Html.BeginForm("Index", "AnnualMaximumPermissibleEmissionsVolumes", new { SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                                  new { SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                                  new { Page = page, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                                  new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().CompanyOrSubsidiaryCompanyAbbreviatedName).ToString(), "Index",
+                           new { SortOrder = ViewBag.CompanyAbbreviatedNameSort, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                    <br />
+                    @Html.Editor("CompanyAbbreviatedName", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                @*<th>
+            @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().IssuingPermitsStateAuthorityId).ToString(), "Index",
+                          new { SortOrder = ViewBag.IssuingPermitsStateAuthorityIdSort, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+            <br />
+            @Html.DropDownList("IssuingPermitsStateAuthorityId", (IEnumerable<SelectListItem>)ViewBag.TypeOfTargetId, "", htmlAttributes: new { @class = "form-control" })
+        </th>*@
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().YearOfPermit).ToString(), "Index",
+                           new { SortOrder = ViewBag.YearOfPermitSort, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().EmissionsTonsPerYear).ToString(), "Index",
+                           new { SortOrder = ViewBag.EmissionsTonsPerYearSort, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyOrSubsidiaryCompanyAbbreviatedName)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.IssuingPermitsStateAuthority.Name)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.YearOfPermit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmissionsTonsPerYear)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+            </td>
+        </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                                  new { SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                                  new { Page = page, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                                  new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, CompanyId = ViewBag.CompanyIdFilter })
+                </li>
+            }
+        </ul>
+    }
+}
+@*<table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateOfIssueOfPermit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmissionsTonsPerYear)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Company)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IssuingPermitsStateAuthority)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubsidiaryCompany)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfIssueOfPermit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmissionsTonsPerYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company.Discriminator)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IssuingPermitsStateAuthority.Discriminator)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubsidiaryCompany.Discriminator)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@

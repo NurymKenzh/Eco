@@ -1,0 +1,99 @@
+﻿@model Eco.Models.AirContaminant
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Details"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Details"]</h2>
+
+<div>
+    <h4>@SharedLocalizer["AirContaminant"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SubstanceHazardClass)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SubstanceHazardClass.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Number168)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Number168)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Number104)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Number104)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ContaminantCodeERA)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContaminantCodeERA)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberCAS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumberCAS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoefficientOfSettlement)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoefficientOfSettlement)
+        </dd>
+        @if (Model.PresenceOfTheMaximumPermissibleConcentration)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.MaximumPermissibleConcentrationOneTimemaximum)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MaximumPermissibleConcentrationOneTimemaximum)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MaximumPermissibleConcentrationDailyAverage)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MaximumPermissibleConcentrationDailyAverage)
+            </dd>
+        }
+        else
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.LimitingIndicator)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LimitingIndicator.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApproximateSafeExposureLevel)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApproximateSafeExposureLevel)
+            </dd>
+        }
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Synonyms)
+        </dt>
+        <dd>
+            <pre>@string.Join("\r\n", Model.Synonyms)</pre>
+        </dd>*@
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@SharedLocalizer["Edit"]</a> |
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>

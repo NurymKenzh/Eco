@@ -1,0 +1,109 @@
+﻿@model Eco.Models.WaterContaminant
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Create"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Create"]</h2>
+
+<h4>@SharedLocalizer["WaterContaminant"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Number104" class="control-label"></label>
+                <input asp-for="Number104" class="form-control" />
+                <span asp-validation-for="Number104" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MeasurementUnitId" class="control-label"></label>
+                <select asp-for="MeasurementUnitId" class="form-control" asp-items="ViewBag.MeasurementUnitId"></select>
+                <span asp-validation-for="MeasurementUnitId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@SharedLocalizer["WaterQualityStandardsByQualityClasses"]</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class1From" class="control-label"></label>
+                <input asp-for="Class1From" class="form-control" />
+                <span asp-validation-for="Class1From" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class1To" class="control-label"></label>
+                <input asp-for="Class1To" class="form-control" />
+                <span asp-validation-for="Class1To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class2From" class="control-label"></label>
+                <input asp-for="Class2From" class="form-control" />
+                <span asp-validation-for="Class2From" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class2To" class="control-label"></label>
+                <input asp-for="Class2To" class="form-control" />
+                <span asp-validation-for="Class2To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class3From" class="control-label"></label>
+                <input asp-for="Class3From" class="form-control" />
+                <span asp-validation-for="Class3From" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class3To" class="control-label"></label>
+                <input asp-for="Class3To" class="form-control" />
+                <span asp-validation-for="Class3To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class4From" class="control-label"></label>
+                <input asp-for="Class4From" class="form-control" />
+                <span asp-validation-for="Class4From" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class4To" class="control-label"></label>
+                <input asp-for="Class4To" class="form-control" />
+                <span asp-validation-for="Class4To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class5From" class="control-label"></label>
+                <input asp-for="Class5From" class="form-control" />
+                <span asp-validation-for="Class5From" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class5To" class="control-label"></label>
+                <input asp-for="Class5To" class="form-control" />
+                <span asp-validation-for="Class5To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Create"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
+
+<script>
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>

@@ -1,0 +1,496 @@
+﻿@model Eco.Models.GreemPlantsPassport
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Details"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/lib/openlayers/ol.css" rel="stylesheet" />
+<script src="~/lib/openlayers/ol.js"></script>
+<h2>@SharedLocalizer["Details"]</h2>
+<div>
+    <h4>@SharedLocalizer["GreemPlantsPassport"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GreenObject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GreenObject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CityDistrict)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CityDistrict.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfPowersAttributed)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameOfPowersAttributed)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfRegistrationObject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameOfRegistrationObject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LegalEntityUse)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LegalEntityUse)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AccountNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameAndLocation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameAndLocation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PresenceOfHistoricalObject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PresenceOfHistoricalObject)
+        </dd>
+        <hr />
+        <dt>
+            @SharedLocalizer["GeneralInformation"]
+        </dt>
+        <dd>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GreenTotalAreaGa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GreenTotalAreaGa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lawns)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lawns)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Flowerbeds)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Flowerbeds)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TracksAndPlatforms)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TracksAndPlatforms)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tree)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tree)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Shrubs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Shrubs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SofasAndBenches)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SofasAndBenches)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Urns)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Urns)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EquippedPlaygrounds)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EquippedPlaygrounds)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EquippedSportsgrounds)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EquippedSportsgrounds)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Monument)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Monument)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Toilets)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Toilets)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OutdoorLighting)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OutdoorLighting)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Billboards)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Billboards)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherCapitalStructures)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OtherCapitalStructures)
+        </dd>
+        <hr />
+        <dt>
+            @SharedLocalizer["InformationOnAreas"]
+        </dt>
+        <dd>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GreenTotalArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GreenTotalArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaUnderGreenery)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaUnderGreenery)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaUnderLawn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaUnderLawn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaUnderGroundlawn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaUnderGroundlawn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaUnderOrdinarylawn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaUnderOrdinarylawn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaUnderMeadowlawn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaUnderMeadowlawn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaUnderTrees)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaUnderTrees)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaUnderShrubs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaUnderShrubs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaUndeFlowerbeds)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaUndeFlowerbeds)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaUndeTracksAndPlatforms)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaUndeTracksAndPlatforms)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Asphalted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Asphalted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PavingBlocks)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PavingBlocks)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LengthOfTrays)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LengthOfTrays)
+        </dd>
+        <hr />
+        <dt>
+            @SharedLocalizer["InformationOnTrees"]
+        </dt>
+        <dd>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountConiferousTrees)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountConiferousTrees)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ListOfTreesConiferous)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ListOfTreesConiferous)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Upto10yearsConiferous)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Upto10yearsConiferous)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Betwen10_20yearsConiferous)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Betwen10_20yearsConiferous)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Over10yearsConiferous)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Over10yearsConiferous)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountDeciduousTrees)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountDeciduousTrees)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ListOfTreesDeciduous)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ListOfTreesDeciduous)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Upto10yearsDeciduous)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Upto10yearsDeciduous)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Betwen10_20yearsDeciduous)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Betwen10_20yearsDeciduous)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Over10yearsDeciduous)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Over10yearsDeciduous)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountFormedTrees)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountFormedTrees)
+        </dd>
+        <hr />
+        <dt>
+            @SharedLocalizer["InformationOnShrubs"]
+        </dt>
+        <dd>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotallAmountShrubs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotallAmountShrubs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountShrubs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountShrubs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LengthOfHedges)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LengthOfHedges)
+        </dd>
+        <hr />
+        <dt>
+            @SharedLocalizer["InformationOnOtherElements"]
+        </dt>
+        <dd>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountEquippedPlaygrounds)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountEquippedPlaygrounds)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountEquippedSportsgrounds)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountEquippedSportsgrounds)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountSofasAndBenches)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountSofasAndBenches)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountBenches)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountBenches)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountSofas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountSofas)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountArbours)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountArbours)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountOutdoorLighting)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountOutdoorLighting)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountToilets)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountToilets)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountMonument)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountMonument)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountBillboards)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountBillboards)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ListOfTreesByObjectBreedsCondition)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ListOfTreesByObjectBreedsCondition)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ListOfTreesByObjectEconomicMeasures)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ListOfTreesByObjectEconomicMeasures)
+        </dd>
+        <dt>
+            @SharedLocalizer["TreesByObjectTableOfTheBreedStateLists"]
+        </dt>
+        <dd>
+            @Html.ActionLink(SharedLocalizer["Look"], "Index", "TreesByObjectTableOfTheBreedStateLists", new { @GreemPlantsPassportId = Model.Id })
+        </dd>
+        <dt>
+            @SharedLocalizer["TreesByFacilityManagementMeasuresLists"]
+        </dt>
+        <dd>
+            @Html.ActionLink(SharedLocalizer["Look"], "Index", "TreesByFacilityManagementMeasuresLists", new { @GreemPlantsPassportId = Model.Id })
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PassportGeneralInformation)
+        </dt>
+        <dd>
+            <pre>@Model.PassportGeneralInformation</pre>
+        </dd>
+        <dt>
+            @SharedLocalizer["Map"]
+        </dt>
+        <dd>
+            <div id="map" style="height: 400px; width: 100%;"></div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NorthLatitude)
+        </dt>
+        <dd id="NorthLatitude">
+            @Html.DisplayFor(model => model.NorthLatitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EastLongitude)
+        </dt>
+        <dd id="EastLongitude">
+            @Html.DisplayFor(model => model.EastLongitude)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@SharedLocalizer["Edit"]</a> |
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+<script type="text/javascript">
+    var source = new ol.source.Vector();
+    var layer = new ol.layer.Vector({
+        source: source
+    });
+
+    var map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            }),
+            layer
+        ],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([76.9455, 43.2357]),
+            zoom: 10
+        })
+    });
+
+    function ChangeCoordinates() {
+        var coordinates = [parseFloat($('#EastLongitude').html().toString().replace(',', '.')), parseFloat($('#NorthLatitude').html().toString().replace(',', '.'))];
+        coordinates = ol.proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857');
+        var thing = new ol.geom.Point(
+            [coordinates[0], coordinates[1]]
+        );
+        var featurething = new ol.Feature({
+            geometry: thing
+        });
+        source.clear();
+        source.addFeature(featurething);
+    };
+
+    $(document).ready(function () {
+        ChangeCoordinates();
+    });
+</script>

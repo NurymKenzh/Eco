@@ -1,0 +1,78 @@
+﻿@model Eco.Models.AirPostData
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Delete"]</h2>
+
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["AirPostData"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AirPost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AirPost.Number)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AirContaminant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AirContaminant.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TemperatureC)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TemperatureC)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AtmosphericPressurekPa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AtmosphericPressurekPa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Humidity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Humidity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WindSpeedms)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WindSpeedms)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WindDirection)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WindDirection.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneralWeatherCondition)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GeneralWeatherCondition.Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" /> |
+        <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

@@ -1,0 +1,94 @@
+﻿@model Eco.Models.CompanyEmissionsValue
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Delete"]</h2>
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["CompanyEmissionsValue"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmissionSource.CompanyOrSubsidiaryCompanyAbbreviatedName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmissionSource.CompanyOrSubsidiaryCompanyAbbreviatedName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmissionSource)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmissionSource.EmissionSourceName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AirContaminant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AirContaminant.Name)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CoefficientOfSettlement)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoefficientOfSettlement)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.ValuesMaximumPermissibleEmissionsgs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValuesMaximumPermissibleEmissionsgs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValuesMaximumPermissibleEmissionstyear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValuesMaximumPermissibleEmissionstyear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValuesMaximumPermissibleEmissionsmgm3)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValuesMaximumPermissibleEmissionsmgm3)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.YearOfAchievementMaximumPermissibleEmissions)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.YearOfAchievementMaximumPermissibleEmissions)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoefficientOfGasCleaningPlanned)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoefficientOfGasCleaningPlanned)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoefficientOfGasCleaningActual)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoefficientOfGasCleaningActual)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AverageOperatingDegreeOfPurification)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AverageOperatingDegreeOfPurification)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaximumDegreeOfPurification)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaximumDegreeOfPurification)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" /> |
+        <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

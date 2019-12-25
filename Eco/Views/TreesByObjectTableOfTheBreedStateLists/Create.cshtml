@@ -1,0 +1,93 @@
+﻿@model Eco.Models.TreesByObjectTableOfTheBreedStateList
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Create"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Create"]</h2>
+<h4>@SharedLocalizer["TreesByObjectTableOfTheBreedStateList"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GreemPlantsPassportId" class="control-label"></label>
+                <select asp-for="GreemPlantsPassportId" class="form-control" asp-items="ViewBag.GreemPlantsPassportId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlantationsTypeId" class="control-label"></label>
+                <select asp-for="PlantationsTypeId" class="form-control" asp-items="ViewBag.PlantationsTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StateOfCSR15Type" class="control-label"></label>
+                <div class="form-control">
+                    @Html.RadioButtonFor(model => model.StateOfCSR15Type, true, new { @name = "StateOfCSR15Type", @onclick = "ChangeStateOfCSR15Type()" }) @SharedLocalizer["StateOfCSR15"]
+                    @Html.RadioButtonFor(model => model.StateOfCSR15Type, false, new { @name = "StateOfCSR15Type", @onclick = "ChangeStateOfCSR15Type()" }) @SharedLocalizer["PlantationsType"]
+                </div>
+                <span asp-validation-for="StateOfCSR15Type" class="text-danger"></span>
+            </div>
+            <div class="form-group PlantationsType">
+                <label asp-for="StateOfCSR15PlantationsTypeId" class="control-label"></label>
+                <select asp-for="StateOfCSR15PlantationsTypeId" class="form-control" asp-items="ViewBag.StateOfCSR15PlantationsTypeId"></select>
+            </div>
+            <div class="form-group StateOfCSR15">
+                <label asp-for="StateOfCSR15_1" class="control-label"></label>
+                <input asp-for="StateOfCSR15_1" class="form-control" />
+                <span asp-validation-for="StateOfCSR15_1" class="text-danger"></span>
+            </div>
+            <div class="form-group StateOfCSR15">
+                <label asp-for="StateOfCSR15_2" class="control-label"></label>
+                <input asp-for="StateOfCSR15_2" class="form-control" />
+                <span asp-validation-for="StateOfCSR15_2" class="text-danger"></span>
+            </div>
+            <div class="form-group StateOfCSR15">
+                <label asp-for="StateOfCSR15_3" class="control-label"></label>
+                <input asp-for="StateOfCSR15_3" class="form-control" />
+                <span asp-validation-for="StateOfCSR15_3" class="text-danger"></span>
+            </div>
+            <div class="form-group StateOfCSR15">
+                <label asp-for="StateOfCSR15_4" class="control-label"></label>
+                <input asp-for="StateOfCSR15_4" class="form-control" />
+                <span asp-validation-for="StateOfCSR15_4" class="text-danger"></span>
+            </div>
+            <div class="form-group StateOfCSR15">
+                <label asp-for="StateOfCSR15_5" class="control-label"></label>
+                <input asp-for="StateOfCSR15_5" class="form-control" />
+                <span asp-validation-for="StateOfCSR15_5" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Create"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+    function ChangeStateOfCSR15Type() {
+        if ($("input[name='StateOfCSR15Type']:checked").val() == "True") {
+            $('.StateOfCSR15').show();
+            $('.PlantationsType').hide();
+        }
+        else {
+            $('.StateOfCSR15').hide();
+            $('.PlantationsType').show();
+        }
+    };
+
+    $(document).ready(function () {
+        ChangeStateOfCSR15Type();
+    });
+</script>

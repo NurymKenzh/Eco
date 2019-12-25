@@ -1,0 +1,137 @@
+﻿@model Eco.Models.WasteRecyclingCompanyIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["WasteRecyclingCompanies"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["WasteRecyclingCompanies"]</h2>
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a>
+</p>
+@using (Html.BeginForm("Index", "WasteRecyclingCompanies", new { SortOrder = ViewBag.SortOrdert, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                                  new { SortOrder = ViewBag.SortOrdert, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                                  new { Page = page, SortOrder = ViewBag.SortOrdert, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                                  new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().Name).ToString(), "Index",
+                                  new { SortOrder = ViewBag.NameSort, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                    <br />
+                    @*@Html.Editor("Name", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })*@
+                    @Html.DropDownList("Name", (IEnumerable<SelectListItem>)ViewBag.Name, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().BIK).ToString(), "Index",
+                                  new { SortOrder = ViewBag.BIKSort, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                    <br />
+                    @Html.Editor("BIK", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().RecyclableWasteTypeId).ToString(), "Index",
+                                  new { SortOrder = ViewBag.RecyclableWasteTypeId, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                    <br />
+                    @Html.DropDownList("RecyclableWasteTypeId", (IEnumerable<SelectListItem>)ViewBag.RecyclableWasteTypeId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BIK)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RecyclableWasteType.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                                  new { SortOrder = ViewBag.SortOrdert, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                                  new { Page = page, SortOrder = ViewBag.SortOrdert, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                                  new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, Name = ViewBag.NameFilter, BIK = ViewBag.BIKFilter, RecyclableWasteTypeId = ViewBag.RecyclableWasteTypeIdFilter })
+                </li>
+            }
+        </ul>
+    }
+}

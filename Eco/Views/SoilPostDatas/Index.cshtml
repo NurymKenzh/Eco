@@ -1,0 +1,163 @@
+﻿@model Eco.Models.SoilPostDataIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["SoilPostDatas"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["SoilPostDatas"]</h2>
+
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a> | <a asp-action="SoilPostDatasReport" asp-controller="Reports">@SharedLocalizer["Report"]</a>
+</p>
+
+@using (Html.BeginForm("Index", "SoilPostDatas", new { SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                                       new { SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                                       new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                                       new { Page = page, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                                       new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                                       new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().SoilPost.Name).ToString(), "Index",
+                         new { SortOrder = ViewBag.SoilPostNameSort, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                    <br />
+                    @Html.Editor("SoilPostName", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().SoilContaminant).ToString(), "Index",
+                         new { SortOrder = ViewBag.SoilContaminantNameSort, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                    <br />
+                    @Html.DropDownList("SoilContaminantId", (IEnumerable<SelectListItem>)ViewBag.SoilContaminantId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().YearOfSampling).ToString(), "Index",
+                         new { SortOrder = ViewBag.YearOfSamplingSort, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                    <br />
+                    @Html.DropDownList("YearOfSampling", (IEnumerable<SelectListItem>)ViewBag.YearOfSampling, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().MonthOfSampling).ToString(), "Index",
+                         new { SortOrder = ViewBag.MonthOfSamplingSort, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                    <br />
+                    @Html.DropDownList("MonthOfSampling", (IEnumerable<SelectListItem>)ViewBag.MonthOfSampling, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().DayOfSampling).ToString(), "Index",
+                                new { SortOrder = ViewBag.DayOfSamplingSort, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                    <br />
+                    @Html.DropDownList("DayOfSampling", (IEnumerable<SelectListItem>)ViewBag.DayOfSampling, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().ConcentrationValuemgkg)
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoilPost.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoilContaminant.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfSampling.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfSampling.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfSampling.Day)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConcentrationValuemgkg)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+            </td>
+        </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                                       new { SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                                       new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                                       new { Page = page, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                                       new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                                       new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, SoilPostName = ViewBag.SoilPostNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+        </ul>
+    }
+}

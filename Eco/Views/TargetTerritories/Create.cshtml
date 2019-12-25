@@ -1,0 +1,226 @@
+﻿@model Eco.Models.TargetTerritory
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Create"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Create"]</h2>
+
+<h4>@SharedLocalizer["TargetTerritory"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TerritoryTypeId" class="control-label"></label>
+                <select id="TerritoryTypeId" asp-for="TerritoryTypeId" class="form-control" asp-items="ViewBag.TerritoryTypeId" onchange="ChangeTerritoryType()"></select>
+                <span asp-validation-for="TerritoryTypeId" class="text-danger"></span>
+            </div>
+            <div id="CityDistrictIdDiv" class="form-group">
+                <label asp-for="CityDistrictId" class="control-label"></label>
+                <select id="CityDistrictId" asp-for="CityDistrictId" class="form-control" asp-items="ViewBag.CityDistrictId" onchange="ChangeCityDistrict()"></select>
+                <span asp-validation-for="CityDistrictId" class="text-danger"></span>
+            </div>
+            <div id="TerritoryNameKKDiv" class="form-group">
+                <label asp-for="TerritoryNameKK" class="control-label"></label>
+                <input id="TerritoryNameKK" asp-for="TerritoryNameKK" class="form-control" />
+                <span asp-validation-for="TerritoryNameKK" class="text-danger"></span>
+            </div>
+            <div id="TerritoryNameRUDiv" class="form-group">
+                <label asp-for="TerritoryNameRU" class="control-label"></label>
+                <input id="TerritoryNameRU" asp-for="TerritoryNameRU" class="form-control" />
+                <span asp-validation-for="TerritoryNameRU" class="text-danger"></span>
+            </div>
+            <div id="GISConnectionCodeDiv" class="form-group">
+                <label asp-for="GISConnectionCode" class="control-label"></label>
+                <input id="GISConnectionCode" asp-for="GISConnectionCode" class="form-control" />
+                <span asp-validation-for="GISConnectionCode" class="text-danger"></span>
+            </div>
+            <div id="Post" class="form-group">
+                <label class="control-label">@SharedLocalizer["Post"]</label>
+                <div class="form-control" style="height: auto;">
+                    @Html.RadioButton("Post", "KazHydrometAirPostId", Model.KazHydrometAirPostId != null, new { @id = "KazHydrometAirPost" }) @SharedLocalizer["KazHydrometAirPost"]
+                    <br />
+                    @Html.RadioButton("Post", "AirPostId", Model.AirPostId != null, new { @id = "AirPost" }) @SharedLocalizer["AirPost"]
+                    <br />
+                    @Html.RadioButton("Post", "TransportPostId", Model.TransportPostId != null, new { @id = "TransportPost" }) @SharedLocalizer["TransportPost"]
+                    <br />
+                    @Html.RadioButton("Post", "WaterSurfacePostId", Model.WaterSurfacePostId != null, new { @id = "WaterSurfacePost" }) @SharedLocalizer["WaterSurfacePost"]
+                    <br />
+                    @Html.RadioButton("Post", "KazHydrometWaterPostId", Model.KazHydrometWaterPostId != null, new { @id = "KazHydrometWaterPost" }) @SharedLocalizer["KazHydrometWaterPost"]
+                    <br />
+                    @Html.RadioButton("Post", "KazHydrometSoilPostId", Model.KazHydrometSoilPostId != null, new { @id = "KazHydrometSoilPost" }) @SharedLocalizer["KazHydrometSoilPost"]
+                    <br />
+                    @Html.RadioButton("Post", "SoilPostId", Model.SoilPostId != null, new { @id = "SoilPost" }) @SharedLocalizer["SoilPost"]
+                </div>
+                <div hidden="hidden" class="KazHydrometAirPostId">
+                    <label asp-for="KazHydrometAirPostId" class="control-label"></label>
+                    <select asp-for="KazHydrometAirPostId" class="form-control" asp-items="ViewBag.KazHydrometAirPostId" id="KazHydrometAirPostId"></select>
+                </div>
+                <div hidden="hidden" class="AirPostId">
+                    <label asp-for="AirPostId" class="control-label"></label>
+                    <select asp-for="AirPostId" class="form-control" asp-items="ViewBag.AirPostId"></select>
+                </div>
+                <div hidden="hidden" class="TransportPostId">
+                    <label asp-for="TransportPostId" class="control-label"></label>
+                    <select asp-for="TransportPostId" class="form-control" asp-items="ViewBag.TransportPostId"></select>
+                </div>
+                <div hidden="hidden" class="WaterSurfacePostId">
+                    <label asp-for="WaterSurfacePostId" class="control-label"></label>
+                    <select asp-for="WaterSurfacePostId" class="form-control" asp-items="ViewBag.WaterSurfacePostId"></select>
+                </div>
+                <div hidden="hidden" class="KazHydrometWaterPostId">
+                    <label asp-for="KazHydrometWaterPostId" class="control-label"></label>
+                    <select asp-for="KazHydrometWaterPostId" class="form-control" asp-items="ViewBag.KazHydrometWaterPostId"></select>
+                </div>
+                <div hidden="hidden" class="KazHydrometSoilPostId">
+                    <label asp-for="KazHydrometSoilPostId" class="control-label"></label>
+                    <select asp-for="KazHydrometSoilPostId" class="form-control" asp-items="ViewBag.KazHydrometSoilPostId"></select>
+                </div>
+                <div hidden="hidden" class="SoilPostId">
+                    <label asp-for="SoilPostId" class="control-label"></label>
+                    <select asp-for="SoilPostId" class="form-control" asp-items="ViewBag.SoilPostId"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalInformationKK" class="control-label"></label>
+                @Html.TextArea("AdditionalInformationKK", null, new { @class = "form-control", rows = 5 })
+                <span asp-validation-for="AdditionalInformationKK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalInformationRU" class="control-label"></label>
+                @Html.TextArea("AdditionalInformationRU", null, new { @class = "form-control", rows = 5 })
+                <span asp-validation-for="AdditionalInformationRU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Create"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+<div hidden="hidden">
+    <input id="City" value="@ViewData["City"]" type="hidden" />
+    <input id="CityDistrict" value="@ViewData["CityDistrict"]" type="hidden" />
+    <input id="OtherTerritoryType" value="@ViewData["OtherTerritoryType"]" type="hidden" />
+    <input id="AlmatyCATO" value="@ViewData["AlmatyCATO"]" type="hidden" />
+    <select id="CityDistrictCATO" asp-items="ViewBag.CityDistrictCATO"></select>
+    <input id="AlmatyKK" value="@ViewData["AlmatyKK"]" type="hidden" />
+    <input id="AlmatyRU" value="@ViewData["AlmatyRU"]" type="hidden" />
+    <select id="CityDistrictNameKK" asp-items="ViewBag.CityDistrictNameKK"></select>
+    <select id="CityDistrictNameRU" asp-items="ViewBag.CityDistrictNameRU"></select>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    function ChangeTerritoryType() {
+        if ($('#TerritoryTypeId').val() == $('#City').val()) {
+            $('#CityDistrictIdDiv').hide();
+            $('#TerritoryNameKK').prop('readonly', true);
+            $('#TerritoryNameRU').prop('readonly', true);
+            $('#TerritoryNameKK').val($('#AlmatyKK').val());
+            $('#TerritoryNameRU').val($('#AlmatyRU').val());
+            $('#GISConnectionCode').val($('#AlmatyCATO').val());
+            $('#GISConnectionCode').prop('readonly', true);
+            $('#Post').hide();
+        }
+        if ($('#TerritoryTypeId').val() == $('#CityDistrict').val()) {
+            $('#CityDistrictIdDiv').show();
+            $('#TerritoryNameKK').prop('readonly', true);
+            $('#TerritoryNameRU').prop('readonly', true);
+            $('#GISConnectionCode').prop('readonly', true);
+            ChangeCityDistrict();
+            $('#Post').hide();
+        }
+        if ($('#TerritoryTypeId').val() == $('#OtherTerritoryType').val()) {
+            $('#TerritoryNameKK').removeAttr("readonly");
+            $('#TerritoryNameRU').removeAttr("readonly");
+            $('#CityDistrictIdDiv').hide();
+            $("#GISConnectionCode").removeAttr("readonly");
+            $('#Post').show();
+        }
+    };
+
+    function ChangeCityDistrict() {
+        $("#CityDistrictCATO option").each(function () {
+            if ($(this).val() == $("#CityDistrictId").val()) {
+                $('#GISConnectionCode').val($(this).text());
+            }
+        });
+        $("#CityDistrictNameKK option").each(function () {
+            if ($(this).val() == $("#CityDistrictId").val()) {
+                $('#TerritoryNameKK').val($(this).text());
+            }
+        });
+        $("#CityDistrictNameRU option").each(function () {
+            if ($(this).val() == $("#CityDistrictId").val()) {
+                $('#TerritoryNameRU').val($(this).text());
+            }
+        });
+    };
+
+    $(document).ready(function (e) {
+        ChangeTerritoryType();
+        $('input[type=radio][name=Post]').change(function () {
+            $('.KazHydrometAirPostId').hide();
+            $('.AirPostId').hide();
+            $('.TransportPostId').hide();
+            $('.WaterSurfacePostId').hide();
+            $('.KazHydrometWaterPostId').hide();
+            $('.KazHydrometSoilPostId').hide();
+            $('.SoilPostId').hide();
+            
+            $('#KazHydrometAirPostId option:selected').removeAttr('selected');
+            $('#KazHydrometAirPostId').val('');
+            $('#AirPostId option:selected').removeAttr('selected');
+            $('#AirPostId').val('');
+            $('#TransportPostId option:selected').removeAttr('selected');
+            $('#TransportPostId').val('');
+            $('#WaterSurfacePostId option:selected').removeAttr('selected');
+            $('#WaterSurfacePostId').val('');
+            $('#KazHydrometWaterPostId option:selected').removeAttr('selected');
+            $('#KazHydrometWaterPostId').val('');
+            $('#KazHydrometSoilPostId option:selected').removeAttr('selected');
+            $('#KazHydrometSoilPostId').val('');
+            $('#SoilPostId option:selected').removeAttr('selected');
+            $('#SoilPostId').val('');
+            $('.' + this.value).show();
+            $('#' + this.value).prop('selectedIndex', 0);
+        });
+
+        $('.KazHydrometAirPostId').hide();
+        $('.AirPostId').hide();
+        $('.TransportPostId').hide();
+        $('.WaterSurfacePostId').hide();
+        $('.KazHydrometWaterPostId').hide();
+        $('.KazHydrometSoilPostId').hide();
+        $('.SoilPostId').hide();
+        $('#KazHydrometAirPostId option:selected').removeAttr('selected');
+        $('#KazHydrometAirPostId').val('');
+        $('#AirPostId option:selected').removeAttr('selected');
+        $('#AirPostId').val('');
+        $('#TransportPostId option:selected').removeAttr('selected');
+        $('#TransportPostId').val('');
+        $('#WaterSurfacePostId option:selected').removeAttr('selected');
+        $('#WaterSurfacePostId').val('');
+        $('#KazHydrometWaterPostId option:selected').removeAttr('selected');
+        $('#KazHydrometWaterPostId').val('');
+        $('#KazHydrometSoilPostId option:selected').removeAttr('selected');
+        $('#KazHydrometSoilPostId').val('');
+        $('#SoilPostId option:selected').removeAttr('selected');
+        $('#SoilPostId').val('');
+        $('.' + $('input[name=Post]:checked').val()).show();
+        $('#' + $('input[name=Post]:checked').val()).prop('selectedIndex', 0);
+    });
+</script>

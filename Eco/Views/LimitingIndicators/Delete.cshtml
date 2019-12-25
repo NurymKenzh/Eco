@@ -1,0 +1,71 @@
+﻿@model Eco.Models.LimitingIndicator
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Delete"]</h2>
+
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["LimitingIndicator"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameKK)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameKK)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameRU)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameRU)
+        </dd>
+        <dt>
+            @SharedLocalizer["RelatedItems"]
+        </dt>
+        <dd>
+            @if (((IQueryable<SoilContaminant>)ViewBag.SoilContaminants).Count() > 0)
+            {
+                <table class="table red">
+                    <tr>
+                        <th>
+                            @SharedLocalizer["SoilContaminants"]
+                        </th>
+                    </tr>
+                    @foreach (var item in (IQueryable<SoilContaminant>)ViewBag.SoilContaminants)
+                {
+                        <tr>
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                <a asp-controller="SoilContaminants" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                                <a asp-controller="SoilContaminants" asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                                <a asp-controller="SoilContaminants" asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        @if (((IQueryable<AirContaminant>)ViewBag.SoilContaminants).Count() == 0)
+        {
+            <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" />
+        }
+        else
+        {
+            <input type="submit" value="@SharedLocalizer["Delete"]" disabled="disabled" class="btn btn-default" />
+        }
+        | <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

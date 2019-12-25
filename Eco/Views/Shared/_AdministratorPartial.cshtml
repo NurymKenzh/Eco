@@ -1,0 +1,25 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    var user = Context.User;
+}
+@if (user.Identity.IsAuthenticated)
+{
+    if (user.IsInRole("Administrator"))
+    {
+        <li>@Html.ActionLink(SharedLocalizer["Administration"], "Administration", "Administrator")</li>
+        <li>@Html.ActionLink(SharedLocalizer["Directories"], "Directories", "Administrator")</li>
+        <li>@Html.ActionLink(SharedLocalizer["Targets"], "Targets", "Administrator")</li>
+    }
+    if (user.IsInRole("Moderator"))
+    {
+        <li>@Html.ActionLink(SharedLocalizer["Directories"], "Directories", "Administrator")</li>
+        <li>@Html.ActionLink(SharedLocalizer["Targets"], "Targets", "Administrator")</li>
+    }
+    if (user.IsInRole("Analyst"))
+    {
+        <li>@Html.ActionLink(SharedLocalizer["Directories"], "Directories", "Administrator")</li>
+        <li>@Html.ActionLink(SharedLocalizer["Targets"], "Targets", "Administrator")</li>
+    }
+}

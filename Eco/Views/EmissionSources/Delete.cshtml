@@ -1,0 +1,281 @@
+﻿@model Eco.Models.EmissionSource
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/lib/openlayers/ol.css" rel="stylesheet" />
+<script src="~/lib/openlayers/ol.js"></script>
+<h2>@SharedLocalizer["Delete"]</h2>
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["EmissionSource"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyOrSubsidiaryCompanyAbbreviatedName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyOrSubsidiaryCompanyAbbreviatedName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmissionSourceName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmissionSourceName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmissionSourceMapNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmissionSourceMapNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkHoursPerYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WorkHoursPerYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SourcesNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SourcesNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmissionSourceType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmissionSourceType.Name)
+        </dd>
+        <dt>
+            @SharedLocalizer["Map"]
+        </dt>
+        <dd>
+            <div id="map" style="height: 400px; width: 100%;"></div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NorthLatitude1)
+        </dt>
+        <dd id="NorthLatitude1">
+            @Html.DisplayFor(model => model.NorthLatitude1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EastLongitude1)
+        </dt>
+        <dd id="EastLongitude1">
+            @Html.DisplayFor(model => model.EastLongitude1)
+        </dd>
+        @if (Model.EmissionSourceType.PointsAmount == 2)
+    {
+        <dt>
+            @Html.DisplayNameFor(model => model.NorthLatitude2)
+        </dt>
+        <dd id="NorthLatitude2">
+            @Html.DisplayFor(model => model.NorthLatitude2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EastLongitude2)
+        </dt>
+        <dd id="EastLongitude2">
+            @Html.DisplayFor(model => model.EastLongitude2)
+        </dd>
+}
+        @if (Model.EmissionSourceType.PointsAmount == 4)
+    {
+        <dt>
+            @Html.DisplayNameFor(model => model.NorthLatitude3)
+        </dt>
+        <dd id="NorthLatitude3">
+            @Html.DisplayFor(model => model.NorthLatitude3)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EastLongitude3)
+        </dt>
+        <dd id="EastLongitude3">
+            @Html.DisplayFor(model => model.EastLongitude3)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NorthLatitude4)
+        </dt>
+        <dd id="NorthLatitude4">
+            @Html.DisplayFor(model => model.NorthLatitude4)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EastLongitude4)
+        </dt>
+        <dd id="EastLongitude4">
+            @Html.DisplayFor(model => model.EastLongitude4)
+        </dd>
+}
+        <dt>
+            @Html.DisplayNameFor(model => model.EmissionSourceHeight)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmissionSourceHeight)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LengthOfMouth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LengthOfMouth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiameterOfMouthOfPipesOrWidth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiameterOfMouthOfPipesOrWidth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SpeedOfGasAirMixture)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SpeedOfGasAirMixture)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VolumeOfGasAirMixture)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VolumeOfGasAirMixture)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TemperatureOfMixture)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TemperatureOfMixture)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfGasTreatmentPlantsTypeAndMeasuresToReduceEmissions)
+        </dt>
+        <dd>
+            <pre>@Model.NameOfGasTreatmentPlantsTypeAndMeasuresToReduceEmissions</pre>
+        </dd>
+        <dt>
+            @SharedLocalizer["RelatedItems"]
+        </dt>
+        <dd>
+            @if (((IQueryable<CompanyEmissionsValue>)ViewBag.CompanyEmissionsValues).Count() > 0)
+        {
+            <table class="table red">
+                <tr>
+                    <th>
+                        @SharedLocalizer["CompanyEmissionsValues"]
+                    </th>
+                </tr>
+                @foreach (var item in (IQueryable<CompanyEmissionsValue>)ViewBag.CompanyEmissionsValues)
+            {
+                <tr>
+                    <td>
+                        @item.AirContaminant.Name
+                    </td>
+                    <td>
+                        <a asp-controller="CompanyEmissionsValues" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                        <a asp-controller="CompanyEmissionsValues" asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                        <a asp-controller="CompanyEmissionsValues" asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                    </td>
+                </tr>
+        }
+            </table>
+    }
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        @if (((IQueryable<CompanyEmissionsValue>)ViewBag.CompanyEmissionsValues).Count() == 0)
+        {
+            <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" />
+        }
+        else
+        {
+            <input type="submit" value="@SharedLocalizer["Delete"]" disabled="disabled" class="btn btn-default" />
+        }
+        | <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>
+<div hidden="hidden">
+    <input id="PointsAmount" value="@Model.EmissionSourceType.PointsAmount" />
+</div>
+<script type="text/javascript">
+    var source = new ol.source.Vector();
+    var layer = new ol.layer.Vector({
+        source: source
+    });
+    var pointsCount = $('#PointsAmount').val();
+    var point = new ol.geom.Point();
+    var line = new ol.geom.LineString();
+    var polygon = new ol.geom.Polygon();
+
+
+    var map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            }),
+            layer
+        ],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([76.9455, 43.2357]),
+            zoom: 10
+        })
+    });
+
+    function ChangeCoordinates() {
+        if (pointsCount == 1) {
+            var coordinates = [parseFloat($('#EastLongitude1').html().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').html().toString().replace(',', '.'))];
+            coordinates = ol.proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857');
+            var thing = new ol.geom.Point(
+                [coordinates[0], coordinates[1]]
+            );
+            var featurething = new ol.Feature({
+                geometry: thing
+            });
+            source.clear();
+            source.addFeature(featurething);
+        }
+        if (pointsCount == 2) {
+            var coordinate1 = [parseFloat($('#EastLongitude1').html().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').html().toString().replace(',', '.'))],
+                coordinate2 = [parseFloat($('#EastLongitude2').html().toString().replace(',', '.')), parseFloat($('#NorthLatitude2').html().toString().replace(',', '.'))];
+            coordinate1 = ol.proj.transform(coordinate1, 'EPSG:4326', 'EPSG:3857');
+            coordinate2 = ol.proj.transform(coordinate2, 'EPSG:4326', 'EPSG:3857');
+            line = new ol.geom.LineString(
+                [[coordinate1[0], coordinate1[1]], [coordinate2[0], coordinate2[1]]]
+            );
+            var featurething = new ol.Feature({
+                geometry: line
+            });
+            source.clear();
+            source.addFeature(featurething);
+        }
+        if (pointsCount == 4) {
+            var coordinate1 = [parseFloat($('#EastLongitude1').html().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').html().toString().replace(',', '.'))],
+                coordinate2 = [parseFloat($('#EastLongitude2').html().toString().replace(',', '.')), parseFloat($('#NorthLatitude2').html().toString().replace(',', '.'))],
+                coordinate3 = [parseFloat($('#EastLongitude3').html().toString().replace(',', '.')), parseFloat($('#NorthLatitude3').html().toString().replace(',', '.'))],
+                coordinate4 = [parseFloat($('#EastLongitude4').html().toString().replace(',', '.')), parseFloat($('#NorthLatitude4').html().toString().replace(',', '.'))];
+            coordinate1 = ol.proj.transform(coordinate1, 'EPSG:4326', 'EPSG:3857');
+            coordinate2 = ol.proj.transform(coordinate2, 'EPSG:4326', 'EPSG:3857');
+            coordinate3 = ol.proj.transform(coordinate3, 'EPSG:4326', 'EPSG:3857');
+            coordinate4 = ol.proj.transform(coordinate4, 'EPSG:4326', 'EPSG:3857');
+            polygon = new ol.geom.Polygon(
+                [[
+                    [coordinate1[0], coordinate1[1]],
+                    [coordinate2[0], coordinate2[1]],
+                    [coordinate3[0], coordinate3[1]],
+                    [coordinate4[0], coordinate4[1]]
+                ]]
+            );
+            var featurething = new ol.Feature({
+                geometry: polygon
+            });
+            source.clear();
+            source.addFeature(featurething);
+        }
+    };
+
+    $(document).ready(function () {
+        ChangeCoordinates();
+    });
+</script>

@@ -1,0 +1,211 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Charts"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/lib/chart.js/dist/Chart.js"></script>
+
+<h2>@SharedLocalizer["Charts"]</h2>
+
+<table class="agendaView">
+    <thead>
+        <tr>
+            <th>
+                @SharedLocalizer["TypeOfTarget"]
+                @Html.DropDownList("TypeOfTargetId", (IEnumerable<SelectListItem>)ViewBag.TypeOfTargetId, htmlAttributes: new { @class = "form-control", @id = "TypeOfTargetId", @onchange = "ChangeTypeOfTarget()" })
+            </th>
+            <th>
+                @SharedLocalizer["Target"]
+                @Html.DropDownList("TargetId", (IEnumerable<SelectListItem>)ViewBag.TargetId, htmlAttributes: new { @class = "form-control", @id = "TargetId", @onchange = "ChangeTarget()" })
+            </th>
+            <th>
+                @SharedLocalizer["MeasurementUnit"]
+                @Html.DropDownList("MeasurementUnitId", (IEnumerable<SelectListItem>)ViewBag.MeasurementUnitId, htmlAttributes: new { @class = "form-control", @id = "MeasurementUnitId", @disabled = "true" })
+            </th>
+            <th>
+                @SharedLocalizer["TerritoryType"]
+                @Html.DropDownList("TerritoryTypeId", (IEnumerable<SelectListItem>)ViewBag.TerritoryTypeId, htmlAttributes: new { @class = "form-control", @id = "TerritoryTypeId", @onchange = "ChangeTerritoryType()" })
+            </th>
+            <th>
+                @SharedLocalizer["TargetTerritory"]
+                @Html.DropDownList("TargetTerritoryId", (IEnumerable<SelectListItem>)ViewBag.TargetTerritoryId, htmlAttributes: new { @class = "form-control", @id = "TargetTerritoryId", @onchange = "ChangeTarget()" })
+            </th>
+            @*<th>
+                @SharedLocalizer["Event"]
+                @Html.DropDownList("EventId", (IEnumerable<SelectListItem>)ViewBag.EventId, htmlAttributes: new { @class = "form-control", @id = "EventId", @onchange = "ChangeTarget()" })
+            </th>*@
+        </tr>
+    </thead>
+</table>
+<canvas id="chart" width="400" height="200"></canvas>
+
+<div hidden="hidden">
+    <input id="Planned" value="@SharedLocalizer["Planned"]" type="text" />
+    <input id="Actual" value="@SharedLocalizer["Actual"]" type="text" />
+    <input id="AActivities" value="@SharedLocalizer["AActivities"]" type="text" />
+    <input id="ImplementationPercentage" value="@SharedLocalizer["ImplementationPercentage"]" type="text" />
+</div>
+
+<input type="button" onclick="window.print();" value="@SharedLocalizer["Print"]">
+
+<script>
+    var chart = null;
+
+    function RefreshChart() {
+        var ctx = document.getElementById("chart").getContext('2d');
+        $.ajax({
+            url: '@Url.Action("GetTargetValuesAndAActivities")',
+            data: {
+                TargetId: $('#TargetId').val(),
+                TargetTerritoryId: $('#TargetTerritoryId').val()//,
+                //EventId: $('#EventId').val()
+            },
+            type: 'POST',
+            success: function (data) {
+                if (chart != null) {
+                    chart.destroy();
+                }
+                var labels = data.years,
+                    targetValuesPlan = data.targetValuesPlan,
+                    targetValuesFact = data.targetValuesFact;
+                    //aActivities = data.aActivities;
+                chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: $('#Planned').val(),
+                            data: targetValuesPlan,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255,99,132,1)',
+                            borderWidth: 1,
+                            yAxisID: "y-axis-1"
+                        }, {
+                            label: $('#Actual').val(),
+                            data: targetValuesFact,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1,
+                            yAxisID: "y-axis-1"
+                        }
+                        //    , {
+                        //    label: $('#AActivities').val(),
+                        //    data: aActivities,
+                        //    backgroundColor: 'rgba(35, 60, 230, 0.2)',
+                        //    borderColor: 'rgba(54, 72, 150, 1)',
+                        //    borderWidth: 1,
+                        //    yAxisID: "y-axis-2"
+                        //}
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                type: "linear",
+                                display: true,
+                                position: "left",
+                                id: "y-axis-1",
+                                ticks: {
+                                    beginAtZero: true
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: $("#TargetId option:selected").text() + ', ' + $("#MeasurementUnitId option:selected").text()
+                                }
+                            }
+                                //, {
+                                //beginAtZero: true,
+                                //type: "linear",
+                                //display: true,
+                                //position: "right",
+                                //id: "y-axis-2",
+                                //ticks: {
+                                //    beginAtZero: true
+                                //},
+                                //gridLines: {
+                                //    drawOnChartArea: false,
+                                //},
+                                //scaleLabel: {
+                                //    display: true,
+                                //    labelString: $('#ImplementationPercentage').val() + ', %'
+                                //}
+                                //}
+                            ],
+                        }
+                    }
+                });
+            },
+            error: function () {
+            }
+        });
+    };
+</script>
+
+<script>
+    function ChangeTypeOfTarget() {
+        $.ajax({
+            url: '@Url.Action("GetTargetsByTypeOfTargetId", "AActivities")',
+            data: { TypeOfTargetId: $('#TypeOfTargetId').val() },
+            type: 'POST',
+            success: function (data) {
+                var optionhtml = '';
+                $.each(data, function (i) {
+                    optionhtml += '<option value="' + data[i]['id'] + '"' +
+                        (data[i]['id'] == $('#TargetId').val() ? 'selected' : '') +
+                        '>' + data[i]['name'] +
+                        '</option>';
+                });
+                $("#TargetId").empty();
+                $('#TargetId').append(optionhtml);
+                ChangeTarget();
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function ChangeTarget() {
+        $.ajax({
+            url: '@Url.Action("MeasurementUnitIdByTargetId", "AActivities")',
+            data: { TargetId: $('#TargetId').val() },
+            type: 'POST',
+            success: function (data) {
+                $("#MeasurementUnitId").val(data);
+                RefreshChart();
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function ChangeTerritoryType() {
+        $.ajax({
+            url: '@Url.Action("GetTargetTerritoriesByTerritoryTypeId", "AActivities")',
+            data: { TerritoryTypeId: $('#TerritoryTypeId').val() },
+            type: 'POST',
+            success: function (data) {
+                var optionhtml = '';
+                $.each(data, function (i) {
+                    optionhtml += '<option value="' + data[i]['id'] + '"' +
+                        (data[i]['id'] == $('#TargetTerritoryId').val() ? 'selected' : '') +
+                        '>' + data[i]['territoryName'] +
+                        '</option>';
+                });
+                $("#TargetTerritoryId").empty();
+                $('#TargetTerritoryId').append(optionhtml);
+                RefreshChart();
+            },
+            error: function () {
+            }
+        });
+    };
+</script>
+
+<script>
+    $(document).ready(function (e) {
+        RefreshChart();
+    });
+</script>

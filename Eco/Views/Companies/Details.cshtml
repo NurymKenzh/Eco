@@ -1,0 +1,163 @@
+﻿@model Eco.Models.Company
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Details"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/lib/openlayers/ol.css" rel="stylesheet" />
+<script src="~/lib/openlayers/ol.js"></script>
+
+<h2>@SharedLocalizer["Details"]</h2>
+
+<div>
+    <h4>@SharedLocalizer["Company"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AbbreviatedName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AbbreviatedName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BIK)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BIK)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.KindOfActivity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.KindOfActivity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HazardClass)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HazardClass.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HierarchicalStructure)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HierarchicalStructureName)
+        </dd>
+        <dt>
+            @Html.DisplayName(SharedLocalizer["AnnualMaximumPermissibleEmissionsVolumes"])
+        </dt>
+        <dd>
+            <a href="@Url.Action("Index", "AnnualMaximumPermissibleEmissionsVolumes", new { CompanyId = Model.Id })" target="_blank">@SharedLocalizer["Look"]</a>
+        </dd>
+
+        <dt>
+            @Html.DisplayName(SharedLocalizer["CompanyEmissionsValues"])
+        </dt>
+        <dd>
+            <a href="@Url.Action("Index", "CompanyEmissionsValues", new { CompanyAbbreviatedName = Model.AbbreviatedName })" target="_blank">@SharedLocalizer["Look"]</a>
+        </dd>
+
+        <dd>
+            <hr />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CityDistrict)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CityDistrict.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LegalAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LegalAddress)
+        </dd>
+        <dd>
+            <hr />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActualAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ActualAddress)
+        </dd>
+        <dd>
+            <hr />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalInformation)
+        </dt>
+        <dd>
+            <pre>@Model.AdditionalInformation</pre>
+        </dd>
+        <dt>
+            @SharedLocalizer["Map"]
+        </dt>
+        <dd>
+            <div id="map" style="height: 400px; width: 100%;"></div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NorthLatitude)
+        </dt>
+        <dd id="NorthLatitude">
+            @Html.DisplayFor(model => model.NorthLatitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EastLongitude)
+        </dt>
+        <dd id="EastLongitude">
+            @Html.DisplayFor(model => model.EastLongitude)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@SharedLocalizer["Edit"]</a> |
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+<script type="text/javascript">
+    var source = new ol.source.Vector();
+    var layer = new ol.layer.Vector({
+        source: source
+    });
+
+    var map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            }),
+            layer
+        ],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([76.9455, 43.2357]),
+            zoom: 10
+        })
+    });
+
+    function ChangeCoordinates() {
+        var coordinates = [parseFloat($('#EastLongitude').html().toString().replace(',', '.')), parseFloat($('#NorthLatitude').html().toString().replace(',', '.'))];
+        coordinates = ol.proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857');
+        var thing = new ol.geom.Point(
+            [coordinates[0], coordinates[1]]
+        );
+        var featurething = new ol.Feature({
+            geometry: thing
+        });
+        source.clear();
+        source.addFeature(featurething);
+    };
+
+    $(document).ready(function () {
+        ChangeCoordinates();
+    });
+</script>

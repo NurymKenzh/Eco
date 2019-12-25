@@ -1,0 +1,108 @@
+﻿@model Eco.Models.IndustrialSite
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Create"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Create"]</h2>
+
+<h4>@SharedLocalizer["IndustrialSite"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CompanyId" class="control-label"></label>
+                <select id="CompanyId" asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId" onchange="ChangeCompany()"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubsidiaryCompanyId" class="control-label"></label>
+                <select id="SubsidiaryCompanyId" asp-for="SubsidiaryCompanyId" class ="form-control" asp-items="ViewBag.SubsidiaryCompanyId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AbbreviatedName" class="control-label"></label>
+                <input asp-for="AbbreviatedName" class="form-control" />
+                <span asp-validation-for="AbbreviatedName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HazardClassId" class="control-label"></label>
+                <select asp-for="HazardClassId" class ="form-control" asp-items="ViewBag.HazardClassId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityDistrictId" class="control-label"></label>
+                <select asp-for="CityDistrictId" class ="form-control" asp-items="ViewBag.CityDistrictId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Street" class="control-label"></label>
+                <input asp-for="Street" class="form-control" />
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="House" class="control-label"></label>
+                <input asp-for="House" class="form-control" />
+                <span asp-validation-for="House" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NorthLatitude" class="control-label"></label>
+                <input asp-for="NorthLatitude" class="form-control" />
+                <span asp-validation-for="NorthLatitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EastLongitude" class="control-label"></label>
+                <input asp-for="EastLongitude" class="form-control" />
+                <span asp-validation-for="EastLongitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Create"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
+
+<script>
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+
+    function ChangeCompany() {
+        $.ajax({
+            url: '@Url.Action("GetSubsidiaryCompaniesByCompanyId")',
+            data: { CompanyId: $('#CompanyId').val() },
+            type: 'POST',
+            success: function (data) {
+                var optionhtml = '<option value=""></option>';
+                $.each(data, function (i) {
+                    optionhtml += '<option value="' + data[i]['id'] + '"' +
+                        (data[i]['id'] == $('#SubsidiaryCompanyId').val() ? 'selected' : '') +
+                        '>' + data[i]['abbreviatedName'] +
+                        '</option>';
+                });
+                $("#SubsidiaryCompanyId").empty();
+                $('#SubsidiaryCompanyId').append(optionhtml);
+            },
+            error: function () {
+            }
+        });
+    };
+</script>

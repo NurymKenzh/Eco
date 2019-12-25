@@ -1,0 +1,37 @@
+﻿@model Eco.Models.PlantationsState
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Details"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Details"]</h2>
+<div>
+    <h4>@SharedLocalizer["DePlantationsStatetails"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TreesNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TreesNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CityDistrict)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CityDistrict.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PlantationsStateType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlantationsStateType.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@SharedLocalizer["Edit"]</a> |
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>

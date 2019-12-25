@@ -1,0 +1,62 @@
+﻿@model Eco.Models.KazHydrometAirPostData
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Upload"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Upload"]</h2>
+
+<h4>@SharedLocalizer["KazHydrometAirPostDatas"]</h4>
+<hr />
+
+<pre>@SharedLocalizer["KazHydrometAirPostDataUploadDescription"]</pre>
+
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Upload", "KazHydrometAirPostDatas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="KazHydrometAirPostId" class="control-label"></label>
+                <select asp-for="KazHydrometAirPostId" class ="form-control" asp-items="ViewBag.KazHydrometAirPostId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirContaminantId" class="control-label"></label>
+                <select asp-for="AirContaminantId" class ="form-control" asp-items="ViewBag.AirContaminantId"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@SharedLocalizer["FirstRowHeader"]</label>
+                @Html.CheckBox("FirstRowHeader")
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">@SharedLocalizer["File"]</label>
+                <input type="file" name="File" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Upload"]" class="btn btn-default" />
+            </div>
+        }
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.Report))
+{
+    <div>
+        @Html.Raw(ViewBag.Report)
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="red">
+        @Html.Raw(ViewBag.Error)
+    </div>
+}
+
+<br />
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>

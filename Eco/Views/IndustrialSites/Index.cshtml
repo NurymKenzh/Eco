@@ -1,0 +1,148 @@
+﻿@model Eco.Models.IndustrialSiteIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["IndustrialSites"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["IndustrialSites"]</h2>
+
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a>
+</p>
+
+@using (Html.BeginForm("Index", "IndustrialSites", new { SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().CompanyOrSubsidiaryCompanyAbbreviatedName).ToString(), "Index",
+                        new { SortOrder = ViewBag.CompanyAbbreviatedNameSort, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                    <br />
+                    @Html.Editor("CompanyAbbreviatedName", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().AbbreviatedName).ToString(), "Index",
+                        new { SortOrder = ViewBag.AbbreviatedNameSort, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                    <br />
+                    @Html.Editor("AbbreviatedName", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().HazardClassId).ToString(), "Index",
+                        new { SortOrder = ViewBag.HazardClassIdSort, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                    <br />
+                    @Html.DropDownList("HazardClassId", (IEnumerable<SelectListItem>)ViewBag.TypeOfTargetId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().CityDistrictId).ToString(), "Index",
+                        new { SortOrder = ViewBag.CityDistrictIdSort, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                    <br />
+                    @Html.DropDownList("CityDistrictId", (IEnumerable<SelectListItem>)ViewBag.TypeOfTargetId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyOrSubsidiaryCompanyAbbreviatedName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AbbreviatedName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HazardClass.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityDistrict.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, CompanyAbbreviatedName = ViewBag.CompanyAbbreviatedNameFilter, AbbreviatedName = ViewBag.AbbreviatedNameFilter, HazardClassId = ViewBag.HazardClassIdFilter, CityDistrictId = ViewBag.CityDistrictIdFilter })
+                </li>
+            }
+        </ul>
+    }
+}

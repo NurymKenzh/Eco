@@ -1,0 +1,156 @@
+﻿@model Eco.Models.KazHydrometSoilPostDataIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["KazHydrometSoilPostDatas"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["KazHydrometSoilPostDatas"]</h2>
+
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a> | <a asp-action="KazHydrometSoilPostDatasReport" asp-controller="Reports">@SharedLocalizer["Report"]</a>
+</p>
+
+@using (Html.BeginForm("Index", "KazHydrometSoilPostDatas", new { SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                                  new { SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                                  new { Page = page, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                                  new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().KazHydrometSoilPost.Number).ToString(), "Index",
+                                  new { SortOrder = ViewBag.KazHydrometSoilPostNumberSort, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                    <br />
+                    @*@Html.Editor("KazHydrometSoilPostNumber", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })*@
+                    @Html.DropDownList("KazHydrometSoilPostNumber", (IEnumerable<SelectListItem>)ViewBag.KazHydrometSoilPostNumber, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().KazHydrometSoilPost.Name).ToString(), "Index",
+                                  new { SortOrder = ViewBag.KazHydrometSoilPostNameSort, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                    <br />
+                    @*@Html.Editor("KazHydrometSoilPostName", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })*@
+                    @Html.DropDownList("KazHydrometSoilPostName", (IEnumerable<SelectListItem>)ViewBag.KazHydrometSoilPostName, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().SoilContaminant).ToString(), "Index",
+                                  new { SortOrder = ViewBag.SoilContaminantNameSort, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                    <br />
+                    @Html.DropDownList("SoilContaminantId", (IEnumerable<SelectListItem>)ViewBag.SoilContaminantId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().Year).ToString(), "Index",
+                                  new { SortOrder = ViewBag.YearSort, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                    <br />
+                    @Html.DropDownList("Year", (IEnumerable<SelectListItem>)ViewBag.Year, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().ConcentrationValuemgkg)
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KazHydrometSoilPost.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KazHydrometSoilPost.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoilContaminant.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConcentrationValuemgkg)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                                  new { SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                                  new { Page = page, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                                  new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, SoilContaminantId = ViewBag.SoilContaminantIdFilter, KazHydrometSoilPostNumber = ViewBag.KazHydrometSoilPostNumberFilter, KazHydrometSoilPostName = ViewBag.KazHydrometSoilPostNameFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+        </ul>
+    }
+}

@@ -1,0 +1,113 @@
+﻿@model Eco.Models.WaterSurfacePostData
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Edit"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Edit"]</h2>
+
+<h4>@SharedLocalizer["WaterSurfacePostData"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="WaterSurfacePost.WaterObjectId" class="control-label"></label>
+                <select id="WaterObjectId" asp-for="WaterSurfacePost.WaterObjectId" class="form-control" asp-items="ViewBag.WaterObjectId" onchange="ChangeWaterObject()"></select>
+                <span asp-validation-for="WaterSurfacePost.WaterObjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WaterSurfacePostId" class="control-label"></label>
+                <select id="WaterSurfacePostId" asp-for="WaterSurfacePostId" class="form-control" asp-items="ViewBag.WaterSurfacePostId"></select>
+                <span asp-validation-for="WaterSurfacePostId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WaterContaminantId" class="control-label"></label>
+                <select asp-for="WaterContaminantId" class="form-control" asp-items="ViewBag.WaterContaminantId"></select>
+                <span asp-validation-for="WaterContaminantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YearOfSampling" class="control-label"></label>
+                <input asp-for="YearOfSampling" class="form-control" />
+                <span asp-validation-for="YearOfSampling" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MonthOfSampling" class="control-label"></label>
+                <input asp-for="MonthOfSampling" class="form-control" />
+                <span asp-validation-for="MonthOfSampling" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DayOfSampling" class="control-label"></label>
+                <input asp-for="DayOfSampling" class="form-control" />
+                <span asp-validation-for="DayOfSampling" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YearOfAnalysis" class="control-label"></label>
+                <input asp-for="YearOfAnalysis" class="form-control" />
+                <span asp-validation-for="YearOfAnalysis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MonthOfAnalysis" class="control-label"></label>
+                <input asp-for="MonthOfAnalysis" class="form-control" />
+                <span asp-validation-for="MonthOfAnalysis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DayOfAnalysis" class="control-label"></label>
+                <input asp-for="DayOfAnalysis" class="form-control" />
+                <span asp-validation-for="DayOfAnalysis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value" class="control-label"></label>
+                <input asp-for="Value" class="form-control" />
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Save"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+
+<script>
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+
+    function ChangeWaterObject() {
+        $.ajax({
+            url: '@Url.Action("GetWaterSurfacePostsByWaterObjectId")',
+            data: { WaterObjectId: $('#WaterObjectId').val() },
+            type: 'POST',
+            success: function (data) {
+                var optionhtml = '';
+                $.each(data, function (i) {
+                    optionhtml += '<option value="' + data[i]['id'] + '"' +
+                        (data[i]['id'] == $('#WaterSurfacePostId').val() ? 'selected' : '') +
+                        '>' + data[i]['number'] +
+                        '</option>';
+                });
+                $("#WaterSurfacePostId").empty();
+                $('#WaterSurfacePostId').append(optionhtml);
+            },
+            error: function () {
+            }
+        });
+    };
+</script>

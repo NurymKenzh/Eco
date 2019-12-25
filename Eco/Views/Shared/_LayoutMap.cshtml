@@ -1,0 +1,325 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Builder;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Eco</title>
+    <environment include="Development">
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/style.css" />*@
+        <link href="~/css/edo.css" rel="stylesheet" />
+        <link href="~/css/edo2.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        @*<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />*@
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/style.css" />*@
+        <link href="~/css/edo.css" rel="stylesheet" />
+        <link href="~/css/edo2.css" rel="stylesheet" />
+    </environment>
+</head>
+<body>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        @*<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>*@
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">@SharedLocalizer["Home"]</a></li>
+                    @*<li><a asp-area="" asp-controller="Home" asp-action="About">@SharedLocalizer["About"]</a></li>*@
+                    <li><a asp-area="" asp-controller="Maps" asp-action="Index">@SharedLocalizer["Maps"]</a></li>
+                    @await Html.PartialAsync("_AdministratorPartial")
+                </ul>
+                @await Html.PartialAsync("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    @{
+        var controller = ViewContext.RouteData.Values["Controller"].ToString();
+        var action = ViewContext.RouteData.Values["Action"].ToString();
+        if ((controller == "Home") && (action == "Index"))
+        {
+            {
+                if (new RequestLocalizationOptions().DefaultRequestCulture.Culture.Name == "kk")
+                {
+                    <section id="banner">
+                        <div class="internal1">
+                            <img src="images/logo.png" alt="Акимат" class="rightpic">
+                            <h2>Алматы қаласының экологиялық мақсаттары</h2>
+                            <p>
+                                Географиялық ақпараттық жүйе (ГАЖ)
+                                <br />
+                                <br />
+                                <a href=""></a>
+                            </p>
+                            <ul class="conduct">
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li><a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" class="button big alt">@UserManager.GetUserName(User)</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Register" class="button big alt">@SharedLocalizer["Register"]</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Login" class="button big particular">@SharedLocalizer["LogIn"]</a></li>
+                                }
+                                <li><a asp-area="" asp-controller="Home" asp-action="About" class="button big alt">@SharedLocalizer["About"]</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                    <div id="body">
+                        <div class="width1">
+                            <header class="major">
+                                <h2>Алматы қаласы</h2>
+                                <p>Алматы қаласы бойынша қоршаған орта сапасының нысаналы көрсеткіштері 2018-2025 жж.</p>
+                            </header>
+                            <div class="container1">
+                                <div class="row">
+                                    <div class="partition">
+                                        <section class="specific box">
+                                            <i class="icon large"><img class="imgCenter" src="images/grap.png" width="40" height="auto" alt="" /></i>
+                                            <h3><a href="@Url.Action("Targets", "Administrator")">Мақсаттары</a></h3>
+                                            <p>Алматы қаласында 2018-2025 жылдарға арналған экологиялық сапа көрсеткіштерінің тізімі.</p>
+                                        </section>
+                                    </div>
+                                    <div class="partition">
+                                        <section class="specific box">
+                                            <i class="icon large"><a href="@Url.Action("Index", "Maps")"></a><img class="imgCenter" src="images/map.png" width="40" height="auto" alt="" /></i>
+                                            <h3><a href="@Url.Action("Index", "Maps")">@SharedLocalizer["Maps"]</a></h3>
+                                            <p>Далалық зерттеулер мен ресми ақпарат негізінде құрастырылған тақырыптық карталар</p>
+                                        </section>
+                                    </div>
+                                    <div class="partition">
+                                        <section class="specific box">
+                                            <i class="icon large"><img class="imgCenter" src="images/report.png" width="35" height="auto" alt="" /></i>
+                                            <h3><a href="@Url.Action("Index", "Reports")">@SharedLocalizer["Reports"]</a></h3>
+                                            <p>«Алматы үшін қоршаған орта сапасының нысаналы көрсеткіштерін белгілеу» жобасы бойынша зерттеулердің нәтижелері</p>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            <section id="content" class="two-column with-right-sidebar">
+                                <article>
+                                    <h3>Алматы қаласы бойынша қоршаған орта сапасының нысаналы көрсеткіштерін белгілеу</h3>
+                                    <a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+                                    <p>«Алматы үшін қоршаған орта сапасының нысаналы көрсеткіштерін белгілеу» жобасының мақсаты - оның дамуын есепке ала отырып, Алматы қаласында экологиялық құрамдас бөліктердің сапасының өзгеруін болжау және ағымдағы жағдайды талдау және осы негізде 2018-2025 жж. Аралығында қоршаған орта сапасының нысаналы көрсеткіштерін белгілеу Зерттеуді «Алматы үшін қоршаған орта сапасының нысаналы көрсеткіштерін белгілеу» КМУ тапсырды (2017-07-20 келісімшарт № 53 С / К).</p>
+                                    <p>Қоршаған орта сапасының нысаналы көрсеткіштері қоршаған орта сапасының біртіндеп жақсару қажеттілігін ескере отырып, белгілі бір уақыт кезеңінде қоршаған ортаның стандартталған параметрлерінің барынша жоғары деңгейін сипаттайтын көрсеткіштер болып табылады (ЕС 24-бабы).</p>
+                                    Нысаналы индикаторлар:
+                                    <p>1) Қазақстан Республикасының бүкіл аумағында қоршаған орта сапасының нормативтеріне кезең-кезеңмен жету;</p>
+                                    <p>2) экологиялық қауіпсіздік және халықтың денсаулығына қауіп-қатерді азайту (ЕК 24-бабы).</p>
+                                    <p>нысаналы көрсеткіштерін белгілеу жөніндегі жұмыс (26 ақпан, 2015 жылғы Қазақстан Республикасы Энергетика министрінің бұйрығы Қазақстан 29 сәуір, 2015 Қазақстан Республикасы Әділет министрлігінде тіркелген № 145-10869 №) қоршаған орта сапасының көрсеткіштерінің нысаналы анықтау ережелеріне сәйкес жүзеге асырылды. Мақсатталған (облыстардың жергiлiктi өкiлдi органдар ШҚ 19-бап құзыреті, астананың қоршаған ортаны қорғау саласындағы республикалық маңызы бар қалалардың) жергілікті өкілді органдары бекітеді Қазақстан мемлекеттік жоспарлау жүйесін (24-бап EC), Қазақстан Республикасының құжаттарда белгіленеді.</p>
+                                    <p>Жоба шеңберінде келесі жұмыс түрлері орындалды:</p>
+                                    <p>Алматы қаласының атмосфералық ауасының қазіргі жағдайын және сапасын бағалауға әсер ететін негізгі факторлар анықталды (атмосфералық ауаның ластануы, стационарлық және жылжымалы көздердің әсер етуі, ластаушы заттардың дисперсиясын есептеу кезінде тау аудының ауа айналымын ескере отырып).</p>
+                                    <p>Су ресурстарының қазіргі жағдайы мен сапасын, топырақ жамылғысын, өсімдікті бағалау.</p>
+                                    <p>Алматы қаласында қатты тұрмыстық қалдықтарды (ҚТҚ) жинау, пайдалану және сақтау жөніндегі қолданыстағы ережеге баға берілді.</p>
+                                    <p>Алматы қаласы мен оған іргелес аумақтарды экологиялық аймақтарға бөлу жүргізілді.</p>
+                                    <p>Қаланың ең өткір экологиялық проблемаларын (ауа, жер үсті сулары, аумақты көгалдандыру деңгейі, коммуналдық қалдықтарды өңдеудің қолданыстағы жүйесі) шешуге бағытталған Алматы қаласы үшін мақсатты экологиялық көрсеткіштер анықталды.</p>
+                                    <p>Экологиялық мақсаттарға қол жеткізуге ықпал ететін іс-шараларға арналған ұсыныстар әзірленді.</p>
+                                    <p>Атмосфералық ауаның, су объектілерінің және жер асты суларының, топырақ пен өсімдік жамылғысының экологиялық жағдайын жақсарту үшін әкімшілік, құқықтық және экономикалық әсер ету шаралары туралы ұсыныстар әзірленді.</p>
+                                    <p>«Алматы қаласының мақсатты экологиялық көрсеткіштері» географиялық ақпараттық жүйесі (ГАЖ) әзірленді.</p>
+                                    <a href="@Url.Action("About", "Home")" class="button">Өту</a>
+                                </article>
+                            </section>
+                            <aside class="sidebar big-sidebar right-sidebar">
+                                <ul>
+                                    <li>
+                                        <h3>ЕСЕП</h3>
+                                        <ul>
+                                            <li><a href="~/pdf/Volume 1_Installing the TV.pdf#page=14" target="_blank">1 Алдыңғы зерттеулерді талдау</a></li>
+                                            <li><a href="~/pdf/Volume 1_Installing the TV.pdf#page=24" target="_blank">2 Нормативтік құқықтық базаны зерделеу бойынша аналитикалық жұмыс</a></li>
+                                            <li><a href="~/pdf/Volume 1_Installing the TV.pdf#page=28" target="_blank">3 Табиғи және әлеуметтік-экономикалық жағдайларды кешенді сипаттау</a></li>
+                                            <li><a href="~/pdf/Volume 1_Installing the TV.pdf#page=35" target="_blank">Өндіруші күштердің, көлік инфрақұрылымының дамуын талдау</a></li>
+                                            <li><a href="~/pdf/Volume 1_Installing the TV.pdf#page=51" target="_blank">5 әсер етудің негізгі факторларын анықтау бойынша жұмысты жүргізу</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=5" target="_blank">6 Су ресурстарының ағымдағы жағдайы мен сапасын бағалау</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=89" target="_blank">7 Топырақ жамылғысының ағымдағы жай-күйін және ластануын бағалау</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=162" target="_blank">8 Өсімдік жамылғысының ағымдағы жай-күйін бағалау</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=202" target="_blank">9 Тұрмыстық қатты қалдықтарды жинау, орналастыру және сақтау жөніндегі қолданыстағы ережелерді талдау.</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=227" target="_blank">10 Алматының және іргелес аумақтардың экологиялық аймақтарын бөлу</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=238" target="_blank">11 Алматы қаласының экологиялық мақсаттарын анықтау</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=252" target="_blank">12 Қызмет бойынша ұсыныстар әзірлеу</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=256" target="_blank">13 Әкімшілік, құқықтық және экономикалық әсер ету шаралары бойынша ұсыныстар әзірлеу</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=263" target="_blank">14 Алматы қаласында 2018-2025 жылдарға арналған қоршаған ортаны қорғау саласындағы мақсаттарға қол жеткізу бойынша кешенді шаралар жоспары.</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=302" target="_blank">Алматы қаласында қоршаған орта сапасының нысаналы көрсеткіштеріне мониторинг жүргізу бойынша ұсыныстар</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=303" target="_blank">16 «Алматыдағы экологиялық мақсаттар» Геоақпараттық жүйесінің (ГАЖ)</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="color-bg">
+                                        <ul class="blocklist">
+                                            <li><a class="selected" href="index.html">Нұсқаулық</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </aside>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <section id="banner">
+                        <div class="internal1">
+                            <img src="images/logo.png" alt="Акимат" class="rightpic">
+                            <h2>Целевые показатели окружающей среды города Алматы</h2>
+                            <p>
+                                Географическая информационная система (ГИС) <br /> <br />
+                                <a href=""></a>
+                            </p>
+                            <ul class="conduct">
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li><a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" class="button big alt">@UserManager.GetUserName(User)</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Register" class="button big alt">@SharedLocalizer["Register"]</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Login" class="button big particular">@SharedLocalizer["LogIn"]</a></li>
+                                }
+                                <li><a asp-area="" asp-controller="Home" asp-action="About" class="button big alt">@SharedLocalizer["About"]</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                    <div id="body">
+                        <div class="width1">
+                            <header class="major">
+                                <h2>город Алматы</h2>
+                                <p>Целевые показатели качества окружающей среды города Алматы 2018-2025 гг.</p>
+                            </header>
+                            <div class="container1">
+                                <div class="row">
+                                    <div class="partition">
+                                        <section class="specific box">
+                                            <i class="icon large"><img class="imgCenter" src="images/grap.png" width="40" height="auto" alt="" /></i>
+                                            <h3><a href="@Url.Action("Targets", "Administrator")">Целевые показатели</a></h3>
+                                            <p>Перечень показателей качества окружающей среды г. Алматы на 2018-2025 г.г.</p>
+                                        </section>
+                                    </div>
+                                    <div class="partition">
+                                        <section class="specific box">
+                                            <i class="icon large"><a href="@Url.Action("Index", "Maps")"></a><img class="imgCenter" src="images/map.png" width="40" height="auto" alt="" /></i>
+                                            <h3><a href="@Url.Action("Index", "Maps")">@SharedLocalizer["Maps"]</a></h3>
+                                            <p>Представлены тематические карты, составленные на основе натурных исследований и официальной информации</p>
+                                        </section>
+                                    </div>
+                                    <div class="partition">
+                                        <section class="specific box">
+                                            <i class="icon large"><img class="imgCenter" src="images/report.png" width="35" height="auto" alt="" /></i>
+                                            <h3><a href="@Url.Action("Index", "Reports")">@SharedLocalizer["Reports"]</a></h3>
+                                            <p>Результаты исследований по проекту «Установление целевых показателей качества окружающей среды для г. Алматы»</p>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            <section id="content" class="two-column with-right-sidebar">
+                                <article>
+                                    <h3>Установление целевых показателей качества окружающей среды для г. Алматы</h3>
+                                    <a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+                                    <p>Целью проекта «Установление целевых показателей качества окружающей среды для г. Алматы" является анализ текущего состояния и прогнозная оценка изменения качества компонентов окружающей среды на территории города Алматы с учетом его развития и установление на этой основе целевых показателей качества окружающей среды на период 2018 - 2025 годы. Исследование выполнено по заказу КГУ «Установление целевых показателей качества окружающей среды для г. Алматы» (договор № 53 С/К от 2017-07-20).</p>
+                                    <p>Целевые показатели качества окружающей среды –это показатели, характеризующие предельный уровень нормируемых параметров окружающей среды на определенный период времени с учетом необходимости постепенного улучшения качества окружающей среды (ЭК Статья 24).</p>
+                                    Целевые показатели должны обеспечить:
+                                    <p>1) поэтапное достижение нормативов качества окружающей среды на всей территории Республики Казахстан;</p>
+                                    <p>2) экологическую безопасность и снижение рисков для здоровья населения (ЭК Статья 24).</p>
+                                    <p>Работы по установлению целевых показателей были проведены согласно Правилам определения целевых показателей качества окружающей среды (Приказ Министра энергетики Республики Казахстан от 26 февраля 2015 года № 145. Зарегистрирован в Министерстве юстиции Республики Казахстан 29 апреля 2015 года № 10869). Целевые показатели устанавливаются в документах Системы государственного планирования Республики Казахстан (ЭК Статья 24), утверждаются местными представительными органами (ЭК Статья 19. Компетенция местных представительных органов областей, городов республиканского значения, столицы в области охраны окружающей среды).</p>
+                                    <p>В рамках проекта были выполнены следующие виды работ: </p>
+                                    <p>Определены основные факторы воздействия и оценка современного состояния и качества атмосферного воздуха города Алматы (фоновое загрязнение атмосферного воздуха, влияние стационарных и передвижных источников, учет горно-долинной циркуляции воздуха при проведении расчетов рассеивания загрязняющих веществ).</p>
+                                    <p>Дана оценка современного состояния и качества водных ресурсов, почвенного покрова, растительности.</p>
+                                    <p>Дана оценка существующего положения по сбору, утилизации и хранению твердых бытовых отходов (ТБО) на территории города Алматы.</p>
+                                    <p>Проведено экологическое зонирование города Алматы и сопредельных территорий.</p>
+                                    <p>Определены целевые показатели окружающей среды для города Алматы, которые направлены на решение наиболее острых экологических проблем города (состояние атмосферного воздуха, поверхностных вод, уровень озеленения территории, существующая система обращения с коммунальными отходами).</p>
+                                    <p>Разработаны предложения по мероприятиям, выполнение которых будет способствовать достижению целевых показателей окружающей среды.</p>
+                                    <p>Разработаны предложения по мерам административного, правового и экономического воздействия для улучшения экологического состояния атмосферного воздуха, водных объектов и подземных вод, почвенного и растительного покрова.</p>
+                                    <p>Разработана географическая информационная система (ГИС) «Целевые показатели окружающей среды города Алматы».</p>
+                                    <a href="@Url.Action("About", "Home")" class="button">Перейти</a>
+                                </article>
+                            </section>
+                            <aside class="sidebar big-sidebar right-sidebar">
+                                <ul>
+                                    <li>
+                                        <h3>ОТЧЕТ</h3>
+                                        <ul>
+                                            <li><a href="~/pdf/Volume 1_Installing the TV.pdf#page=14" target="_blank">1 Анализ предшествующих тематических исследований</a></li>
+                                            <li><a href="~/pdf/Volume 1_Installing the TV.pdf#page=24" target="_blank">2 Аналитическая работа по исследованию нормативной правовой базы</a></li>
+                                            <li><a href="~/pdf/Volume 1_Installing the TV.pdf#page=28" target="_blank">3 Комплексная характеристика природных и социально-экономических условий</a></li>
+                                            <li><a href="~/pdf/Volume 1_Installing the TV.pdf#page=35" target="_blank">4 Анализ развития производительных сил, транспортной инфраструктуры</a></li>
+                                            <li><a href="~/pdf/Volume 1_Installing the TV.pdf#page=51" target="_blank">5 Проведение работ по выявлению основных факторов воздействия</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=5" target="_blank">6 Оценка современного состояния и качества водных ресурсов</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=89" target="_blank">7 Оценка современного состояния и загрязнения почвенного покрова</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=162" target="_blank">8 Оценка современного состояния растительного покрова</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=202" target="_blank">9 Анализ существующего положения по сбору, утилизации и хранению твердых бытовых отходов (ТБО)</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=227" target="_blank">10 Экологическое зонирование Алматы и сопредельных территорий</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=238" target="_blank">11 Определение целевых показателей окружающей среды для города Алматы</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=252" target="_blank">12 Разработка предложений по мероприятиям</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=256" target="_blank">13 Разработка предложений по мерам административного, правового и экономического воздействия</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=263" target="_blank">14 Комплексный план мероприятий по достижению целевых показателей качестива окружающей среды г. Алматы  на 2018-2025 г.г.</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=302" target="_blank">15 Предложения по проведению мониторинга целевых показателей качества окружающей среды города Алматы</a></li>
+                                            <li><a href="~/pdf/Volume 2_Installing the TV.pdf#page=303" target="_blank">16 Разработка географической информационной системы (ГИС) «Целевые показатели окружающей среды города Алматы»</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="color-bg">
+                                        <ul class="blocklist">
+                                            <li><a class="selected" href="index.html">Инструкция</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </aside>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    }
+    <div id="divbody" class="container body-content" style="width: 100%;">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="col-md-6">
+                <p>&copy; @System.DateTime.Now.Year - Eco</p>
+            </div>
+            <div class="col-md-6 text-right">
+                @await Html.PartialAsync("_SelectLanguagePartial")
+            </div>
+
+        </footer>
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

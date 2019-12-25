@@ -1,0 +1,127 @@
+﻿@model Eco.Models.GreenPlantationsAreaAndSpeciesDiversityIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["GreenPlantationsAreaAndSpeciesDiversities"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["GreenPlantationsAreaAndSpeciesDiversities"]</h2>
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a>
+</p>
+@using (Html.BeginForm("Index", "GreenPlantationsAreaAndSpeciesDiversities", new { SortOrder = ViewBag.SortOrdert, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                             new { SortOrder = ViewBag.SortOrdert, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                             new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                             new { Page = page, SortOrder = ViewBag.SortOrdert, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                             new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                             new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().CityDistrictId).ToString(), "Index",
+                      new { SortOrder = ViewBag.CityDistrictIdSort, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                    <br />
+                    @Html.DropDownList("CityDistrictId", (IEnumerable<SelectListItem>)ViewBag.TypeOfTargetId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().Year).ToString(), "Index",
+                      new { SortOrder = ViewBag.YearSort, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                    <br />
+                    @Html.DropDownList("Year", (IEnumerable<SelectListItem>)ViewBag.Year, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityDistrict.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                             new { SortOrder = ViewBag.SortOrdert, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                             new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                             new { Page = page, SortOrder = ViewBag.SortOrdert, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                             new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                             new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, CityDistrictId = ViewBag.CityDistrictIdFilter, Year = ViewBag.YearFilter })
+                </li>
+            }
+        </ul>
+    }
+}

@@ -1,0 +1,75 @@
+﻿@model Eco.Models.IndustrialSite
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Details"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Details"]</h2>
+
+<div>
+    <h4>@SharedLocalizer["IndustrialSite"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyOrSubsidiaryCompanyAbbreviatedName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyOrSubsidiaryCompanyAbbreviatedName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AbbreviatedName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AbbreviatedName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HazardClass)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HazardClass.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CityDistrict)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CityDistrict.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Street)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Street)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.House)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.House)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NorthLatitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NorthLatitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EastLongitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EastLongitude)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@SharedLocalizer["Edit"]</a> |
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>

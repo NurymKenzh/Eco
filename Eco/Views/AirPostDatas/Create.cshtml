@@ -1,0 +1,112 @@
+﻿@model Eco.Models.AirPostData
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Create"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Create"]</h2>
+
+<h4>@SharedLocalizer["AirPostData"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AirPostId" class="control-label"></label>
+                <select asp-for="AirPostId" class ="form-control" asp-items="ViewBag.AirPostId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirContaminantId" class="control-label"></label>
+                <select asp-for="AirContaminantId" class="form-control" asp-items="ViewBag.AirContaminantId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Month" class="control-label"></label>
+                <input asp-for="Month" class="form-control" />
+                <span asp-validation-for="Month" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Day" class="control-label"></label>
+                <input asp-for="Day" class="form-control" />
+                <span asp-validation-for="Day" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hour" class="control-label"></label>
+                <input asp-for="Hour" class="form-control" />
+                <span asp-validation-for="Hour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Minute" class="control-label"></label>
+                <input asp-for="Minute" class="form-control" />
+                <span asp-validation-for="Minute" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Second" class="control-label"></label>
+                <input asp-for="Second" class="form-control" />
+                <span asp-validation-for="Second" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TemperatureC" class="control-label"></label>
+                <input asp-for="TemperatureC" class="form-control" />
+                <span asp-validation-for="TemperatureC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AtmosphericPressurekPa" class="control-label"></label>
+                <input asp-for="AtmosphericPressurekPa" class="form-control" />
+                <span asp-validation-for="AtmosphericPressurekPa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Humidity" class="control-label"></label>
+                <input asp-for="Humidity" class="form-control" />
+                <span asp-validation-for="Humidity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WindSpeedms" class="control-label"></label>
+                <input asp-for="WindSpeedms" class="form-control" />
+                <span asp-validation-for="WindSpeedms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WindDirectionId" class="control-label"></label>
+                <select asp-for="WindDirectionId" class ="form-control" asp-items="ViewBag.WindDirectionId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="GeneralWeatherConditionId" class="control-label"></label>
+                <select asp-for="GeneralWeatherConditionId" class ="form-control" asp-items="ViewBag.GeneralWeatherConditionId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value" class="control-label"></label>
+                <input asp-for="Value" class="form-control" />
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Create"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+
+<script>
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>

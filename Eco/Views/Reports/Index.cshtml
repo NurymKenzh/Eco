@@ -1,0 +1,30 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Reports"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Reports"]</h2>
+
+@*<div>
+    @Html.ActionLink(SharedLocalizer["TargetsReport"], "TargetsReport", "Reports", null, new { @class = "button" })
+    @Html.ActionLink(SharedLocalizer["AirPostDatasReport"], "AirPostDatasReport", "Reports", null, new { @class = "button" })
+    @Html.ActionLink(SharedLocalizer["KazHydrometAirPostDatasReport"], "KazHydrometAirPostDatasReport", "Reports", null, new { @class = "button" })
+    @Html.ActionLink(SharedLocalizer["TransportPostDatasReport"], "TransportPostDatasReport", "Reports", null, new { @class = "button" })
+    @Html.ActionLink(SharedLocalizer["WaterSurfacePostDatasReport"], "WaterSurfacePostDatasReport", "Reports", null, new { @class = "button" })
+    @Html.ActionLink(SharedLocalizer["KazHydrometWaterPostDatasReport"], "KazHydrometWaterPostDatasReport", "Reports", null, new { @class = "button" })
+    @Html.ActionLink(SharedLocalizer["KazHydrometSoilPostDatasReport"], "KazHydrometSoilPostDatasReport", "Reports", null, new { @class = "button" })
+    @Html.ActionLink(SharedLocalizer["SoilPostDatasReport"], "SoilPostDatasReport", "Reports", null, new { @class = "button" })
+</div>*@
+<ol class="targetedlist">
+    <li><a href="@Url.Action("TargetsReport", "Reports")">@SharedLocalizer["TargetsReport"]</a></li>
+    <li><a href="@Url.Action("AirPostDatasReport", "Reports")">@SharedLocalizer["AirPostDatasReport"]</a></li>
+    <li><a href="@Url.Action("KazHydrometAirPostDatasReport", "Reports")">@SharedLocalizer["KazHydrometAirPostDatasReport"]</a></li>
+    <li><a href="@Url.Action("TransportPostDatasReport", "Reports")">@SharedLocalizer["TransportPostDatasReport"]</a></li>
+    <li><a href="@Url.Action("WaterSurfacePostDatasReport", "Reports")">@SharedLocalizer["WaterSurfacePostDatasReport"]</a></li>
+    <li><a href="@Url.Action("KazHydrometWaterPostDatasReport", "Reports")">@SharedLocalizer["KazHydrometWaterPostDatasReport"]</a></li>
+    <li><a href="@Url.Action("KazHydrometSoilPostDatasReport", "Reports")">@SharedLocalizer["KazHydrometSoilPostDatasReport"]</a></li>
+    <li><a href="@Url.Action("SoilPostDatasReport", "Reports")">@SharedLocalizer["SoilPostDatasReport"]</a></li>
+</ol>

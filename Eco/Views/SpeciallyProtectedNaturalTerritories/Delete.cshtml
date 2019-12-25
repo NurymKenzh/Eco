@@ -1,0 +1,46 @@
+﻿@model Eco.Models.SpeciallyProtectedNaturalTerritory
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Delete"]</h2>
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["SpeciallyProtectedNaturalTerritory"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameKK)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameKK)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameRU)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameRU)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorizedAuthority)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AuthorizedAuthority.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Areahectares)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Areahectares)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" /> |
+        <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

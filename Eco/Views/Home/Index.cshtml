@@ -1,0 +1,12 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Builder;
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = SharedLocalizer["Home"];
+}
+

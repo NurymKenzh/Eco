@@ -1,0 +1,166 @@
+﻿@model Eco.Models.AActivity
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Create"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Create"]</h2>
+
+<h4>@SharedLocalizer["AActivity"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Target.TypeOfTargetId" class="control-label"></label>
+                <select id="TypeOfTargetId" asp-for="Target.TypeOfTargetId" class="form-control" asp-items="ViewBag.TypeOfTargetId" onchange="ChangeTypeOfTarget()"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetId" class="control-label"></label>
+                <select id="TargetId" asp-for="TargetId" class="form-control" asp-items="ViewBag.TargetId" onchange="ChangeTarget()"></select>
+                <span asp-validation-for="TargetId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Target.MeasurementUnitId" class="control-label"></label>
+                <select id="MeasurementUnitId" asp-for="Target.MeasurementUnitId" class="form-control" asp-items="ViewBag.MeasurementUnitId" disabled="true"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetTerritory.TerritoryTypeId" class="control-label"></label>
+                <select id="TerritoryTypeId" asp-for="TargetTerritory.TerritoryTypeId" class="form-control" asp-items="ViewBag.TerritoryTypeId" onchange="ChangeTerritoryType()"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetTerritoryId" class="control-label"></label>
+                <select id="TargetTerritoryId" asp-for="TargetTerritoryId" class="form-control" asp-items="ViewBag.TargetTerritoryId"></select>
+                <span asp-validation-for="TargetTerritoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a href="@Url.Action("Index", "Events")">@SharedLocalizer["Event"]</a>
+                <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId"></select>
+                <span asp-validation-for="EventId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <select asp-for="Year" class="form-control" asp-items="ViewBag.Year"></select>
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActivityType" class="control-label"></label>
+                <div class="form-control" >
+                    @Html.RadioButtonFor(model => model.ActivityType, true, new { @name = "ActivityType", @onclick = "ChangeActivityType()" }) @SharedLocalizer["Actual"]
+                    @Html.RadioButtonFor(model => model.ActivityType, false, new { @name = "ActivityType", @onclick = "ChangeActivityType()" }) @SharedLocalizer["Planned"]
+                </div>
+                <span asp-validation-for="ActivityType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImplementationPercentage" class="control-label"></label>
+                <input id="ImplementationPercentage" asp-for="ImplementationPercentage" class="form-control" />
+                <span asp-validation-for="ImplementationPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalInformationKK" class="control-label"></label>
+                @Html.TextArea("AdditionalInformationKK", null, new { @class = "form-control", rows = 5 })
+                <span asp-validation-for="AdditionalInformationKK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalInformationRU" class="control-label"></label>
+                @Html.TextArea("AdditionalInformationRU", null, new { @class = "form-control", rows = 5 })
+                <span asp-validation-for="AdditionalInformationRU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Create"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+
+<script>
+    function ChangeTypeOfTarget() {
+        $.ajax({
+            url: '@Url.Action("GetTargetsByTypeOfTargetId")',
+            data: { TypeOfTargetId: $('#TypeOfTargetId').val() },
+            type: 'POST',
+            success: function (data) {
+                var optionhtml = '';
+                $.each(data, function (i) {
+                    optionhtml += '<option value="' + data[i]['id'] + '"' +
+                        (data[i]['id'] == $('#TargetId').val() ? 'selected' : '') +
+                        '>' + data[i]['name'] +
+                        '</option>';
+                });
+                $("#TargetId").empty();
+                $('#TargetId').append(optionhtml);
+                ChangeTarget();
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function ChangeTarget() {
+        $.ajax({
+            url: '@Url.Action("MeasurementUnitIdByTargetId")',
+            data: { TargetId: $('#TargetId').val() },
+            type: 'POST',
+            success: function (data) {
+                $("#MeasurementUnitId").val(data);
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function ChangeTerritoryType() {
+        $.ajax({
+            url: '@Url.Action("GetTargetTerritoriesByTerritoryTypeId")',
+            data: { TerritoryTypeId: $('#TerritoryTypeId').val() },
+            type: 'POST',
+            success: function (data) {
+                var optionhtml = '';
+                $.each(data, function (i) {
+                    optionhtml += '<option value="' + data[i]['id'] + '"' +
+                        (data[i]['id'] == $('#TargetTerritoryId').val() ? 'selected' : '') +
+                        '>' + data[i]['territoryName'] +
+                        '</option>';
+                });
+                $("#TargetTerritoryId").empty();
+                $('#TargetTerritoryId').append(optionhtml);
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function ChangeActivityType() {
+        if ($("input[name='ActivityType']:checked").val() == "True") {
+            $('#ImplementationPercentage').prop('disabled', false);
+        }
+        else {
+            $('#ImplementationPercentage').prop('disabled', true);
+            $('#ImplementationPercentage').val('');
+        }
+    };
+
+    $(document).ready(function () {
+        ChangeActivityType();
+    });
+
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>

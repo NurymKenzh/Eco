@@ -1,0 +1,171 @@
+﻿@model Eco.Models.AirContaminant
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Edit"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Edit"]</h2>
+
+<h4>@SharedLocalizer["AirContaminant"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="SubstanceHazardClassId" class="control-label"></label>
+                <select asp-for="SubstanceHazardClassId" class="form-control" asp-items="ViewBag.SubstanceHazardClassId"></select>
+                <span asp-validation-for="SubstanceHazardClassId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Number168" class="control-label"></label>
+                <input asp-for="Number168" class="form-control" />
+                <span asp-validation-for="Number168" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Number104" class="control-label"></label>
+                <input asp-for="Number104" class="form-control" />
+                <span asp-validation-for="Number104" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="ContaminantCodeERA" class="control-label"></label>
+            <input asp-for="ContaminantCodeERA" class="form-control" />
+            <span asp-validation-for="ContaminantCodeERA" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label asp-for="NumberCAS" class="control-label"></label>
+                <input asp-for="NumberCAS" class="form-control" />
+                <span asp-validation-for="NumberCAS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoefficientOfSettlement" class="control-label"></label>
+                <input asp-for="CoefficientOfSettlement" class="form-control" />
+                <span asp-validation-for="CoefficientOfSettlement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PresenceOfTheMaximumPermissibleConcentration" class="control-label"></label>
+                <input asp-for="PresenceOfTheMaximumPermissibleConcentration" id="PresenceOfTheMaximumPermissibleConcentration" onchange="ChangePresenceOfTheMaximumPermissibleConcentration()" />
+                <span asp-validation-for="PresenceOfTheMaximumPermissibleConcentration" class="text-danger"></span>
+            </div>
+            <div class="form-group ApproximateSafeExposureLevel">
+                <label asp-for="LimitingIndicatorId" class="control-label"></label>
+                <select asp-for="LimitingIndicatorId" class="form-control" asp-items="ViewBag.LimitingIndicatorId"></select>
+                <span asp-validation-for="LimitingIndicatorId" class="text-danger"></span>
+            </div>
+            <div class="form-group PresenceOfTheMaximumPermissibleConcentration">
+                <label asp-for="MaximumPermissibleConcentrationOneTimemaximum" class="control-label"></label>
+                <input asp-for="MaximumPermissibleConcentrationOneTimemaximum" class="form-control" type="text" />
+                <span asp-validation-for="MaximumPermissibleConcentrationOneTimemaximum" class="text-danger"></span>
+            </div>
+            <div class="form-group PresenceOfTheMaximumPermissibleConcentration">
+                <label asp-for="MaximumPermissibleConcentrationDailyAverage" class="control-label"></label>
+                <input asp-for="MaximumPermissibleConcentrationDailyAverage" class="form-control" type="text" />
+                <span asp-validation-for="MaximumPermissibleConcentrationDailyAverage" class="text-danger"></span>
+            </div>
+            <div class="form-group ApproximateSafeExposureLevel">
+                <label asp-for="ApproximateSafeExposureLevel" class="control-label"></label>
+                <input asp-for="ApproximateSafeExposureLevel" class="form-control" type="text" />
+                <span asp-validation-for="ApproximateSafeExposureLevel" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="Synonyms" class="control-label"></label>
+            <div class="col-md-10">
+                <table id="Synonyms" class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                            </th>
+                            <th>
+                                <input type="button" value="@SharedLocalizer["Add"]" class="btn btn-default" onclick="AddSynonym()" />
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Synonyms != null)
+                        {
+                            for (int i = 0; i < Model.Synonyms.Count(); i++)
+                            {
+                                string Synonym = "Synonym" + i.ToString(),
+                                    inputid = "SynonymInput" + i.ToString();
+                                <tr id="@Synonym">
+                                    <td>
+                                        <input id="@inputid" type="text" name="Synonyms[@i]" value="@Model.Synonyms[i]" class="form-control" />
+                                        <span class="field-validation-valid text-danger" data-valmsg-replace="true" data-valmsg-for="Synonyms[@i]"></span>
+                                    </td>
+                                    <td>
+                                        <input type="button" value="@SharedLocalizer["Remove"]" class="btn btn-default" onclick="RemoveSynonym(@i)" />
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>*@
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Save"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+<div hidden="hidden">
+    @*<div id="SynonymsCount">@Model.Synonyms.Count()</div>*@
+    <div id="Remove">@SharedLocalizer["Remove"]</div>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
+
+<script>
+    //var SynonymsCount = parseInt($('#SynonymsCount').html());
+    //function AddSynonym() {
+    //    var tr = '<tr id="Synonym' + SynonymsCount + '"><td><input id="SynonymInput' + SynonymsCount + '" type="text" name="Synonyms[' + SynonymsCount + ']" value="" class="form-control" />' +
+    //        '<span class="field-validation-valid text-danger" data-valmsg-replace="true" data-valmsg-for="Synonyms[' + SynonymsCount + ']"></span></td>' +
+    //        '<td><input type="button" value="' + $('#Remove').html() + '" class="btn btn-default" onclick="RemoveSynonym(' + SynonymsCount + ')" /></td></tr>'
+    //    $('#Synonyms > tbody:last-child').append(tr);
+    //    SynonymsCount++;
+    //};
+
+    //function RemoveSynonym(row) {
+    //    $('#SynonymInput' + row).val('');
+    //    $('#Synonym' + row).hide();
+    //};
+
+    function ChangePresenceOfTheMaximumPermissibleConcentration() {
+        if ($('#PresenceOfTheMaximumPermissibleConcentration').is(":checked") == false) {
+            $('.PresenceOfTheMaximumPermissibleConcentration').hide();
+            $('.ApproximateSafeExposureLevel').show();
+        }
+        if ($('#PresenceOfTheMaximumPermissibleConcentration').is(":checked") == true) {
+            $('.PresenceOfTheMaximumPermissibleConcentration').show();
+            $('.ApproximateSafeExposureLevel').hide();
+        }
+    };
+
+    $(document).ready(function (e) {
+        ChangePresenceOfTheMaximumPermissibleConcentration();
+    });
+
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>

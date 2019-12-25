@@ -1,0 +1,76 @@
+﻿@model Eco.Models.WaterSurfacePostData
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Delete"]</h2>
+
+<h3>@SharedLocalizer["Delete"]?</h3>
+
+<h4>@SharedLocalizer["WaterSurfacePostDatas"]</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("DeleteMany", "WaterSurfacePostDatas", FormMethod.Post))
+        {
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="WaterSurfacePost.WaterObjectId" class="control-label"></label>
+                <select id="WaterObjectId" asp-for="WaterSurfacePost.WaterObjectId" class="form-control" asp-items="ViewBag.WaterObjectId" onchange="ChangeWaterObject()"></select>
+                <span asp-validation-for="WaterSurfacePost.WaterObjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WaterSurfacePostId" class="control-label"></label>
+                <select id="WaterSurfacePostId" asp-for="WaterSurfacePostId" class="form-control" asp-items="ViewBag.WaterSurfacePostId"></select>
+                <span asp-validation-for="WaterSurfacePostId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WaterContaminantId" class="control-label"></label>
+                <select asp-for="WaterContaminantId" class="form-control" asp-items="ViewBag.WaterContaminantId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" />
+            </div>
+        }
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.Report))
+{
+    <div>
+        @Html.Raw(ViewBag.Report)
+    </div>
+}
+
+<br />
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+<script>
+    function ChangeWaterObject() {
+        $.ajax({
+            url: '@Url.Action("GetWaterSurfacePostsByWaterObjectId")',
+            data: { WaterObjectId: $('#WaterObjectId').val() },
+            type: 'POST',
+            success: function (data) {
+                var optionhtml = '';
+                $.each(data, function (i) {
+                    optionhtml += '<option value="' + data[i]['id'] + '"' +
+                        (data[i]['id'] == $('#WaterSurfacePostId').val() ? 'selected' : '') +
+                        '>' + data[i]['number'] +
+                        '</option>';
+                });
+                $("#WaterSurfacePostId").empty();
+                $('#WaterSurfacePostId').append(optionhtml);
+            },
+            error: function () {
+            }
+        });
+    };
+</script>

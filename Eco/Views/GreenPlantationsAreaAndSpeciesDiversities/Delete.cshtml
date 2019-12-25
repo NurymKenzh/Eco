@@ -1,0 +1,70 @@
+﻿@model Eco.Models.GreenPlantationsAreaAndSpeciesDiversity
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Delete"]</h2>
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["GreenPlantationsAreaAndSpeciesDiversity"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CityDistrict)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CityDistrict.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaOfGreenCommonAreas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaOfGreenCommonAreas)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaOfGreenPlantationsOfLimitedUse)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaOfGreenPlantationsOfLimitedUse)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaOfGreenPlantationsOfSpecialUse)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaOfGreenPlantationsOfSpecialUse)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfTreeSpecies)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfTreeSpecies)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalInformationKK)
+        </dt>
+        <dd>
+            <pre>@Model.AdditionalInformationKK</pre>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalInformationRU)
+        </dt>
+        <dd>
+            <pre>@Model.AdditionalInformationRU</pre>
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" /> |
+        <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

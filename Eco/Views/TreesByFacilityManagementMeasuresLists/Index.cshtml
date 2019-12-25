@@ -1,0 +1,135 @@
+﻿@model Eco.Models.TreesByFacilityManagementMeasuresListIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["TreesByFacilityManagementMeasuresLists"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["TreesByFacilityManagementMeasuresLists"]</h2>
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a>
+</p>
+@using (Html.BeginForm("Index", "TreesByFacilityManagementMeasuresLists", new { SortOrder = ViewBag.SortOrdert, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                                  new { SortOrder = ViewBag.SortOrdert, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                                  new { Page = page, SortOrder = ViewBag.SortOrdert, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                                  new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().GreemPlantsPassportId).ToString(), "Index",
+                           new { SortOrder = ViewBag.GreemPlantsPassportIdSort, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                    <br />
+                    @Html.DropDownList("GreemPlantsPassportId", (IEnumerable<SelectListItem>)ViewBag.GreemPlantsPassportId, "", htmlAttributes: new { @class = "form-control", @id = "TypeOfTargetId", @onchange = "ChangeTypeOfTarget()" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().PlantationsTypeId).ToString(), "Index",
+                           new { SortOrder = ViewBag.PlantationsTypeIdSort, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                    <br />
+                    @Html.DropDownList("PlantationsTypeId", (IEnumerable<SelectListItem>)ViewBag.PlantationsTypeId, "", htmlAttributes: new { @class = "form-control", @id = "TargetId" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().Quantity).ToString(), "Index",
+                           new { SortOrder = ViewBag.QuantitySort, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                    <br />
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GreemPlantsPassport.GreenObject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlantationsType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                                  new { SortOrder = ViewBag.SortOrdert, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                                  new { Page = page, SortOrder = ViewBag.SortOrdert, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                                  new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                                  new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, GreemPlantsPassportId = ViewBag.GreemPlantsPassportIdFilter, PlantationsTypeId = ViewBag.PlantationsTypeIdFilter })
+                </li>
+            }
+        </ul>
+    }
+}

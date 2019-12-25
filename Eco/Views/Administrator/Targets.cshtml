@@ -1,0 +1,79 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Targets"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="sectiontar">
+    <h2>@SharedLocalizer["TargetsAndIndicatorsOfEnvironmentalPollution"]</h2>
+</div>
+
+<h3>@SharedLocalizer["TargetsAndActivities"]</h3>
+
+<ol class="targetedlist">
+    <li><a href="@Url.Action("Index", "TargetValues")">@SharedLocalizer["TargetValues"]</a></li>
+    <li><a href="@Url.Action("Index", "AActivities")">@SharedLocalizer["AActivities"]</a></li>
+    <li><a href="@Url.Action("Index", "Charts")">@SharedLocalizer["Charts"]</a></li>
+</ol>
+
+<h3>@SharedLocalizer["PollutionOfAtmosphericAir"]</h3>
+
+<ol class="targetedlist">
+    <li><a href="@Url.Action("Index", "KazHydrometAirPostDatas")">@SharedLocalizer["KazHydrometAirPostDatas"]</a></li>
+    <li><a href="@Url.Action("Index", "AirPostDatas")">@SharedLocalizer["AirPostDatas"]</a></li>
+    <li><a href="@Url.Action("Index", "TransportPostDatas")">@SharedLocalizer["TransportPostDatas"]</a></li>
+</ol>
+
+<h3>@SharedLocalizer["EmissionSources"]</h3>
+
+<ol class="targetedlist">
+    <li><a href="@Url.Action("Index", "Companies")">@SharedLocalizer["Companies"]</a></li>
+    <li><a href="@Url.Action("Index", "AnnualMaximumPermissibleEmissionsVolumes")">@SharedLocalizer["AnnualMaximumPermissibleEmissionsVolumes"]</a></li>
+</ol>
+
+<h3>@SharedLocalizer["SurfaceWaterPollution"]</h3>
+
+<ol class="targetedlist">
+    <li><a href="@Url.Action("Index", "KazHydrometWaterPostDatas")">@SharedLocalizer["KazHydrometWaterPostDatas"]</a></li>
+    <li><a href="@Url.Action("Index", "WaterSurfacePostDatas")">@SharedLocalizer["WaterSurfacePostDatas"]</a></li>
+</ol>
+
+<h3>@SharedLocalizer["SoilContamination"]</h3>
+
+<ol class="targetedlist">
+    <li><a href="@Url.Action("Index", "KazHydrometSoilPostDatas")">@SharedLocalizer["KazHydrometSoilPostDatas"]</a></li>
+    <li><a href="@Url.Action("Index", "SoilPostDatas")">@SharedLocalizer["SoilPostDatas"]</a></li>
+</ol>
+
+<div class="sectiontar">
+    <h2>@SharedLocalizer["GreenSpaces"]</h2>
+</div>
+
+<ol class="targetedlist">
+    <li><a href="@Url.Action("Index", "SpeciallyProtectedNaturalTerritories")">@SharedLocalizer["SpeciallyProtectedNaturalTerritories"]</a></li>
+    <li><a href="@Url.Action("Index", "PlantationsStates")">@SharedLocalizer["PlantationsStates"]</a></li>
+    <li><a href="@Url.Action("Index", "SpeciesDiversities")">@SharedLocalizer["SpeciesDiversities"]</a></li>
+    <li><a href="@Url.Action("Index", "GreemPlantsPassports")">@SharedLocalizer["GreemPlantsPassports"]</a></li>
+    <li><a href="@Url.Action("Index", "TreesByObjectTableOfTheBreedStateLists")">@SharedLocalizer["TreesByObjectTableOfTheBreedStateLists"]</a></li>
+    <li><a href="@Url.Action("Index", "TreesByFacilityManagementMeasuresLists")">@SharedLocalizer["TreesByFacilityManagementMeasuresLists"]</a></li>
+</ol>
+
+<div class="sectiontar">
+    <h2>@SharedLocalizer["Waste"]</h2>
+</div>
+
+<ol class="targetedlist">
+    <li><a href="@Url.Action("Index", "RawMaterialsCompanies")">@SharedLocalizer["RawMaterialsCompanies"]</a></li>
+    <li><a href="@Url.Action("Index", "WasteRecyclingCompanies")">@SharedLocalizer["WasteRecyclingCompanies"]</a></li>
+</ol>
+
+<div class="sectiontar">
+    <h2>@SharedLocalizer["Reports"]</h2>
+</div>
+
+<ol class="targetedlist">
+    <li><a href="@Url.Action("Index", "Reports")">@SharedLocalizer["Reports"]</a></li>
+</ol>

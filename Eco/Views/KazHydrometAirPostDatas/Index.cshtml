@@ -1,0 +1,171 @@
+﻿@model Eco.Models.KazHydrometAirPostDataIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["KazHydrometAirPostDatas"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["KazHydrometAirPostDatas"]</h2>
+
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a>  | <a asp-action="KazHydrometAirPostDatasReport" asp-controller="Reports">@SharedLocalizer["Report"]</a>@*| <a asp-action="Upload">@SharedLocalizer["Upload"]</a> | <a asp-action="DeleteMany">@SharedLocalizer["Delete"]</a>*@
+</p>
+
+@using (Html.BeginForm("Index", "KazHydrometAirPostDatas", new { SortOrder = ViewBag.SortOrdert, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().KazHydrometAirPost.Number).ToString(), "Index",
+                        new { SortOrder = ViewBag.KazHydrometAirPostNumberSort, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                    <br />
+                    @*@Html.Editor("KazHydrometAirPostNumber", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })*@
+                    @Html.DropDownList("KazHydrometAirPostNumber", (IEnumerable<SelectListItem>)ViewBag.KazHydrometAirPostNumber, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().KazHydrometAirPost.Name).ToString(), "Index",
+                        new { SortOrder = ViewBag.KazHydrometAirPostNameSort, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                    <br />
+                    @*@Html.Editor("KazHydrometAirPostName", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })*@
+                    @Html.DropDownList("KazHydrometAirPostName", (IEnumerable<SelectListItem>)ViewBag.KazHydrometAirPostName, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().AirContaminant).ToString(), "Index",
+                        new { SortOrder = ViewBag.AirContaminantNameSort, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                    <br />
+                    @Html.DropDownList("AirContaminantId", (IEnumerable<SelectListItem>)ViewBag.AirContaminantId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().Year).ToString(), "Index",
+                        new { SortOrder = ViewBag.YearSort, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                    <br />
+                    @Html.DropDownList("Year", (IEnumerable<SelectListItem>)ViewBag.Year, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().Month).ToString(), "Index",
+                        new { SortOrder = ViewBag.MonthSort, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                    <br />
+                    @Html.DropDownList("Month", (IEnumerable<SelectListItem>)ViewBag.Month, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().PollutantConcentrationMonthlyAverage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().PollutantConcentrationMaximumOneTimePerMonth)
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KazHydrometAirPost.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KazHydrometAirPost.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirContaminant.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PollutantConcentrationMonthlyAverage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PollutantConcentrationMaximumOneTimePerMonth)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, AirContaminantId = ViewBag.AirContaminantIdFilter, KazHydrometAirPostNumber = ViewBag.KazHydrometAirPostNumberFilter, KazHydrometAirPostName = ViewBag.KazHydrometAirPostNameFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter })
+                </li>
+            }
+        </ul>
+    }
+}

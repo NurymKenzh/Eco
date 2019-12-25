@@ -1,0 +1,27 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+
+@{ 
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["ManageYourAccount"]</h2>
+
+<div>
+    <h4>@SharedLocalizer["ChangeYourAccountSettings"]</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            @await Html.PartialAsync("_ManageNav")
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
+        

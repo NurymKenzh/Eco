@@ -1,0 +1,236 @@
+﻿@model Eco.Models.AActivityIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["AActivities"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["AActivities"]</h2>
+
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a>
+</p>
+
+@using (Html.BeginForm("Index", "AActivities", new { SortOrder = ViewBag.SortOrdert, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().Target.TypeOfTargetId).ToString(), "Index",
+                 new { SortOrder = ViewBag.TypeOfTargetIdSort, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                    <br />
+                    @Html.DropDownList("TypeOfTargetId", (IEnumerable<SelectListItem>)ViewBag.TypeOfTargetId, "", htmlAttributes: new { @class = "form-control", @id = "TypeOfTargetId", @onchange = "ChangeTypeOfTarget()" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().TargetId).ToString(), "Index",
+                 new { SortOrder = ViewBag.TargetIdSort, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                    <br />
+                    @Html.DropDownList("TargetId", (IEnumerable<SelectListItem>)ViewBag.TargetId, "", htmlAttributes: new { @class = "form-control", @id = "TargetId" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().Target.MeasurementUnitId).ToString(), "Index",
+                 new { SortOrder = ViewBag.MeasurementUnitIdSort, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                    <br />
+                    @Html.DropDownList("MeasurementUnitId", (IEnumerable<SelectListItem>)ViewBag.MeasurementUnitId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().TargetTerritory.TerritoryTypeId).ToString(), "Index",
+                 new { SortOrder = ViewBag.TerritoryTypeIdSort, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                    <br />
+                    @Html.DropDownList("TerritoryTypeId", (IEnumerable<SelectListItem>)ViewBag.TerritoryTypeId, "", htmlAttributes: new { @class = "form-control", @id = "TerritoryTypeId", @onchange = "ChangeTerritoryType()" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().TargetTerritoryId).ToString(), "Index",
+                 new { SortOrder = ViewBag.TargetTerritoryIdSort, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                    <br />
+                    @Html.DropDownList("TargetTerritoryId", (IEnumerable<SelectListItem>)ViewBag.TargetTerritoryId, "", htmlAttributes: new { @class = "form-control", @id = "TargetTerritoryId" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().EventId).ToString(), "Index",
+                 new { SortOrder = ViewBag.EventIdSort, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                    <br />
+                    @Html.DropDownList("EventId", (IEnumerable<SelectListItem>)ViewBag.EventId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().Year).ToString(), "Index",
+                 new { SortOrder = ViewBag.YearSort, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                    <br />
+                    @Html.DropDownList("Year", (IEnumerable<SelectListItem>)ViewBag.Year, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().ActivityType).ToString(), "Index",
+                 new { SortOrder = ViewBag.ActivityTypeSort, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                    <br />
+                    @Html.DropDownList("ActivityType", (IEnumerable<SelectListItem>)ViewBag.ActivityType, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().ImplementationPercentage)
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                    @*@Html.ActionLink(SharedLocalizer["Reset"], "Index", "AActivities", null, new { @class = "btn btn-default" })*@
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Target.TypeOfTarget.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Target.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Target.MeasurementUnit.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TargetTerritory.TerritoryType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TargetTerritory.TerritoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Event.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImplementationPercentage)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, TypeOfTargetId = ViewBag.TypeOfTargetIdFilter, TargetId = ViewBag.TargetIdFilter, MeasurementUnitId = ViewBag.MeasurementUnitIdFilter, TerritoryTypeId = ViewBag.TerritoryTypeIdFilter, TargetTerritoryId = ViewBag.TargetTerritoryIdFilter, EventId = ViewBag.EventIdFilter, Year = ViewBag.YearFilter, ActivityType = ViewBag.ActivityTypeFilter })
+                </li>
+            }
+        </ul>
+    }
+}
+
+<script>
+    function ChangeTypeOfTarget() {
+        $.ajax({
+            url: '@Url.Action("GetTargetsByTypeOfTargetId")',
+            data: { TypeOfTargetId: $('#TypeOfTargetId').val() },
+            type: 'POST',
+            success: function (data) {
+                var optionhtml = '<option value=""></option>';
+                $.each(data, function (i) {
+                    optionhtml += '<option value="' + data[i]['id'] + '"' +
+                        (data[i]['id'] == $('#TargetId').val() ? 'selected' : '') +
+                        '>' + data[i]['name'] +
+                        '</option>';
+                });
+                $("#TargetId").empty();
+                $('#TargetId').append(optionhtml);
+                ChangeTarget();
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function ChangeTerritoryType() {
+        $.ajax({
+            url: '@Url.Action("GetTargetTerritoriesByTerritoryTypeId")',
+            data: { TerritoryTypeId: $('#TerritoryTypeId').val() },
+            type: 'POST',
+            success: function (data) {
+                var optionhtml = '<option value=""></option>';
+                $.each(data, function (i) {
+                    optionhtml += '<option value="' + data[i]['id'] + '"' +
+                        (data[i]['id'] == $('#TargetTerritoryId').val() ? 'selected' : '') +
+                        '>' + data[i]['territoryName'] +
+                        '</option>';
+                });
+                $("#TargetTerritoryId").empty();
+                $('#TargetTerritoryId').append(optionhtml);
+            },
+            error: function () {
+            }
+        });
+    };
+</script>

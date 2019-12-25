@@ -1,0 +1,377 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+<div id="tabInfo" style="overflow:auto;">
+    <table id="info_Ecomons" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["EcomonPoints"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+            <th>
+                @SharedLocalizer["Data"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_KazHydrometAirPosts" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps1_1"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+            <th>
+                @SharedLocalizer["Data"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_AirPosts" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps1_2"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+            <th>
+                @SharedLocalizer["Data"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_Companies" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps1_3_1"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Search"]
+            </th>
+            <th>
+
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DropDownList("AbbreviatedName", (IEnumerable<SelectListItem>)ViewBag.AbbreviatedName, htmlAttributes: new { @class = "form-control", @id = "SearchCompany" })
+            </td>
+            <td>
+                <input type="button" value="@SharedLocalizer["Find"]" onclick="SearchCompany()" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @SharedLocalizer["AbbreviatedName"]
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </table>
+    <table id="info_EmissionSources" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps1_3_2"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Company"]
+            </th>
+            <th>
+                @SharedLocalizer["EmissionSourceName"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_TotalRWinter7_po0301" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_1_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRWinter7_po0330" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_1_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRWinter7_po0337" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_1_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRWinter7_po1071" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_1_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRWinter7_po1325" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_1_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRWinter7_po2902" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_1_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRWinter7_po__02" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_1_7"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRWinter7_po__PL" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_1_8"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummer7_po0301" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_2_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummer7_po0330" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_2_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummer7_po0337" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_2_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummer7_po1071" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_2_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummer7_po1325" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_2_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummer7_po2902" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_2_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummer7_po__02" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_2_7"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummer7_po__PL" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_3_2_8"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017022600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_1"] @SharedLocalizer["Maps1_3_4_1_1_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017022609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_1"] @SharedLocalizer["Maps1_3_4_1_1_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017022612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_1"] @SharedLocalizer["Maps1_3_4_1_1_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017022615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_1"] @SharedLocalizer["Maps1_3_4_1_1_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017022618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_1"] @SharedLocalizer["Maps1_3_4_1_1_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017022621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_1"] @SharedLocalizer["Maps1_3_4_1_1_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017022600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_2"] @SharedLocalizer["Maps1_3_4_1_2_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017022609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_2"] @SharedLocalizer["Maps1_3_4_1_2_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017022612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_2"] @SharedLocalizer["Maps1_3_4_1_2_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017022615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_2"] @SharedLocalizer["Maps1_3_4_1_2_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017022618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_2"] @SharedLocalizer["Maps1_3_4_1_2_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017022621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_2"] @SharedLocalizer["Maps1_3_4_1_2_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017022600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_3"] @SharedLocalizer["Maps1_3_4_1_3_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017022609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_3"] @SharedLocalizer["Maps1_3_4_1_3_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017022612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_3"] @SharedLocalizer["Maps1_3_4_1_3_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017022615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_3"] @SharedLocalizer["Maps1_3_4_1_3_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017022618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_3"] @SharedLocalizer["Maps1_3_4_1_3_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017022621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_3"] @SharedLocalizer["Maps1_3_4_1_3_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017022600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_4"] @SharedLocalizer["Maps1_3_4_1_4_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017022609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_4"] @SharedLocalizer["Maps1_3_4_1_4_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017022612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_4"] @SharedLocalizer["Maps1_3_4_1_4_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017022615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_4"] @SharedLocalizer["Maps1_3_4_1_4_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017022618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_4"] @SharedLocalizer["Maps1_3_4_1_4_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017022621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_4"] @SharedLocalizer["Maps1_3_4_1_4_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017022600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_5"] @SharedLocalizer["Maps1_3_4_1_5_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017022609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_5"] @SharedLocalizer["Maps1_3_4_1_5_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017022612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_5"] @SharedLocalizer["Maps1_3_4_1_5_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017022615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_5"] @SharedLocalizer["Maps1_3_4_1_5_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017022618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_5"] @SharedLocalizer["Maps1_3_4_1_5_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017022621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_1_5"] @SharedLocalizer["Maps1_3_4_1_5_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017072600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_1"] @SharedLocalizer["Maps1_3_4_2_1_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017072609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_1"] @SharedLocalizer["Maps1_3_4_2_1_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017072612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_1"] @SharedLocalizer["Maps1_3_4_2_1_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017072615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_1"] @SharedLocalizer["Maps1_3_4_2_1_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017072618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_1"] @SharedLocalizer["Maps1_3_4_2_1_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promso2_10_2017072621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_1"] @SharedLocalizer["Maps1_3_4_2_1_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017072600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_2"] @SharedLocalizer["Maps1_3_4_2_2_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017072609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_2"] @SharedLocalizer["Maps1_3_4_2_2_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017072612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_2"] @SharedLocalizer["Maps1_3_4_2_2_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017072615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_2"] @SharedLocalizer["Maps1_3_4_2_2_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017072618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_2"] @SharedLocalizer["Maps1_3_4_2_2_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno2_10_2017072621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_2"] @SharedLocalizer["Maps1_3_4_2_2_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017072600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_3"] @SharedLocalizer["Maps1_3_4_2_3_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017072609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_3"] @SharedLocalizer["Maps1_3_4_2_3_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017072612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_3"] @SharedLocalizer["Maps1_3_4_2_3_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017072615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_3"] @SharedLocalizer["Maps1_3_4_2_3_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017072618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_3"] @SharedLocalizer["Maps1_3_4_2_3_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promno_10_2017072621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_3"] @SharedLocalizer["Maps1_3_4_2_3_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017072600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_4"] @SharedLocalizer["Maps1_3_4_2_4_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017072609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_4"] @SharedLocalizer["Maps1_3_4_2_4_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017072612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_4"] @SharedLocalizer["Maps1_3_4_2_4_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017072615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_4"] @SharedLocalizer["Maps1_3_4_2_4_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017072618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_4"] @SharedLocalizer["Maps1_3_4_2_4_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_prompm70_10_2017072621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_4"] @SharedLocalizer["Maps1_3_4_2_4_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017072600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_5"] @SharedLocalizer["Maps1_3_4_2_5_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017072609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_5"] @SharedLocalizer["Maps1_3_4_2_5_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017072612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_5"] @SharedLocalizer["Maps1_3_4_2_5_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017072615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_5"] @SharedLocalizer["Maps1_3_4_2_5_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017072618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_5"] @SharedLocalizer["Maps1_3_4_2_5_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_promsum2017072621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_3_4_2_5"] @SharedLocalizer["Maps1_3_4_2_5_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TransportPosts" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps1_4_1"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+            <th>
+                @SharedLocalizer["Data"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_TotalRTransport7_po0301" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_2_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRTransport7_po0330" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_2_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRTransport7_po0337" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_2_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRTransport7_po1325" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_2_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRTransport7_po__31" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_2_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017022600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_1"] @SharedLocalizer["Maps1_4_3_1_1_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017022609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_1"] @SharedLocalizer["Maps1_4_3_1_1_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017022612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_1"] @SharedLocalizer["Maps1_4_3_1_1_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017022615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_1"] @SharedLocalizer["Maps1_4_3_1_1_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017022618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_1"] @SharedLocalizer["Maps1_4_3_1_1_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017022621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_1"] @SharedLocalizer["Maps1_4_3_1_1_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017022600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_2"] @SharedLocalizer["Maps1_4_3_1_2_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017022609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_2"] @SharedLocalizer["Maps1_4_3_1_2_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017022612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_2"] @SharedLocalizer["Maps1_4_3_1_2_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017022615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_2"] @SharedLocalizer["Maps1_4_3_1_2_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017022618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_2"] @SharedLocalizer["Maps1_4_3_1_2_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017022621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_1_2"] @SharedLocalizer["Maps1_4_3_1_2_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017072600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_1"] @SharedLocalizer["Maps1_4_3_2_1_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017072609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_1"] @SharedLocalizer["Maps1_4_3_2_1_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017072612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_1"] @SharedLocalizer["Maps1_4_3_2_1_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017072615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_1"] @SharedLocalizer["Maps1_4_3_2_1_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017072618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_1"] @SharedLocalizer["Maps1_4_3_2_1_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtono2_80_2017072621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_1"] @SharedLocalizer["Maps1_4_3_2_1_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017072600" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_2"] @SharedLocalizer["Maps1_4_3_2_2_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017072609" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_2"] @SharedLocalizer["Maps1_4_3_2_2_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017072612" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_2"] @SharedLocalizer["Maps1_4_3_2_2_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017072615" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_2"] @SharedLocalizer["Maps1_4_3_2_2_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017072618" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_2"] @SharedLocalizer["Maps1_4_3_2_2_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_avtoco_80_2017072621" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_4_3_2_2"] @SharedLocalizer["Maps1_4_3_2_2_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummary7_po0184" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_1_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummary7_po0301" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_1_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummary7_po0304" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_1_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummary7_po0328" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_1_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummary7_po0330" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_1_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummary7_po0337" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_1_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummary7_po0703" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_1_7"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummary7_po1325" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_1_8"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummary7_po2754" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_1_9"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummary7_po__02" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_1_10"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_TotalRSummary7_po__31" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_1_11"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_allsum201702_avg" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_2"] @SharedLocalizer["Maps1_5_2_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_allsum201707_avg" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps1_5_2"] @SharedLocalizer["Maps1_5_2_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_WaterSurfacePosts" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps2_1"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["WaterObject"]
+            </th>
+            <th>
+                @SharedLocalizer["Data"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_KazHydrometWaterPosts" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps2_2"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+            <th>
+                @SharedLocalizer["Data"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_vodoohr_polosa" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps2_3"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_vodoohr_zona" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps2_4"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_vegpol" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps3_1"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+            <th>
+                @SharedLocalizer["Areahectares"]
+            </th>
+            <th>
+                @SharedLocalizer["Details"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_GreemPlantsPassports" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["GreemPlantsPassports"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["GreenObject"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_planvegpol" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps3_2"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Type"]
+            </th>
+            <th>
+                @SharedLocalizer["Year"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_SoilPosts" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps4_1"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+            <th>
+                @SharedLocalizer["Data"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_KazHydrometSoilPosts" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps4_2"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+            <th>
+                @SharedLocalizer["Data"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_soil_consSc3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consP3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_2"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consMn3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_3"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consPb3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_4"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consTi3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_5"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consZr3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_6"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consCr3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_7"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consNi3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_8"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consBa3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_9"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consBe3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_10"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consMo3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_11"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consSn3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_12"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consV3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_13"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consLi3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_14"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consCu3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_15"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consZn3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_16"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consAg3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_17"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consCo3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_18"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consGa3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_19"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consGe3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_20"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consNb3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_21"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consSr3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_22"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consYb3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_23"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consYt3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_24"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consZc3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_25"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_Gamma3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_26"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+    <table id="info_soil_consNeft3857" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps4_3_27"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+
+    <table id="info_RawMaterialsCompanies" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps5_1"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_WasteRecyclingCompanies" class="table" hidden="hidden">
+        <caption>
+            @SharedLocalizer["Maps5_2"]
+        </caption>
+        <tr>
+            <th>
+                @SharedLocalizer["Name"]
+            </th>
+        </tr>
+    </table>
+    <table id="info_eco_zoning" class="table" hidden="hidden"><caption>@SharedLocalizer["Maps6_1"]</caption><tr><th>@SharedLocalizer["Value"]</th></tr></table>
+</div>

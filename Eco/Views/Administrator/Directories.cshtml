@@ -1,0 +1,85 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Directories"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sectiontar">
+    <h2>@SharedLocalizer["Directories"]</h2>
+</div>
+
+<h3>@SharedLocalizer["DirectoriesOnTargets"]</h3>
+<table>
+    <tr><td>1</td><td>@SharedLocalizer["TerritoryTypes"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "TerritoryTypes", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>2</td><td>@SharedLocalizer["CityDistricts"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "CityDistricts", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>3</td><td>@SharedLocalizer["TargetTerritories"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "TargetTerritories", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>4</td><td>@SharedLocalizer["TypesOfTargets"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "TypeOfTargets", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>5</td><td>@SharedLocalizer["Targets"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "Targets", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>6</td><td>@SharedLocalizer["MeasurementUnits"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "MeasurementUnits", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>7</td><td>@SharedLocalizer["Events"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "Events", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>8</td><td>@SharedLocalizer["CompanyEmissionsValues"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "CompanyEmissionsValues", null, new { @class = "btn btn-default" })</td></tr>
+</table>
+
+<h3>@SharedLocalizer["BusinessDirectories"]</h3>
+<table>
+    <tr><td>1</td><td>@SharedLocalizer["EmissionSources"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "EmissionSources", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>2</td><td>@SharedLocalizer["SubsidiaryCompanies"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "SubsidiaryCompanies", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>3</td><td>@SharedLocalizer["IndustrialSites"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "IndustrialSites", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>4</td><td>@SharedLocalizer["HazardClasses"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "HazardClasses", null, new { @class = "btn btn-default" })</td></tr>
+</table>
+
+<h3>@SharedLocalizer["DirectoriesOnPollutants"]</h3>
+<table>
+    <tr><td>1</td><td>@SharedLocalizer["AirContaminants"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "AirContaminants", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>2</td><td>@SharedLocalizer["SummationAirContaminantsGroups"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "SummationAirContaminantsGroups", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>3</td><td>@SharedLocalizer["AirPollutionIndicators"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "AirPollutionIndicators", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>4</td><td>@SharedLocalizer["TypesOfAirPollutionIndicators"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "TypeOfAirPollutionIndicators", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>5</td><td>@SharedLocalizer["WaterContaminants"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "WaterContaminants", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>6</td><td>@SharedLocalizer["NormativeSoilTypes"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "NormativeSoilTypes", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>7</td><td>@SharedLocalizer["SoilContaminants"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "SoilContaminants", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>8</td><td>@SharedLocalizer["SubstanceHazardClasses"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "SubstanceHazardClasses", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>9</td><td>@SharedLocalizer["LimitingIndicators"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "LimitingIndicators", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>10</td><td>@SharedLocalizer["LimitingSoilIndicators"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "LimitingSoilIndicators", null, new { @class = "btn btn-default" })</td></tr>
+</table>
+
+<h3>@SharedLocalizer["PointsOfPollutionMonitoring"]</h3>
+<table>
+    <tr><td>1</td><td>@SharedLocalizer["MovementDirections"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "MovementDirections", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>2</td><td>@SharedLocalizer["SamplingTerms"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "SamplingTerms", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>3</td><td>@SharedLocalizer["WaterObjects"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "WaterObjects", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>4</td><td>@SharedLocalizer["KazHydrometAirPosts"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "KazHydrometAirPosts", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>5</td><td>@SharedLocalizer["AirPosts"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "AirPosts", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>6</td><td>@SharedLocalizer["SoilPosts"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "SoilPosts", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>7</td><td>@SharedLocalizer["TransportPosts"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "TransportPosts", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>8</td><td>@SharedLocalizer["KazHydrometWaterPosts"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "KazHydrometWaterPosts", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>9</td><td>@SharedLocalizer["WaterSurfacePosts"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "WaterSurfacePosts", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>10</td><td>@SharedLocalizer["KazHydrometSoilPosts"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "KazHydrometSoilPosts", null, new { @class = "btn btn-default" })</td></tr>
+</table>
+
+<h3>@SharedLocalizer["PollutionOfAtmosphericAir"]</h3>
+<table>
+    <tr><td>1</td><td>@SharedLocalizer["WindDirections"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "WindDirections", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>2</td><td>@SharedLocalizer["GeneralWeatherConditions"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "GeneralWeatherConditions", null, new { @class = "btn btn-default" })</td></tr>
+</table>
+
+<h3>@SharedLocalizer["EmissionSources"]</h3>
+<table>
+    <tr><td>1</td><td>@SharedLocalizer["IssuingPermitsStateAuthorities"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "IssuingPermitsStateAuthorities", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>2</td><td>@SharedLocalizer["EmissionSourceTypes"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "EmissionSourceTypes", null, new { @class = "btn btn-default" })</td></tr>
+</table>
+
+<h3>@SharedLocalizer["GreenSpaces"]</h3>
+<table>
+    <tr><td>1</td><td>@SharedLocalizer["AuthorizedAuthorities"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "AuthorizedAuthorities", null, new { @class = "btn btn-default" })</td></tr>
+    @*<tr><td>2</td><td>@SharedLocalizer["GreenPlantationsTypes"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "GreenPlantationsTypes", null, new { @class = "btn btn-default" })</td></tr>*@
+    <tr><td>2</td><td>@SharedLocalizer["PlantationsTypes"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "PlantationsTypes", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>3</td><td>@SharedLocalizer["PlantationsStateTypes"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "PlantationsStateTypes", null, new { @class = "btn btn-default" })</td></tr>
+</table>
+
+<h3>@SharedLocalizer["Waste"]</h3>
+<table>
+    <tr><td>1</td><td>@SharedLocalizer["WasteTypes"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "WasteTypes", null, new { @class = "btn btn-default" })</td></tr>
+    <tr><td>2</td><td>@SharedLocalizer["RecyclableWasteTypes"]@Html.ActionLink(SharedLocalizer["GoTo"], "Index", "RecyclableWasteTypes", null, new { @class = "btn btn-default" })</td></tr>
+</table>

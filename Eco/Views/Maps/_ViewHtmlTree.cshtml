@@ -1,0 +1,396 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+
+<style>
+    .no-checkbox i.jstree-checkbox {
+        display: none;
+    }
+
+    .is-checkbox i.jstree-checkbox {
+        display: inline-block;
+    }
+</style>
+
+
+<div id="tabLayers" style="overflow-y: auto;">
+    <div>
+        <input id="opacity" type="range" min="0" max="100" value="50" style="width: 100%;" />
+    </div>
+    <div id="tree">
+        <ul>
+            <li class="no-checkbox">@SharedLocalizer["Maps1"]
+                <ul>
+                    <li class="is-checkbox" id="Ecomons">@SharedLocalizer["EcomonPoints"]</li>
+                    <li class="is-checkbox" id="KazHydrometAirPosts">@SharedLocalizer["Maps1_1"]</li>
+                    <li class="is-checkbox" id="AirPosts">@SharedLocalizer["Maps1_2"]</li>
+                    <li class="no-checkbox">
+                        @SharedLocalizer["Maps1_3"]
+                    <ul>
+                        <li class="is-checkbox" id="Companies">@SharedLocalizer["Maps1_3_1"]</li>
+                        <li class="is-checkbox" id="EmissionSources">@SharedLocalizer["Maps1_3_2"]</li>
+                        <li>
+                            @SharedLocalizer["Maps1_3_3"]
+                        <ul>
+                            <li>
+                                @SharedLocalizer["Maps1_3_3_1"]
+                            <ul>
+                                <li class="is-checkbox" id="TotalRWinter7_po0301">@SharedLocalizer["Maps1_3_3_1_1"]</li>
+                                <li class="is-checkbox" id="TotalRWinter7_po0330">@SharedLocalizer["Maps1_3_3_1_2"]</li>
+                                <li class="is-checkbox" id="TotalRWinter7_po0337">@SharedLocalizer["Maps1_3_3_1_3"]</li>
+                                <li class="is-checkbox" id="TotalRWinter7_po1071">@SharedLocalizer["Maps1_3_3_1_4"]</li>
+                                <li class="is-checkbox" id="TotalRWinter7_po1325">@SharedLocalizer["Maps1_3_3_1_5"]</li>
+                                <li class="is-checkbox" id="TotalRWinter7_po2902">@SharedLocalizer["Maps1_3_3_1_6"]</li>
+                                <li class="is-checkbox" id="TotalRWinter7_po__02">@SharedLocalizer["Maps1_3_3_1_7"]</li>
+                                <li class="is-checkbox" id="TotalRWinter7_po__PL">@SharedLocalizer["Maps1_3_3_1_8"]</li>
+                            </ul>
+                        </li>
+                        <li>
+                            @SharedLocalizer["Maps1_3_3_2"]
+                        <ul>
+                            <li class="is-checkbox" id="TotalRSummer7_po0301">@SharedLocalizer["Maps1_3_3_2_1"]</li>
+                            <li class="is-checkbox" id="TotalRSummer7_po0330">@SharedLocalizer["Maps1_3_3_2_2"]</li>
+                            <li class="is-checkbox" id="TotalRSummer7_po0337">@SharedLocalizer["Maps1_3_3_2_3"]</li>
+                            <li class="is-checkbox" id="TotalRSummer7_po1071">@SharedLocalizer["Maps1_3_3_2_4"]</li>
+                            <li class="is-checkbox" id="TotalRSummer7_po1325">@SharedLocalizer["Maps1_3_3_2_5"]</li>
+                            <li class="is-checkbox" id="TotalRSummer7_po2902">@SharedLocalizer["Maps1_3_3_2_6"]</li>
+                            <li class="is-checkbox" id="TotalRSummer7_po__02">@SharedLocalizer["Maps1_3_3_2_7"]</li>
+                            <li class="is-checkbox" id="TotalRSummer7_po__PL">@SharedLocalizer["Maps1_3_3_2_8"]</li>
+                        </ul>
+                    </li>
+                </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_3_4"]
+                <ul>
+                    <li>
+                        @SharedLocalizer["Maps1_3_4_1"]
+                    <ul>
+                        <li>
+                            @SharedLocalizer["Maps1_3_4_1_1"]
+                        <ul>
+                            <li class="is-checkbox" id="promso2_10_2017022600">@SharedLocalizer["Maps1_3_4_1_1_1"]</li>
+                            <li class="is-checkbox" id="promso2_10_2017022609">@SharedLocalizer["Maps1_3_4_1_1_2"]</li>
+                            <li class="is-checkbox" id="promso2_10_2017022612">@SharedLocalizer["Maps1_3_4_1_1_3"]</li>
+                            <li class="is-checkbox" id="promso2_10_2017022615">@SharedLocalizer["Maps1_3_4_1_1_4"]</li>
+                            <li class="is-checkbox" id="promso2_10_2017022618">@SharedLocalizer["Maps1_3_4_1_1_5"]</li>
+                            <li class="is-checkbox" id="promso2_10_2017022621">@SharedLocalizer["Maps1_3_4_1_1_6"]</li>
+                        </ul>
+                    </li>
+                    <li>
+                        @SharedLocalizer["Maps1_3_4_1_2"]
+                    <ul>
+                        <li class="is-checkbox" id="promno2_10_2017022600">@SharedLocalizer["Maps1_3_4_1_2_1"]</li>
+                        <li class="is-checkbox" id="promno2_10_2017022609">@SharedLocalizer["Maps1_3_4_1_2_2"]</li>
+                        <li class="is-checkbox" id="promno2_10_2017022612">@SharedLocalizer["Maps1_3_4_1_2_3"]</li>
+                        <li class="is-checkbox" id="promno2_10_2017022615">@SharedLocalizer["Maps1_3_4_1_2_4"]</li>
+                        <li class="is-checkbox" id="promno2_10_2017022618">@SharedLocalizer["Maps1_3_4_1_2_5"]</li>
+                        <li class="is-checkbox" id="promno2_10_2017022621">@SharedLocalizer["Maps1_3_4_1_2_6"]</li>
+                    </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_3_4_1_3"]
+                <ul>
+                    <li class="is-checkbox" id="promno_10_2017022600">@SharedLocalizer["Maps1_3_4_1_3_1"]</li>
+                    <li class="is-checkbox" id="promno_10_2017022609">@SharedLocalizer["Maps1_3_4_1_3_2"]</li>
+                    <li class="is-checkbox" id="promno_10_2017022612">@SharedLocalizer["Maps1_3_4_1_3_3"]</li>
+                    <li class="is-checkbox" id="promno_10_2017022615">@SharedLocalizer["Maps1_3_4_1_3_4"]</li>
+                    <li class="is-checkbox" id="promno_10_2017022618">@SharedLocalizer["Maps1_3_4_1_3_5"]</li>
+                    <li class="is-checkbox" id="promno_10_2017022621">@SharedLocalizer["Maps1_3_4_1_3_6"]</li>
+                </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_3_4_1_4"]
+                <ul>
+                    <li class="is-checkbox" id="prompm70_10_2017022600">@SharedLocalizer["Maps1_3_4_1_4_1"]</li>
+                    <li class="is-checkbox" id="prompm70_10_2017022609">@SharedLocalizer["Maps1_3_4_1_4_2"]</li>
+                    <li class="is-checkbox" id="prompm70_10_2017022612">@SharedLocalizer["Maps1_3_4_1_4_3"]</li>
+                    <li class="is-checkbox" id="prompm70_10_2017022615">@SharedLocalizer["Maps1_3_4_1_4_4"]</li>
+                    <li class="is-checkbox" id="prompm70_10_2017022618">@SharedLocalizer["Maps1_3_4_1_4_5"]</li>
+                    <li class="is-checkbox" id="prompm70_10_2017022621">@SharedLocalizer["Maps1_3_4_1_4_6"]</li>
+                </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_3_4_1_5"]
+                <ul>
+                    <li class="is-checkbox" id="promsum2017022600">@SharedLocalizer["Maps1_3_4_1_5_1"]</li>
+                    <li class="is-checkbox" id="promsum2017022609">@SharedLocalizer["Maps1_3_4_1_5_2"]</li>
+                    <li class="is-checkbox" id="promsum2017022612">@SharedLocalizer["Maps1_3_4_1_5_3"]</li>
+                    <li class="is-checkbox" id="promsum2017022615">@SharedLocalizer["Maps1_3_4_1_5_4"]</li>
+                    <li class="is-checkbox" id="promsum2017022618">@SharedLocalizer["Maps1_3_4_1_5_5"]</li>
+                    <li class="is-checkbox" id="promsum2017022621">@SharedLocalizer["Maps1_3_4_1_5_6"]</li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_3_4_2"]
+                <ul>
+                    <li>
+                        @SharedLocalizer["Maps1_3_4_2_1"]
+                    <ul>
+                        <li class="is-checkbox" id="promso2_10_2017072600">@SharedLocalizer["Maps1_3_4_2_1_1"]</li>
+                        <li class="is-checkbox" id="promso2_10_2017072609">@SharedLocalizer["Maps1_3_4_2_1_2"]</li>
+                        <li class="is-checkbox" id="promso2_10_2017072612">@SharedLocalizer["Maps1_3_4_2_1_3"]</li>
+                        <li class="is-checkbox" id="promso2_10_2017072615">@SharedLocalizer["Maps1_3_4_2_1_4"]</li>
+                        <li class="is-checkbox" id="promso2_10_2017072618">@SharedLocalizer["Maps1_3_4_2_1_5"]</li>
+                        <li class="is-checkbox" id="promso2_10_2017072621">@SharedLocalizer["Maps1_3_4_2_1_6"]</li>
+                    </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_3_4_2_2"]
+                <ul>
+                    <li class="is-checkbox" id="promno2_10_2017072600">@SharedLocalizer["Maps1_3_4_2_2_1"]</li>
+                    <li class="is-checkbox" id="promno2_10_2017072609">@SharedLocalizer["Maps1_3_4_2_2_2"]</li>
+                    <li class="is-checkbox" id="promno2_10_2017072612">@SharedLocalizer["Maps1_3_4_2_2_3"]</li>
+                    <li class="is-checkbox" id="promno2_10_2017072615">@SharedLocalizer["Maps1_3_4_2_2_4"]</li>
+                    <li class="is-checkbox" id="promno2_10_2017072618">@SharedLocalizer["Maps1_3_4_2_2_5"]</li>
+                    <li class="is-checkbox" id="promno2_10_2017072621">@SharedLocalizer["Maps1_3_4_2_2_6"]</li>
+                </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_3_4_2_3"]
+                <ul>
+                    <li class="is-checkbox" id="promno_10_2017072600">@SharedLocalizer["Maps1_3_4_2_3_1"]</li>
+                    <li class="is-checkbox" id="promno_10_2017072609">@SharedLocalizer["Maps1_3_4_2_3_2"]</li>
+                    <li class="is-checkbox" id="promno_10_2017072612">@SharedLocalizer["Maps1_3_4_2_3_3"]</li>
+                    <li class="is-checkbox" id="promno_10_2017072615">@SharedLocalizer["Maps1_3_4_2_3_4"]</li>
+                    <li class="is-checkbox" id="promno_10_2017072618">@SharedLocalizer["Maps1_3_4_2_3_5"]</li>
+                    <li class="is-checkbox" id="promno_10_2017072621">@SharedLocalizer["Maps1_3_4_2_3_6"]</li>
+                </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_3_4_2_4"]
+                <ul>
+                    <li class="is-checkbox" id="prompm70_10_2017072600">@SharedLocalizer["Maps1_3_4_2_4_1"]</li>
+                    <li class="is-checkbox" id="prompm70_10_2017072609">@SharedLocalizer["Maps1_3_4_2_4_2"]</li>
+                    <li class="is-checkbox" id="prompm70_10_2017072612">@SharedLocalizer["Maps1_3_4_2_4_3"]</li>
+                    <li class="is-checkbox" id="prompm70_10_2017072615">@SharedLocalizer["Maps1_3_4_2_4_4"]</li>
+                    <li class="is-checkbox" id="prompm70_10_2017072618">@SharedLocalizer["Maps1_3_4_2_4_5"]</li>
+                    <li class="is-checkbox" id="prompm70_10_2017072621">@SharedLocalizer["Maps1_3_4_2_4_6"]</li>
+                </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_3_4_2_5"]
+                <ul>
+                    <li class="is-checkbox" id="promsum2017072600">@SharedLocalizer["Maps1_3_4_2_5_1"]</li>
+                    <li class="is-checkbox" id="promsum2017072609">@SharedLocalizer["Maps1_3_4_2_5_2"]</li>
+                    <li class="is-checkbox" id="promsum2017072612">@SharedLocalizer["Maps1_3_4_2_5_3"]</li>
+                    <li class="is-checkbox" id="promsum2017072615">@SharedLocalizer["Maps1_3_4_2_5_4"]</li>
+                    <li class="is-checkbox" id="promsum2017072618">@SharedLocalizer["Maps1_3_4_2_5_5"]</li>
+                    <li class="is-checkbox" id="promsum2017072621">@SharedLocalizer["Maps1_3_4_2_5_6"]</li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_4"]
+                <ul>
+                    <li class="is-checkbox" id="TransportPosts">@SharedLocalizer["Maps1_4_1"]</li>
+                    <li>
+                        @SharedLocalizer["Maps1_4_2"]
+                    <ul>
+                        <li class="is-checkbox" id="TotalRTransport7_po0301">@SharedLocalizer["Maps1_4_2_1"]</li>
+                        <li class="is-checkbox" id="TotalRTransport7_po0330">@SharedLocalizer["Maps1_4_2_2"]</li>
+                        <li class="is-checkbox" id="TotalRTransport7_po0337">@SharedLocalizer["Maps1_4_2_3"]</li>
+                        <li class="is-checkbox" id="TotalRTransport7_po1325">@SharedLocalizer["Maps1_4_2_4"]</li>
+                        <li class="is-checkbox" id="TotalRTransport7_po__31">@SharedLocalizer["Maps1_4_2_5"]</li>
+                    </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_4_3"]
+                <ul>
+                    <li>
+                        @SharedLocalizer["Maps1_4_3_1"]
+                    <ul>
+                        <li>
+                            @SharedLocalizer["Maps1_4_3_1_1"]
+                        <ul>
+                            <li class="is-checkbox" id="avtono2_80_2017022600">@SharedLocalizer["Maps1_4_3_1_1_1"]</li>
+                            <li class="is-checkbox" id="avtono2_80_2017022609">@SharedLocalizer["Maps1_4_3_1_1_2"]</li>
+                            <li class="is-checkbox" id="avtono2_80_2017022612">@SharedLocalizer["Maps1_4_3_1_1_3"]</li>
+                            <li class="is-checkbox" id="avtono2_80_2017022615">@SharedLocalizer["Maps1_4_3_1_1_4"]</li>
+                            <li class="is-checkbox" id="avtono2_80_2017022618">@SharedLocalizer["Maps1_4_3_1_1_5"]</li>
+                            <li class="is-checkbox" id="avtono2_80_2017022621">@SharedLocalizer["Maps1_4_3_1_1_6"]</li>
+                        </ul>
+                    </li>
+                    <li>
+                        @SharedLocalizer["Maps1_4_3_1_2"]
+                    <ul>
+                        <li class="is-checkbox" id="avtoco_80_2017022600">@SharedLocalizer["Maps1_4_3_1_2_1"]</li>
+                        <li class="is-checkbox" id="avtoco_80_2017022609">@SharedLocalizer["Maps1_4_3_1_2_2"]</li>
+                        <li class="is-checkbox" id="avtoco_80_2017022612">@SharedLocalizer["Maps1_4_3_1_2_3"]</li>
+                        <li class="is-checkbox" id="avtoco_80_2017022615">@SharedLocalizer["Maps1_4_3_1_2_4"]</li>
+                        <li class="is-checkbox" id="avtoco_80_2017022618">@SharedLocalizer["Maps1_4_3_1_2_5"]</li>
+                        <li class="is-checkbox" id="avtoco_80_2017022621">@SharedLocalizer["Maps1_4_3_1_2_6"]</li>
+                    </ul>
+                </li>
+                </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_4_3_2"]
+                <ul>
+                    <li>
+                        @SharedLocalizer["Maps1_4_3_2_1"]
+                    <ul>
+                        <li class="is-checkbox" id="avtono2_80_2017072600">@SharedLocalizer["Maps1_4_3_2_1_1"]</li>
+                        <li class="is-checkbox" id="avtono2_80_2017072609">@SharedLocalizer["Maps1_4_3_2_1_2"]</li>
+                        <li class="is-checkbox" id="avtono2_80_2017072612">@SharedLocalizer["Maps1_4_3_2_1_3"]</li>
+                        <li class="is-checkbox" id="avtono2_80_2017072615">@SharedLocalizer["Maps1_4_3_2_1_4"]</li>
+                        <li class="is-checkbox" id="avtono2_80_2017072618">@SharedLocalizer["Maps1_4_3_2_1_5"]</li>
+                        <li class="is-checkbox" id="avtono2_80_2017072621">@SharedLocalizer["Maps1_4_3_2_1_6"]</li>
+                    </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_4_3_2_2"]
+                <ul>
+                    <li class="is-checkbox" id="avtoco_80_2017072600">@SharedLocalizer["Maps1_4_3_2_2_1"]</li>
+                    <li class="is-checkbox" id="avtoco_80_2017072609">@SharedLocalizer["Maps1_4_3_2_2_2"]</li>
+                    <li class="is-checkbox" id="avtoco_80_2017072612">@SharedLocalizer["Maps1_4_3_2_2_3"]</li>
+                    <li class="is-checkbox" id="avtoco_80_2017072615">@SharedLocalizer["Maps1_4_3_2_2_4"]</li>
+                    <li class="is-checkbox" id="avtoco_80_2017072618">@SharedLocalizer["Maps1_4_3_2_2_5"]</li>
+                    <li class="is-checkbox" id="avtoco_80_2017072621">@SharedLocalizer["Maps1_4_3_2_2_6"]</li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_5"]
+                <ul>
+                    <li>
+                        @SharedLocalizer["Maps1_5_1"]
+                    <ul>
+                        <li class="is-checkbox" id="TotalRSummary7_po0184">@SharedLocalizer["Maps1_5_1_1"]</li>
+                        <li class="is-checkbox" id="TotalRSummary7_po0301">@SharedLocalizer["Maps1_5_1_2"]</li>
+                        <li class="is-checkbox" id="TotalRSummary7_po0304">@SharedLocalizer["Maps1_5_1_3"]</li>
+                        <li class="is-checkbox" id="TotalRSummary7_po0328">@SharedLocalizer["Maps1_5_1_4"]</li>
+                        <li class="is-checkbox" id="TotalRSummary7_po0330">@SharedLocalizer["Maps1_5_1_5"]</li>
+                        <li class="is-checkbox" id="TotalRSummary7_po0337">@SharedLocalizer["Maps1_5_1_6"]</li>
+                        <li class="is-checkbox" id="TotalRSummary7_po0703">@SharedLocalizer["Maps1_5_1_7"]</li>
+                        <li class="is-checkbox" id="TotalRSummary7_po1325">@SharedLocalizer["Maps1_5_1_8"]</li>
+                        <li class="is-checkbox" id="TotalRSummary7_po2754">@SharedLocalizer["Maps1_5_1_9"]</li>
+                        <li class="is-checkbox" id="TotalRSummary7_po__02">@SharedLocalizer["Maps1_5_1_10"]</li>
+                        <li class="is-checkbox" id="TotalRSummary7_po__31">@SharedLocalizer["Maps1_5_1_11"]</li>
+                    </ul>
+                </li>
+                <li>
+                    @SharedLocalizer["Maps1_5_2"]
+                <ul>
+                    <li class="is-checkbox" id="allsum201702_avg">@SharedLocalizer["Maps1_5_2_1"]</li>
+                    <li class="is-checkbox" id="allsum201707_avg">@SharedLocalizer["Maps1_5_2_2"]</li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                </ul>
+            </li>
+            <li class="no-checkbox">@SharedLocalizer["Maps2"]
+                <ul>
+                    <li class="is-checkbox" id="WaterSurfacePosts">@SharedLocalizer["Maps2_1"]</li>
+                    <li class="is-checkbox" id="KazHydrometWaterPosts">@SharedLocalizer["Maps2_2"]</li>
+                    <li class="is-checkbox" id="vodoohr_polosa">@SharedLocalizer["Maps2_3"]</li>
+                    <li class="is-checkbox" id="vodoohr_zona">@SharedLocalizer["Maps2_4"]</li>
+                </ul>
+            </li>
+            <li class="no-checkbox">@SharedLocalizer["Maps3"]
+                <ul>
+                    <li class="is-checkbox" id="vegpol">@SharedLocalizer["Maps3_1"]</li>
+                    <li class="is-checkbox" id="planvegpol">@SharedLocalizer["Maps3_2"]</li>
+                </ul>
+            </li>
+            <li class="no-checkbox">@SharedLocalizer["Maps4"]
+                <ul>
+                    <li class="is-checkbox" id="SoilPosts">@SharedLocalizer["Maps4_1"]</li>
+                    <li class="is-checkbox" id="KazHydrometSoilPosts">@SharedLocalizer["Maps4_2"]</li>
+                    <li>@SharedLocalizer["Maps4_3"]
+                        <ul>
+                            <li class="is-checkbox" id="soil_consSc3857">@SharedLocalizer["Maps4_3_1"]</li>
+                            <li class="is-checkbox" id="soil_consP3857">@SharedLocalizer["Maps4_3_2"]</li>
+                            <li class="is-checkbox" id="soil_consMn3857">@SharedLocalizer["Maps4_3_3"]</li>
+                            <li class="is-checkbox" id="soil_consPb3857">@SharedLocalizer["Maps4_3_4"]</li>
+                            <li class="is-checkbox" id="soil_consTi3857">@SharedLocalizer["Maps4_3_5"]</li>
+                            <li class="is-checkbox" id="soil_consZr3857">@SharedLocalizer["Maps4_3_6"]</li>
+                            <li class="is-checkbox" id="soil_consCr3857">@SharedLocalizer["Maps4_3_7"]</li>
+                            <li class="is-checkbox" id="soil_consNi3857">@SharedLocalizer["Maps4_3_8"]</li>
+                            <li class="is-checkbox" id="soil_consBa3857">@SharedLocalizer["Maps4_3_9"]</li>
+                            <li class="is-checkbox" id="soil_consBe3857">@SharedLocalizer["Maps4_3_10"]</li>
+                            <li class="is-checkbox" id="soil_consMo3857">@SharedLocalizer["Maps4_3_11"]</li>
+                            <li class="is-checkbox" id="soil_consSn3857">@SharedLocalizer["Maps4_3_12"]</li>
+                            <li class="is-checkbox" id="soil_consV3857">@SharedLocalizer["Maps4_3_13"]</li>
+                            <li class="is-checkbox" id="soil_consLi3857">@SharedLocalizer["Maps4_3_14"]</li>
+                            <li class="is-checkbox" id="soil_consCu3857">@SharedLocalizer["Maps4_3_15"]</li>
+                            <li class="is-checkbox" id="soil_consZn3857">@SharedLocalizer["Maps4_3_16"]</li>
+                            <li class="is-checkbox" id="soil_consAg3857">@SharedLocalizer["Maps4_3_17"]</li>
+                            <li class="is-checkbox" id="soil_consCo3857">@SharedLocalizer["Maps4_3_18"]</li>
+                            <li class="is-checkbox" id="soil_consGa3857">@SharedLocalizer["Maps4_3_19"]</li>
+                            <li class="is-checkbox" id="soil_consGe3857">@SharedLocalizer["Maps4_3_20"]</li>
+                            <li class="is-checkbox" id="soil_consNb3857">@SharedLocalizer["Maps4_3_21"]</li>
+                            <li class="is-checkbox" id="soil_consSr3857">@SharedLocalizer["Maps4_3_22"]</li>
+                            <li class="is-checkbox" id="soil_consYb3857">@SharedLocalizer["Maps4_3_23"]</li>
+                            <li class="is-checkbox" id="soil_consYt3857">@SharedLocalizer["Maps4_3_24"]</li>
+                            <li class="is-checkbox" id="soil_consZc3857">@SharedLocalizer["Maps4_3_25"]</li>
+                            <li class="is-checkbox" id="soil_Gamma3857">@SharedLocalizer["Maps4_3_26"]</li>
+                            <li class="is-checkbox" id="soil_consNeft3857">@SharedLocalizer["Maps4_3_27"]</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="no-checkbox">@SharedLocalizer["Maps5"]
+                <ul>
+                    <li class="is-checkbox" id="RawMaterialsCompanies">@SharedLocalizer["Maps5_1"]</li>
+                    <li class="is-checkbox" id="WasteRecyclingCompanies">@SharedLocalizer["Maps5_2"]</li>
+                </ul>
+            </li>
+            <li class="no-checkbox">@SharedLocalizer["Maps6"]
+                <ul>
+                    <li class="is-checkbox" id="eco_zoning">@SharedLocalizer["Maps6_1"]</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    $('#opacity').on('input', function () {
+        ChangeOpacity();
+    });
+    function ChangeOpacity() {
+        for (i = 0; i < layers.length; i++) {
+            if (layers[i].get('name') != 'OSM'
+                && layers[i].get('name') != 'KazHydrometAirPosts'
+                && layers[i].get('name') != 'AirPosts'
+                && layers[i].get('name') != 'Companies'
+                && layers[i].get('name') != 'EmissionSources'
+                && layers[i].get('name') != 'TransportPosts'
+                && layers[i].get('name') != 'WaterSurfacePosts'
+                && layers[i].get('name') != 'KazHydrometWaterPosts'
+                && layers[i].get('name') != 'SoilPosts'
+                && layers[i].get('name') != 'KazHydrometSoilPosts'
+                && layers[i].get('name') != 'RawMaterialsCompanies'
+                && layers[i].get('name') != 'WasteRecyclingCompanies'
+                && layers[i].get('name') != 'windir20170226385700'
+                && layers[i].get('name') != 'windir20170226385709'
+                && layers[i].get('name') != 'windir20170226385712'
+                && layers[i].get('name') != 'windir20170226385715'
+                && layers[i].get('name') != 'windir20170226385718'
+                && layers[i].get('name') != 'windir20170226385721'
+                && layers[i].get('name') != 'windir20170726385700'
+                && layers[i].get('name') != 'windir20170726385709'
+                && layers[i].get('name') != 'windir20170726385712'
+                && layers[i].get('name') != 'windir20170726385715'
+                && layers[i].get('name') != 'windir20170726385718'
+                && layers[i].get('name') != 'windir20170726385721') {
+                layers[i].setOpacity($('#opacity').val() / 100);
+            }
+        }
+        jQuery('.legend-opacity').css('opacity', $('#opacity').val() / 100);
+    };
+</script>

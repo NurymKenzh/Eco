@@ -1,0 +1,92 @@
+﻿@model Eco.Models.KazHydrometAirPostData
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Edit"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Edit"]</h2>
+
+<h4>@SharedLocalizer["KazHydrometAirPostData"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="KazHydrometAirPostId" class="control-label"></label>
+                <select asp-for="KazHydrometAirPostId" class="form-control" asp-items="ViewBag.KazHydrometAirPostId"></select>
+                <span asp-validation-for="KazHydrometAirPostId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirContaminantId" class="control-label"></label>
+                <select asp-for="AirContaminantId" class="form-control" asp-items="ViewBag.AirContaminantId"></select>
+                <span asp-validation-for="AirContaminantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Month" class="control-label"></label>
+                <input asp-for="Month" class="form-control" />
+                <span asp-validation-for="Month" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PollutantConcentrationMonthlyAverage" class="control-label"></label>
+                <input asp-for="PollutantConcentrationMonthlyAverage" class="form-control" />
+                <span asp-validation-for="PollutantConcentrationMonthlyAverage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PollutantConcentrationMaximumOneTimePerMonth" class="control-label"></label>
+                <input asp-for="PollutantConcentrationMaximumOneTimePerMonth" class="form-control" />
+                <span asp-validation-for="PollutantConcentrationMaximumOneTimePerMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PollutantConcentrationMaximumOneTimePerMonthDay" class="control-label"></label>
+                <input asp-for="PollutantConcentrationMaximumOneTimePerMonthDay" class="form-control" />
+                <span asp-validation-for="PollutantConcentrationMaximumOneTimePerMonthDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PollutantConcentrationMaximumOneTimeMonth" class="control-label"></label>
+                <input asp-for="PollutantConcentrationMaximumOneTimeMonth" class="form-control" />
+                <span asp-validation-for="PollutantConcentrationMaximumOneTimeMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PollutantConcentrationMaximumOneTimePerYear" class="control-label"></label>
+                <input asp-for="PollutantConcentrationMaximumOneTimePerYear" class="form-control" />
+                <span asp-validation-for="PollutantConcentrationMaximumOneTimePerYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PollutantConcentrationYearlyAverage" class="control-label"></label>
+                <input asp-for="PollutantConcentrationYearlyAverage" class="form-control" />
+                <span asp-validation-for="PollutantConcentrationYearlyAverage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Save"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+
+<script>
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>

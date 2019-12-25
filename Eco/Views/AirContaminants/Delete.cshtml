@@ -1,0 +1,185 @@
+﻿@model Eco.Models.AirContaminant
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Delete"]</h2>
+
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["AirContaminant"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SubstanceHazardClass)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SubstanceHazardClass.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Number168)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Number168)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Number104)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Number104)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ContaminantCodeERA)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContaminantCodeERA)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberCAS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumberCAS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoefficientOfSettlement)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoefficientOfSettlement)
+        </dd>
+        @if (Model.PresenceOfTheMaximumPermissibleConcentration)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.MaximumPermissibleConcentrationOneTimemaximum)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MaximumPermissibleConcentrationOneTimemaximum)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MaximumPermissibleConcentrationDailyAverage)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MaximumPermissibleConcentrationDailyAverage)
+            </dd>
+        }
+        else
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.LimitingIndicator)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LimitingIndicator.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApproximateSafeExposureLevel)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApproximateSafeExposureLevel)
+            </dd>
+        }
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Synonyms)
+        </dt>
+        <dd>
+            <pre>@string.Join("\r\n", Model.Synonyms)</pre>
+        </dd>*@
+        <dt>
+            @SharedLocalizer["RelatedItems"]
+        </dt>
+        <dd>
+            @if (((IQueryable<SummationAirContaminantsGroup>)ViewBag.SummationAirContaminantsGroups).Count() > 0)
+            {
+                <table class="table red">
+                    <tr>
+                        <th>
+                            @SharedLocalizer["SummationAirContaminantsGroups"]
+                        </th>
+                    </tr>
+                    @foreach (var item in (IQueryable<SummationAirContaminantsGroup>)ViewBag.SummationAirContaminantsGroups)
+                {
+                        <tr>
+                            <td>
+                                @item.SummationGroupCodeERA
+                            </td>
+                            <td>
+                                <a asp-controller="SummationAirContaminantsGroups" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                                <a asp-controller="SummationAirContaminantsGroups" asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                                <a asp-controller="SummationAirContaminantsGroups" asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            @if (((IQueryable<KazHydrometAirPostData>)ViewBag.KazHydrometAirPostDatas).Count() > 0)
+            {
+                <table class="table red">
+                    <tr>
+                        <th>
+                            @SharedLocalizer["KazHydrometAirPostDatas"]
+                        </th>
+                    </tr>
+                    @foreach (var item in (IQueryable<KazHydrometAirPostData>)ViewBag.KazHydrometAirPostDatas)
+                {
+                        <tr>
+                            <td>
+                                @item.Year
+                            </td>
+                            <td>
+                                <a asp-controller="KazHydrometAirPostDatas" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                                <a asp-controller="KazHydrometAirPostDatas" asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                                <a asp-controller="KazHydrometAirPostDatas" asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            @if (((IQueryable<AirPostData>)ViewBag.AirPostDatas).Count() > 0)
+            {
+                <table class="table red">
+                    <tr>
+                        <th>
+                            @SharedLocalizer["AirPostDatas"]
+                        </th>
+                    </tr>
+                    @foreach (var item in (IQueryable<AirPostData>)ViewBag.AirPostDatas)
+                {
+                        <tr>
+                            <td>
+                                @item.DateTime.Year
+                            </td>
+                            <td>
+                                <a asp-controller="AirPostDatas" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                                <a asp-controller="AirPostDatas" asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                                <a asp-controller="AirPostDatas" asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        @if (((IQueryable<SummationAirContaminantsGroup>)ViewBag.SummationAirContaminantsGroups).Count() == 0
+            && (((IQueryable<KazHydrometAirPostData>)ViewBag.KazHydrometAirPostDatas).Count() == 0)
+            && (((IQueryable<AirPostData>)ViewBag.AirPostDatas).Count() == 0))
+        {
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" />
+        }
+        else
+        {
+            <input type="submit" value="@SharedLocalizer["Delete"]" disabled="disabled" class="btn btn-default" />
+        }
+        | <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

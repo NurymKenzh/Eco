@@ -1,0 +1,122 @@
+﻿@model Eco.Models.TransportPost
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Details"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/lib/openlayers/ol.css" rel="stylesheet" />
+<script src="~/lib/openlayers/ol.js"></script>
+
+<h2>@SharedLocalizer["Details"]</h2>
+
+<div>
+    <h4>@SharedLocalizer["TransportPost"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameKK)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameKK)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameRU)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameRU)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypeName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MovementDirection)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MovementDirection.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfBands)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfBands)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalInformationKK)
+        </dt>
+        <dd>
+            <pre>@Model.AdditionalInformationKK</pre>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalInformationRU)
+        </dt>
+        <dd>
+            <pre>@Model.AdditionalInformationRU</pre>
+        </dd>
+        <dt>
+            @SharedLocalizer["Map"]
+        </dt>
+        <dd>
+            <div id="map" style="height: 400px; width: 100%;"></div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NorthLatitude)
+        </dt>
+        <dd id="NorthLatitude">
+            @Html.DisplayFor(model => model.NorthLatitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EastLongitude)
+        </dt>
+        <dd id="EastLongitude">
+            @Html.DisplayFor(model => model.EastLongitude)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@SharedLocalizer["Edit"]</a> |
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+<script type="text/javascript">
+    var source = new ol.source.Vector();
+    var layer = new ol.layer.Vector({
+        source: source
+    });
+
+    var map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            }),
+            layer
+        ],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([76.9455, 43.2357]),
+            zoom: 10
+        })
+    });
+
+    function ChangeCoordinates() {
+        var coordinates = [parseFloat($('#EastLongitude').html().toString().replace(',', '.')), parseFloat($('#NorthLatitude').html().toString().replace(',', '.'))];
+        coordinates = ol.proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857');
+        var thing = new ol.geom.Point(
+            [coordinates[0], coordinates[1]]
+        );
+        var featurething = new ol.Feature({
+            geometry: thing
+        });
+        source.clear();
+        source.addFeature(featurething);
+    };
+
+    $(document).ready(function () {
+        ChangeCoordinates();
+    });
+</script>

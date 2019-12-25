@@ -1,0 +1,107 @@
+﻿@model Eco.Models.WaterContaminant
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Delete"]</h2>
+
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["WaterContaminant"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Number104)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Number104)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MeasurementUnit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MeasurementUnit.Name)
+        </dd>
+        <dt>
+            @SharedLocalizer["WaterQualityStandardsByQualityClasses"]
+        </dt>
+        <dd>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class1From)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class1From)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class1To)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class1To)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class2From)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class2From)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class2To)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class2To)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class3From)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class3From)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class3To)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class3To)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class4From)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class4From)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class4To)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class4To)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class5From)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class5From)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class5To)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class5To)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" /> |
+        <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

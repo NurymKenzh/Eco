@@ -1,0 +1,172 @@
+﻿@model Eco.Models.KazHydrometSoilPost
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/lib/openlayers/ol.css" rel="stylesheet" />
+<script src="~/lib/openlayers/ol.js"></script>
+
+<h2>@SharedLocalizer["Delete"]</h2>
+
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["KazHydrometSoilPost"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameKK)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameKK)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameRU)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameRU)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalInformationKK)
+        </dt>
+        <dd>
+            <pre>@Model.AdditionalInformationKK</pre>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalInformationRU)
+        </dt>
+        <dd>
+            <pre>@Model.AdditionalInformationRU</pre>
+        </dd>
+        <dt>
+            @SharedLocalizer["Map"]
+        </dt>
+        <dd>
+            <div id="map" style="height: 400px; width: 100%;"></div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NorthLatitude)
+        </dt>
+        <dd id="NorthLatitude">
+            @Html.DisplayFor(model => model.NorthLatitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EastLongitude)
+        </dt>
+        <dd id="EastLongitude">
+            @Html.DisplayFor(model => model.EastLongitude)
+        </dd>
+        <dt>
+            @SharedLocalizer["RelatedItems"]
+        </dt>
+        <dd>
+            @if (((IQueryable<KazHydrometSoilPostData>)ViewBag.KazHydrometSoilPostDatas).Count() > 0)
+        {
+            <table class="table red">
+                <tr>
+                    <th>
+                        @SharedLocalizer["KazHydrometSoilPostDatas"]
+                    </th>
+                </tr>
+                @foreach (var item in (IQueryable<KazHydrometSoilPostData>)ViewBag.KazHydrometSoilPostDatas)
+            {
+                <tr>
+                    <td>
+                        @item.Year
+                    </td>
+                    <td>
+                        <a asp-controller="KazHydrometSoilPostDatas" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                        <a asp-controller="KazHydrometSoilPostDatas" asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                        <a asp-controller="KazHydrometSoilPostDatas" asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                    </td>
+                </tr>
+        }
+            </table>
+    }
+            @if (((IQueryable<TargetTerritory>)ViewBag.TargetTerritories).Count() > 0)
+            {
+                <table class="table red">
+                    <tr>
+                        <th>
+                            @SharedLocalizer["TargetTerritories"]
+                        </th>
+                    </tr>
+                    @foreach (var item in (IQueryable<TargetTerritory>)ViewBag.TargetTerritories)
+                {
+                        <tr>
+                            <td>
+                                @item.TerritoryName
+                            </td>
+                            <td>
+                                <a asp-controller="TargetTerritories" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                                <a asp-controller="TargetTerritories" asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                                <a asp-controller="TargetTerritories" asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        @if ((((IQueryable<KazHydrometSoilPostData>)ViewBag.KazHydrometSoilPostDatas).Count() == 0)
+            && ((((IQueryable<TargetTerritory>)ViewBag.TargetTerritories).Count() == 0)))
+    {
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" />
+}
+else
+{
+    <input type="submit" value="@SharedLocalizer["Delete"]" disabled="disabled" class="btn btn-default" />
+}
+        | <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var source = new ol.source.Vector();
+    var layer = new ol.layer.Vector({
+        source: source
+    });
+
+    var map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            }),
+            layer
+        ],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([76.9455, 43.2357]),
+            zoom: 10
+        })
+    });
+
+    function ChangeCoordinates() {
+        var coordinates = [parseFloat($('#EastLongitude').html().toString().replace(',', '.')), parseFloat($('#NorthLatitude').html().toString().replace(',', '.'))];
+        coordinates = ol.proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857');
+        var thing = new ol.geom.Point(
+            [coordinates[0], coordinates[1]]
+        );
+        var featurething = new ol.Feature({
+            geometry: thing
+        });
+        source.clear();
+        source.addFeature(featurething);
+    };
+
+    $(document).ready(function () {
+        ChangeCoordinates();
+    });
+</script>

@@ -1,0 +1,12 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["ErrorAccessDenied"];
+}
+
+<header>
+    <h2 class="text-danger">@ViewData["Title"]</h2>
+    <p class="text-danger">@SharedLocalizer["ErrorYouDoNotHaveAccessToThisResource"]</p>
+</header>

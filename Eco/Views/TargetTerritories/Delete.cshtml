@@ -1,0 +1,134 @@
+﻿@model Eco.Models.TargetTerritory
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Delete"]</h2>
+
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["TargetTerritory"]TargetTerritory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TerritoryType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TerritoryType.Name)
+        </dd>
+        @if (Model.CityDistrictId != null)
+    {
+        <dt>
+            @Html.DisplayNameFor(model => model.CityDistrict)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CityDistrict.Name)
+        </dd>
+}
+        <dt>
+            @Html.DisplayNameFor(model => model.TerritoryNameKK)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TerritoryNameKK)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TerritoryNameRU)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TerritoryNameRU)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GISConnectionCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GISConnectionCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Post)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Post)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalInformationKK)
+        </dt>
+        <dd>
+            <pre>@Model.AdditionalInformationKK</pre>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalInformationRU)
+        </dt>
+        <dd>
+            <pre>@Model.AdditionalInformationRU</pre>
+        </dd>
+        <dt>
+            @SharedLocalizer["RelatedItems"]
+        </dt>
+        <dd>
+            @if (((IQueryable<TargetValue>)ViewBag.TargetValues).Count() > 0)
+        {
+            <table class="table red">
+                <tr>
+                    <th>
+                        @SharedLocalizer["TargetValues"]
+                    </th>
+                </tr>
+                @foreach (var item in (IQueryable<TargetValue>)ViewBag.TargetValues)
+            {
+                <tr>
+                    <td>
+                        @item.Year
+                    </td>
+                    <td>
+                        <a asp-controller="TargetValues" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                        <a asp-controller="TargetValues" asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                        <a asp-controller="TargetValues" asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                    </td>
+                </tr>
+        }
+            </table>
+    }
+            @if (((IQueryable<AActivity>)ViewBag.AActivities).Count() > 0)
+        {
+            <table class="table red">
+                <tr>
+                    <th>
+                        @SharedLocalizer["AActivities"]
+                    </th>
+                </tr>
+                @foreach (var item in (IQueryable<AActivity>)ViewBag.AActivities)
+            {
+                <tr>
+                    <td>
+                        @item.Year
+                    </td>
+                    <td>
+                        <a asp-controller="AActivities" asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                        <a asp-controller="AActivities" asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                        <a asp-controller="AActivities" asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                    </td>
+                </tr>
+        }
+            </table>
+    }
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        @if ((((IQueryable<TargetValue>)ViewBag.TargetValues).Count() == 0)
+            && (((IQueryable<AActivity>)ViewBag.AActivities).Count() == 0))
+        {
+            <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" />
+        }
+        else
+        {
+            <input type="submit" value="@SharedLocalizer["Delete"]" disabled="disabled" class="btn btn-default" />
+        }
+        | <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

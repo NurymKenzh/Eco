@@ -1,0 +1,40 @@
+﻿@model Eco.Models.SpeciesDiversity
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Create"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Create"]</h2>
+<h4>@SharedLocalizer["SpeciesDiversity"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CityDistrictId" class="control-label"></label>
+                <select asp-for="CityDistrictId" class="form-control" asp-items="ViewBag.CityDistrictId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlantationsTypeId" class="control-label"></label>
+                <select asp-for="PlantationsTypeId" class="form-control" asp-items="ViewBag.PlantationsTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TreesNumber" class="control-label"></label>
+                <input asp-for="TreesNumber" class="form-control" />
+                <span asp-validation-for="TreesNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Create"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

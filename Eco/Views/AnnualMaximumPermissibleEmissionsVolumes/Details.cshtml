@@ -1,0 +1,49 @@
+﻿@model Eco.Models.AnnualMaximumPermissibleEmissionsVolume
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Details"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Details"]</h2>
+<div>
+    <h4>@SharedLocalizer["AnnualMaximumPermissibleEmissionsVolume"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfIssueOfPermit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfIssueOfPermit)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.YearOfPermit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.YearOfPermit)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmissionsTonsPerYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmissionsTonsPerYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyOrSubsidiaryCompanyAbbreviatedName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyOrSubsidiaryCompanyAbbreviatedName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IssuingPermitsStateAuthority)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IssuingPermitsStateAuthority.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">@SharedLocalizer["Edit"]</a> |
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>

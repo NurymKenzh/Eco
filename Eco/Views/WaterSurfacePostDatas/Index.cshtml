@@ -1,0 +1,172 @@
+﻿@model Eco.Models.WaterSurfacePostDataIndexPageViewModel
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using System.Net
+@{
+    ViewData["Title"] = SharedLocalizer["WaterSurfacePostDatas"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["WaterSurfacePostDatas"]</h2>
+
+<p>
+    <a asp-action="Create"> <img src="~/images/add16.png" />@SharedLocalizer["Create"]</a> | <a asp-action="WaterSurfacePostDatasReport" asp-controller="Reports">@SharedLocalizer["Report"]</a> @*| <a asp-action="Upload">@SharedLocalizer["Upload"]</a> | <a asp-action="DeleteMany">@SharedLocalizer["Delete"]</a>*@
+</p>
+
+@using (Html.BeginForm("Index", "WaterSurfacePostDatas", new { SortOrder = ViewBag.SortOrdert, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="agendaView">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().WaterSurfacePost.WaterObject).ToString(), "Index",
+                 new { SortOrder = ViewBag.WaterObjectIdSort, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                    <br />
+                    @Html.DropDownList("WaterObjectId", (IEnumerable<SelectListItem>)ViewBag.WaterObjectId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().WaterSurfacePost).ToString(), "Index",
+                 new { SortOrder = ViewBag.WaterSurfacePostNumberSort, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                    <br />
+                    @Html.Editor("WaterSurfacePostNumber", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().WaterContaminant).ToString(), "Index",
+                 new { SortOrder = ViewBag.WaterContaminantNameSort, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                    <br />
+                    @Html.DropDownList("WaterContaminantId", (IEnumerable<SelectListItem>)ViewBag.WaterContaminantId, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().YearOfSampling).ToString(), "Index",
+                 new { SortOrder = ViewBag.YearOfSamplingSort, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                    <br />
+                    @Html.DropDownList("YearOfSampling", (IEnumerable<SelectListItem>)ViewBag.Year, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().MonthOfSampling).ToString(), "Index",
+                 new { SortOrder = ViewBag.MonthOfSamplingSort, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                    <br />
+                    @Html.DropDownList("MonthOfSampling", (IEnumerable<SelectListItem>)ViewBag.Month, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(b => b.Items.FirstOrDefault().DayOfSampling).ToString(), "Index",
+                 new { SortOrder = ViewBag.DayOfSamplingSort, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                    <br />
+                    @Html.DropDownList("DayOfSampling", (IEnumerable<SelectListItem>)ViewBag.Day, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().Value)
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="@SharedLocalizer["Find"]" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WaterSurfacePost.WaterObject.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WaterSurfacePost.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WaterContaminant.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfSampling.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfSampling.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfSampling.Day)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, WaterSurfacePostNumber = ViewBag.WaterSurfacePostNumberFilter, WaterObjectId = ViewBag.WaterObjectIdFilter, WaterContaminantName = ViewBag.WaterContaminantNameFilter, YearOfSampling = ViewBag.YearOfSamplingFilter, MonthOfSampling = ViewBag.MonthOfSamplingFilter, DayOfSampling = ViewBag.DayOfSamplingFilter })
+                </li>
+            }
+        </ul>
+    }
+}

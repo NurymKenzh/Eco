@@ -1,0 +1,96 @@
+﻿@model Eco.Models.KazHydrometAirPostData
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Delete"]</h2>
+
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["KazHydrometAirPostData"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KazHydrometAirPost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.KazHydrometAirPost.Number)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AirContaminant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AirContaminant.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Month)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Month)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PollutantConcentrationMonthlyAverage)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PollutantConcentrationMonthlyAverage)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PollutantConcentrationMaximumOneTimePerMonth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PollutantConcentrationMaximumOneTimePerMonth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PollutantConcentrationMaximumOneTimePerMonthDay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PollutantConcentrationMaximumOneTimePerMonthDay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaximumPermissibleConcentrationExcessMultiplicityDailyAverage)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaximumPermissibleConcentrationExcessMultiplicityDailyAverage)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaximumPermissibleConcentrationExcessMultiplicityMaximumOneTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaximumPermissibleConcentrationExcessMultiplicityMaximumOneTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PollutantConcentrationMaximumOneTimeMonth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PollutantConcentrationMaximumOneTimeMonth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PollutantConcentrationMaximumOneTimePerYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PollutantConcentrationMaximumOneTimePerYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PollutantConcentrationYearlyAverage)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PollutantConcentrationYearlyAverage)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" /> |
+        <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

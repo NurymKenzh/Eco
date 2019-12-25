@@ -1,0 +1,52 @@
+﻿@model Eco.Models.KazHydrometSoilPostData
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Delete"]</h2>
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["KazHydrometSoilPostData"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KazHydrometSoilPost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.KazHydrometSoilPost.Number)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SoilContaminant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoilContaminant.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Season)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeasonName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ConcentrationValuemgkg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ConcentrationValuemgkg)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" /> |
+        <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

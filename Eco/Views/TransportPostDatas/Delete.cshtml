@@ -1,0 +1,108 @@
+﻿@model Eco.Models.TransportPostData
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Delete"]</h2>
+
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["TransportPostData"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TransportPost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TransportPost.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TheLengthOfTheInhibitorySignalSec)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TheLengthOfTheInhibitorySignalSec)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalNumberOfVehiclesIn20Minutes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalNumberOfVehiclesIn20Minutes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RunningLengthm)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RunningLengthm)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AverageSpeedkmh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AverageSpeedkmh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CarsNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CarsNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TrucksNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TrucksNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BusesDieselNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BusesDieselNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CarsGasolineNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CarsGasolineNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CarsDieselNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CarsDieselNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TrucksGasolineNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TrucksGasolineNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TrucksDieselNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TrucksDieselNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TrucksGasNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TrucksGasNumber)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="@SharedLocalizer["Delete"]" class="btn btn-default" /> |
+        <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

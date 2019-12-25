@@ -1,0 +1,158 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["TargetsReport"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/lib/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+<link href="~/lib/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" rel="stylesheet" />
+<script src="~/lib/bootstrap-multiselect/dist/js/bootstrap-multiselect-collapsible-groups.js"></script>
+
+<script src="~/lib/gasparesganga-jquery-loading-overlay/src/loadingoverlay.js"></script>
+
+<h2>@SharedLocalizer["TargetsReport"]</h2>
+
+<table class="table" id="selectform">
+    <thead>
+        <tr>
+            <th>
+                @SharedLocalizer["TypeOfTarget"]
+                @Html.DropDownList("TypeOfTargetId", (IEnumerable<SelectListItem>)ViewBag.TypeOfTargetId, htmlAttributes: new { @class = "form-control", @id = "TypeOfTargetId", @multiple = "multiple", @onchange = "ChangeTypeOfTarget()" })
+            </th>
+            <th>
+                @SharedLocalizer["Target"]
+                @Html.DropDownList("TargetId", (IEnumerable<SelectListItem>)ViewBag.TargetId, htmlAttributes: new { @class = "form-control", @id = "TargetId", @multiple = "multiple", @onchange = "Report()" })
+            </th>
+            <th>
+                @SharedLocalizer["Year"]
+                @Html.DropDownList("Year", (IEnumerable<SelectListItem>)ViewBag.Year, htmlAttributes: new { @class = "form-control", @id = "Year", @multiple = "multiple", @onchange = "Report()" })
+            </th>
+        </tr>
+    </thead>
+</table>
+
+<form asp-action="TargetsReport" id="reportform">
+    <input type="hidden" value="test1" name="Report[0][0]" class="hidden-report" />
+    <input type="submit" value="@SharedLocalizer["Download"]" class="button" />
+</form>
+
+<div style="overflow-x: auto;" id="reportdiv">
+    <table class="table" id="report">
+        <thead></thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div hidden="hidden">
+    <input id="NothingSelected" type="hidden" value="@SharedLocalizer["NothingSelected"]" />
+    <input id="SelectAll" type="hidden" value="@SharedLocalizer["SelectAll"]" />
+    <input id="All" type="hidden" value="@SharedLocalizer["All"]" />
+    <input id="selected" type="hidden" value="@SharedLocalizer["selected"]" />
+</div>
+
+<script>
+    function ChangeTypeOfTarget() {
+        $.ajax({
+            url: '@Url.Action("GetTargetsByTypeOfTargetId")',
+            data: { TypeOfTargetId: $('#TypeOfTargetId').val() },
+            type: 'POST',
+            success: function (data) {
+                var optionhtml = '';
+                $.each(data, function (i) {
+                    optionhtml += '<option value="' + data[i]['id'] + '"' +
+                        (data[i]['id'] == $('#TargetId').val() ? 'selected' : '') +
+                        '>' + data[i]['name'] +
+                        '</option>';
+                });
+                $("#TargetId").empty();
+                $('#TargetId').append(optionhtml);
+                $('#TargetId').multiselect('destroy');
+                $('#TargetId').multiselect({
+                    includeSelectAllOption: true,
+                    nonSelectedText: $('#NothingSelected').val(),
+                    selectAllText: $('#SelectAll').val(),
+                    allSelectedText: $('#All').val(),
+                    nSelectedText: $('#selected').val(),
+                    maxHeight: 270
+                });
+                Report();
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function Report() {
+        $("#selectform").LoadingOverlay("show");
+        $("#reportdiv").LoadingOverlay("show");
+        $.ajax({
+            url: '@Url.Action("GetTargetsReport")',
+            data: {
+                TargetId: $('#TargetId').val(),
+                Year: $('#Year').val()
+            },
+            type: 'POST',
+            success: function (data) {
+                $('#report tr').remove();
+                var tr = '';
+                var inputs = '';
+                tr += '<tr>';
+                for (var b = 0; b < data.report[0].length; b++) {
+                    tr += '<th>' + data.report[0][b] + '</th>';
+                    inputs += '<input type="hidden" value="' + data.report[0][b] + '" name="Report[0][' + b.toString() + ']" class="hidden-report" />';
+                }
+                tr += '</tr>';
+                $('#report').find('thead').append(tr);
+                tr = '';
+                for (var a = 1; a < data.report.length; a++) {
+                    tr += '<tr>';
+                    for (var b = 0; b < data.report[a].length; b++) {
+                        tr += '<td>' + data.report[a][b] + '</td>';
+                        inputs += '<input type="hidden" value="' + data.report[a][b] + '" name="Report[' + a.toString() + '][' + b.toString() + ']" class="hidden-report" />';
+                    }
+                    tr += '</tr>';
+                }
+                $('#report').find('tbody').append(tr);
+                $('#reportform .hidden-report').remove();
+                $('#reportform').append(inputs);
+                $("#selectform").LoadingOverlay("hide");
+                $("#reportdiv").LoadingOverlay("hide");
+            },
+            error: function () {
+                $("#selectform").LoadingOverlay("hide");
+                $("#reportdiv").LoadingOverlay("hide");
+            }
+        });
+    };
+</script>
+
+<script>
+    $(function () {
+        $('#TypeOfTargetId').multiselect({
+            includeSelectAllOption: true,
+            nonSelectedText: $('#NothingSelected').val(),
+            selectAllText: $('#SelectAll').val(),
+            allSelectedText: $('#All').val(),
+            nSelectedText: $('#selected').val(),
+            maxHeight: 270
+        });
+        $('#TargetId').multiselect({
+            includeSelectAllOption: true,
+            nonSelectedText: $('#NothingSelected').val(),
+            selectAllText: $('#SelectAll').val(),
+            allSelectedText: $('#All').val(),
+            nSelectedText: $('#selected').val(),
+            maxHeight: 270
+        });
+        $('#Year').multiselect({
+            includeSelectAllOption: true,
+            nonSelectedText: $('#NothingSelected').val(),
+            selectAllText: $('#SelectAll').val(),
+            allSelectedText: $('#All').val(),
+            nSelectedText: $('#selected').val(),
+            maxHeight: 270
+        });
+    });
+</script>

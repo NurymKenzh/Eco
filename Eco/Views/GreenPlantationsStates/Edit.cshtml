@@ -1,0 +1,75 @@
+﻿@model Eco.Models.GreenPlantationsState
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Edit"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["Edit"]</h2>
+<h4>@SharedLocalizer["GreenPlantationsState"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CityDistrictId" class="control-label"></label>
+                <select asp-for="CityDistrictId" class="form-control" asp-items="ViewBag.CityDistrictId"></select>
+                <span asp-validation-for="CityDistrictId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameKK" class="control-label"></label>
+                <input asp-for="NameKK" class="form-control" />
+                <span asp-validation-for="NameKK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameRU" class="control-label"></label>
+                <input asp-for="NameRU" class="form-control" />
+                <span asp-validation-for="NameRU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GreenPlantationsTypeId" class="control-label"></label>
+                <select asp-for="GreenPlantationsTypeId" class="form-control" asp-items="ViewBag.GreenPlantationsTypeId"></select>
+                <span asp-validation-for="GreenPlantationsTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Areahectares" class="control-label"></label>
+                <input asp-for="Areahectares" class="form-control" />
+                <span asp-validation-for="Areahectares" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalInformationKK" class="control-label"></label>
+                @Html.TextArea("AdditionalInformationKK", null, new { @class = "form-control", rows = 5 })
+                <span asp-validation-for="AdditionalInformationKK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalInformationRU" class="control-label"></label>
+                @Html.TextArea("AdditionalInformationRU", null, new { @class = "form-control", rows = 5 })
+                <span asp-validation-for="AdditionalInformationRU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Save"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+
+<script>
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>

@@ -1,0 +1,484 @@
+﻿@model Eco.Models.EmissionSource
+@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["Edit"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/lib/openlayers/ol.css" rel="stylesheet" />
+<script src="~/lib/openlayers/ol.js"></script>
+<h2>@SharedLocalizer["Edit"]</h2>
+<h4>@SharedLocalizer["EmissionSource"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CompanyId" class="control-label"></label>
+                <select id="CompanyId" asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId" onchange="ChangeCompany()"></select>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubsidiaryCompanyId" class="control-label"></label>
+                <select id="SubsidiaryCompanyId" asp-for="SubsidiaryCompanyId" class="form-control" asp-items="ViewBag.SubsidiaryCompanyId"></select>
+                <span asp-validation-for="SubsidiaryCompanyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmissionSourceName" class="control-label"></label>
+                <input asp-for="EmissionSourceName" class="form-control" />
+                <span asp-validation-for="EmissionSourceName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmissionSourceMapNumber" class="control-label"></label>
+                <input asp-for="EmissionSourceMapNumber" class="form-control" />
+                <span asp-validation-for="EmissionSourceMapNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkHoursPerYear" class="control-label"></label>
+                <input asp-for="WorkHoursPerYear" class="form-control" />
+                <span asp-validation-for="WorkHoursPerYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SourcesNumber" class="control-label"></label>
+                <input asp-for="SourcesNumber" class="form-control" />
+                <span asp-validation-for="SourcesNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmissionSourceTypeId" class="control-label"></label>
+                <select id="EmissionSourceTypeId" asp-for="EmissionSourceTypeId" class="form-control" asp-items="ViewBag.EmissionSourceTypeId" onchange="ChangeEmissionSourceType()"></select>
+                <span asp-validation-for="EmissionSourceTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div id="map" style="height: 400px; width: 100%;"></div>
+            </div>
+            <div class="form-group coordinates1">
+                <label asp-for="NorthLatitude1" class="control-label"></label>
+                <input id="NorthLatitude1" asp-for="NorthLatitude1" class="form-control" onchange="ChangeCoordinates()" />
+                <span asp-validation-for="NorthLatitude1" class="text-danger"></span>
+            </div>
+            <div class="form-group coordinates1">
+                <label asp-for="EastLongitude1" class="control-label"></label>
+                <input id="EastLongitude1" asp-for="EastLongitude1" class="form-control" onchange="ChangeCoordinates()" />
+                <span asp-validation-for="EastLongitude1" class="text-danger"></span>
+            </div>
+            <div class="form-group coordinates2">
+                <label asp-for="NorthLatitude2" class="control-label"></label>
+                <input id="NorthLatitude2" asp-for="NorthLatitude2" class="form-control" onchange="ChangeCoordinates()" />
+                <span asp-validation-for="NorthLatitude2" class="text-danger"></span>
+            </div>
+            <div class="form-group coordinates2">
+                <label asp-for="EastLongitude2" class="control-label"></label>
+                <input id="EastLongitude2" asp-for="EastLongitude2" class="form-control" onchange="ChangeCoordinates()" />
+                <span asp-validation-for="EastLongitude2" class="text-danger"></span>
+            </div>
+            <div class="form-group coordinates3">
+                <label asp-for="NorthLatitude3" class="control-label"></label>
+                <input id="NorthLatitude3" asp-for="NorthLatitude3" class="form-control" onchange="ChangeCoordinates()" />
+                <span asp-validation-for="NorthLatitude3" class="text-danger"></span>
+            </div>
+            <div class="form-group coordinates3">
+                <label asp-for="EastLongitude3" class="control-label"></label>
+                <input id="EastLongitude3" asp-for="EastLongitude3" class="form-control" onchange="ChangeCoordinates()" />
+                <span asp-validation-for="EastLongitude3" class="text-danger"></span>
+            </div>
+            <div class="form-group coordinates4">
+                <label asp-for="NorthLatitude4" class="control-label"></label>
+                <input id="NorthLatitude4" asp-for="NorthLatitude4" class="form-control" onchange="ChangeCoordinates()" />
+                <span asp-validation-for="NorthLatitude4" class="text-danger"></span>
+            </div>
+            <div class="form-group coordinates4">
+                <label asp-for="EastLongitude4" class="control-label"></label>
+                <input id="EastLongitude4" asp-for="EastLongitude4" class="form-control" onchange="ChangeCoordinates()" />
+                <span asp-validation-for="EastLongitude4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmissionSourceHeight" class="control-label"></label>
+                <input asp-for="EmissionSourceHeight" class="form-control" />
+                <span asp-validation-for="EmissionSourceHeight" class="text-danger"></span>
+            </div>
+            <div class="form-group LengthOfMouth">
+                <label asp-for="LengthOfMouth" class="control-label"></label>
+                <input asp-for="LengthOfMouth" class="form-control" />
+                <span asp-validation-for="LengthOfMouth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiameterOfMouthOfPipesOrWidth" class="control-label"></label>
+                <input id="DiameterOfMouthOfPipesOrWidth" asp-for="DiameterOfMouthOfPipesOrWidth" class="form-control" onchange="ChangeDiameterSpeedVolume()" />
+                <span asp-validation-for="DiameterOfMouthOfPipesOrWidth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpeedOfGasAirMixture" class="control-label"></label>
+                <input id="SpeedOfGasAirMixture" asp-for="SpeedOfGasAirMixture" class="form-control" onchange="ChangeDiameterSpeedVolume()" />
+                <span asp-validation-for="SpeedOfGasAirMixture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VolumeOfGasAirMixture" class="control-label"></label>
+                <input id="VolumeOfGasAirMixture" asp-for="VolumeOfGasAirMixture" class="form-control" onchange="ChangeDiameterSpeedVolume()" />
+                <span asp-validation-for="VolumeOfGasAirMixture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TemperatureOfMixture" class="control-label"></label>
+                <input asp-for="TemperatureOfMixture" class="form-control" />
+                <span asp-validation-for="TemperatureOfMixture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameOfGasTreatmentPlantsTypeAndMeasuresToReduceEmissions" class="control-label"></label>
+                @Html.TextArea("NameOfGasTreatmentPlantsTypeAndMeasuresToReduceEmissions", null, new { @class = "form-control", rows = 5 })
+                <span asp-validation-for="NameOfGasTreatmentPlantsTypeAndMeasuresToReduceEmissions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Save"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+<div hidden="hidden">
+    <input id="PointsAmount" value="@ViewBag.PointsAmount"/>
+</div>
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+<script>
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+</script>
+
+<script type="text/javascript">
+    function ChangeCompany() {
+        $.ajax({
+            url: '@Url.Action("HasCompanyEmission")',
+            data: { CompanyId: $('#CompanyId').val() },
+            type: 'POST',
+            success: function (hasEmission) {
+                $.ajax({
+                    url: '@Url.Action("GetSubsidiaryCompaniesByCompanyId")',
+                    data: { CompanyId: $('#CompanyId').val() },
+                    type: 'POST',
+                    success: function (data) {
+                        var optionhtml = '<option value=""></option>';
+                        if (!hasEmission) {
+                            optionhtml = '';
+                        }
+                        $.each(data, function (i) {
+                            optionhtml += '<option value="' + data[i]['id'] + '"' +
+                                (data[i]['id'] == $('#SubsidiaryCompanyId').val() ? 'selected' : '') +
+                                '>' + data[i]['abbreviatedName'] +
+                                '</option>';
+                        });
+                        $("#SubsidiaryCompanyId").empty();
+                        $('#SubsidiaryCompanyId').append(optionhtml);
+                    },
+                    error: function () {
+                    }
+                });
+            },
+            error: function () {
+            }
+        });
+    };
+
+    var source = new ol.source.Vector();
+    var layer = new ol.layer.Vector({
+        source: source
+    });
+    var pointsCount = $('#PointsAmount').val();
+    var point = new ol.geom.Point();
+    var line = new ol.geom.LineString();
+    var polygon = new ol.geom.Polygon();
+
+
+    var map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            }),
+            layer
+        ],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([76.9455, 43.2357]),
+            zoom: 10
+        })
+    });
+
+    map.on('click', function (event) {
+        var coordinates = event.coordinate;
+        if (pointsCount == 1) {
+            point = new ol.geom.Point(
+                coordinates
+            );
+            var featurething = new ol.Feature({
+                geometry: point
+            });
+            source.clear();
+            source.addFeature(featurething);
+            $('#NorthLatitude1').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+            $('#EastLongitude1').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+        }
+        if (pointsCount == 2) {
+            if ($('#NorthLatitude1').val() == '' || $('#EastLongitude1').val() == '') {
+                $('#NorthLatitude1').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+                $('#EastLongitude1').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+            }
+            else if ($('#NorthLatitude2').val() == '' || $('#EastLongitude2').val() == '') {
+                $('#NorthLatitude2').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+                $('#EastLongitude2').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+                var coordinate1 = [parseFloat($('#EastLongitude1').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').val().toString().replace(',', '.'))]
+                coordinate1 = ol.proj.transform(coordinate1, 'EPSG:4326', 'EPSG:3857');
+                line = new ol.geom.LineString(
+                    [[coordinate1[0], coordinate1[1]], coordinates]
+                );
+                var featurething = new ol.Feature({
+                    geometry: line
+                });
+                source.clear();
+                source.addFeature(featurething);
+            }
+            else {
+                $('#NorthLatitude1').val($('#NorthLatitude2').val());
+                $('#EastLongitude1').val($('#EastLongitude2').val());
+                $('#NorthLatitude2').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+                $('#EastLongitude2').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+                var coordinate1 = [parseFloat($('#EastLongitude1').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').val().toString().replace(',', '.'))],
+                    coordinate2 = [parseFloat($('#EastLongitude2').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude2').val().toString().replace(',', '.'))];
+                coordinate1 = ol.proj.transform(coordinate1, 'EPSG:4326', 'EPSG:3857');
+                coordinate2 = ol.proj.transform(coordinate2, 'EPSG:4326', 'EPSG:3857');
+                line = new ol.geom.LineString(
+                    [[coordinate1[0], coordinate1[1]], [coordinate2[0], coordinate2[1]]]
+                );
+                var featurething = new ol.Feature({
+                    geometry: line
+                });
+                source.clear();
+                source.addFeature(featurething);
+            }
+        }
+        if (pointsCount == 4) {
+            if ($('#NorthLatitude1').val() == '' || $('#EastLongitude1').val() == '') {
+                $('#NorthLatitude1').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+                $('#EastLongitude1').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+            }
+            else if ($('#NorthLatitude2').val() == '' || $('#EastLongitude2').val() == '') {
+                $('#NorthLatitude2').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+                $('#EastLongitude2').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+                var coordinate1 = [parseFloat($('#EastLongitude1').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').val().toString().replace(',', '.'))],
+                    coordinate2 = [parseFloat($('#EastLongitude2').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude2').val().toString().replace(',', '.'))];
+                coordinate1 = ol.proj.transform(coordinate1, 'EPSG:4326', 'EPSG:3857');
+                coordinate2 = ol.proj.transform(coordinate2, 'EPSG:4326', 'EPSG:3857');
+                polygon = new ol.geom.Polygon(
+                    [[
+                        [coordinate1[0], coordinate1[1]],
+                        [coordinate2[0], coordinate2[1]],
+                        [coordinate1[0], coordinate1[1]]
+                    ]]
+                );
+                var featurething = new ol.Feature({
+                    geometry: polygon
+                });
+                source.clear();
+                source.addFeature(featurething);
+            }
+            else if ($('#NorthLatitude3').val() == '' || $('#EastLongitude3').val() == '') {
+                $('#NorthLatitude3').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+                $('#EastLongitude3').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+                var coordinate1 = [parseFloat($('#EastLongitude1').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').val().toString().replace(',', '.'))],
+                    coordinate2 = [parseFloat($('#EastLongitude2').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude2').val().toString().replace(',', '.'))],
+                    coordinate3 = [parseFloat($('#EastLongitude3').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude3').val().toString().replace(',', '.'))];
+                coordinate1 = ol.proj.transform(coordinate1, 'EPSG:4326', 'EPSG:3857');
+                coordinate2 = ol.proj.transform(coordinate2, 'EPSG:4326', 'EPSG:3857');
+                coordinate3 = ol.proj.transform(coordinate3, 'EPSG:4326', 'EPSG:3857');
+                polygon = new ol.geom.Polygon(
+                    [[
+                        [coordinate1[0], coordinate1[1]],
+                        [coordinate2[0], coordinate2[1]],
+                        [coordinate3[0], coordinate3[1]]
+                    ]]
+                );
+                var featurething = new ol.Feature({
+                    geometry: polygon
+                });
+                source.clear();
+                source.addFeature(featurething);
+            }
+            else if ($('#NorthLatitude4').val() == '' || $('#EastLongitude4').val() == '') {
+                $('#NorthLatitude4').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+                $('#EastLongitude4').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+                var coordinate1 = [parseFloat($('#EastLongitude1').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').val().toString().replace(',', '.'))],
+                    coordinate2 = [parseFloat($('#EastLongitude2').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude2').val().toString().replace(',', '.'))],
+                    coordinate3 = [parseFloat($('#EastLongitude3').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude3').val().toString().replace(',', '.'))],
+                    coordinate4 = [parseFloat($('#EastLongitude4').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude4').val().toString().replace(',', '.'))];
+                coordinate1 = ol.proj.transform(coordinate1, 'EPSG:4326', 'EPSG:3857');
+                coordinate2 = ol.proj.transform(coordinate2, 'EPSG:4326', 'EPSG:3857');
+                coordinate3 = ol.proj.transform(coordinate3, 'EPSG:4326', 'EPSG:3857');
+                coordinate4 = ol.proj.transform(coordinate4, 'EPSG:4326', 'EPSG:3857');
+                polygon = new ol.geom.Polygon(
+                    [[
+                        [coordinate1[0], coordinate1[1]],
+                        [coordinate2[0], coordinate2[1]],
+                        [coordinate3[0], coordinate3[1]],
+                        [coordinate4[0], coordinate4[1]]
+                    ]]
+                );
+                var featurething = new ol.Feature({
+                    geometry: polygon
+                });
+                source.clear();
+                source.addFeature(featurething);
+            }
+            else {
+                $('#NorthLatitude1').val($('#NorthLatitude2').val());
+                $('#EastLongitude1').val($('#EastLongitude2').val());
+                $('#NorthLatitude2').val($('#NorthLatitude3').val());
+                $('#EastLongitude2').val($('#EastLongitude3').val());
+                $('#NorthLatitude3').val($('#NorthLatitude4').val());
+                $('#EastLongitude3').val($('#EastLongitude4').val());
+                $('#NorthLatitude4').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+                $('#EastLongitude4').val(ol.proj.transform(coordinates, 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+                var coordinate1 = [parseFloat($('#EastLongitude1').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').val().toString().replace(',', '.'))],
+                    coordinate2 = [parseFloat($('#EastLongitude2').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude2').val().toString().replace(',', '.'))],
+                    coordinate3 = [parseFloat($('#EastLongitude3').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude3').val().toString().replace(',', '.'))],
+                    coordinate4 = [parseFloat($('#EastLongitude4').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude4').val().toString().replace(',', '.'))];
+                coordinate1 = ol.proj.transform(coordinate1, 'EPSG:4326', 'EPSG:3857');
+                coordinate2 = ol.proj.transform(coordinate2, 'EPSG:4326', 'EPSG:3857');
+                coordinate3 = ol.proj.transform(coordinate3, 'EPSG:4326', 'EPSG:3857');
+                coordinate4 = ol.proj.transform(coordinate4, 'EPSG:4326', 'EPSG:3857');
+                polygon = new ol.geom.Polygon(
+                    [[
+                        [coordinate1[0], coordinate1[1]],
+                        [coordinate2[0], coordinate2[1]],
+                        [coordinate3[0], coordinate3[1]],
+                        [coordinate4[0], coordinate4[1]]
+                    ]]
+                );
+                var featurething = new ol.Feature({
+                    geometry: polygon
+                });
+                source.clear();
+                source.addFeature(featurething);
+            }
+        }
+    });
+
+    function ChangeCoordinates() {
+        if (pointsCount == 1) {
+            var coordinates = [parseFloat($('#EastLongitude1').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').val().toString().replace(',', '.'))];
+            coordinates = ol.proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857');
+            var thing = new ol.geom.Point(
+                [coordinates[0], coordinates[1]]
+            );
+            var featurething = new ol.Feature({
+                geometry: thing
+            });
+            source.clear();
+            source.addFeature(featurething);
+        }
+        if (pointsCount == 2) {
+            var coordinate1 = [parseFloat($('#EastLongitude1').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').val().toString().replace(',', '.'))],
+                coordinate2 = [parseFloat($('#EastLongitude2').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude2').val().toString().replace(',', '.'))];
+            coordinate1 = ol.proj.transform(coordinate1, 'EPSG:4326', 'EPSG:3857');
+            coordinate2 = ol.proj.transform(coordinate2, 'EPSG:4326', 'EPSG:3857');
+            line = new ol.geom.LineString(
+                [[coordinate1[0], coordinate1[1]], [coordinate2[0], coordinate2[1]]]
+            );
+            var featurething = new ol.Feature({
+                geometry: line
+            });
+            source.clear();
+            source.addFeature(featurething);
+        }
+        if (pointsCount == 4) {
+            var coordinate1 = [parseFloat($('#EastLongitude1').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude1').val().toString().replace(',', '.'))],
+                coordinate2 = [parseFloat($('#EastLongitude2').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude2').val().toString().replace(',', '.'))],
+                coordinate3 = [parseFloat($('#EastLongitude3').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude3').val().toString().replace(',', '.'))],
+                coordinate4 = [parseFloat($('#EastLongitude4').val().toString().replace(',', '.')), parseFloat($('#NorthLatitude4').val().toString().replace(',', '.'))];
+            coordinate1 = ol.proj.transform(coordinate1, 'EPSG:4326', 'EPSG:3857');
+            coordinate2 = ol.proj.transform(coordinate2, 'EPSG:4326', 'EPSG:3857');
+            coordinate3 = ol.proj.transform(coordinate3, 'EPSG:4326', 'EPSG:3857');
+            coordinate4 = ol.proj.transform(coordinate4, 'EPSG:4326', 'EPSG:3857');
+            polygon = new ol.geom.Polygon(
+                [[
+                    [coordinate1[0], coordinate1[1]],
+                    [coordinate2[0], coordinate2[1]],
+                    [coordinate3[0], coordinate3[1]],
+                    [coordinate4[0], coordinate4[1]]
+                ]]
+            );
+            var featurething = new ol.Feature({
+                geometry: polygon
+            });
+            source.clear();
+            source.addFeature(featurething);
+        }
+    };
+
+    function ChangeEmissionSourceType() {
+        $.ajax({
+            url: '@Url.Action("GetEmissionSourceTypePointsAmountById")',
+            data: { EmissionSourceTypeId: $('#EmissionSourceTypeId option:selected').val() },
+            type: 'POST',
+            success: function (data) {
+                if (pointsCount != data) {
+                    $('#NorthLatitude1').val('');
+                    $('#EastLongitude1').val('');
+                    $('#NorthLatitude2').val('');
+                    $('#EastLongitude2').val('');
+                    $('#NorthLatitude3').val('');
+                    $('#EastLongitude3').val('');
+                    $('#NorthLatitude4').val('');
+                    $('#EastLongitude4').val('');
+                    source.clear();
+                }
+                pointsCount = data;
+                if (pointsCount == 1) {
+                    $('.coordinates2').hide();
+                    $('.coordinates3').hide();
+                    $('.coordinates4').hide();
+                    $('.LengthOfMouth').show();
+                }
+                if (pointsCount == 2) {
+                    $('.coordinates2').show();
+                    $('.coordinates3').hide();
+                    $('.coordinates4').hide();
+                    $('.LengthOfMouth').hide();
+                }
+                if (pointsCount == 4) {
+                    $('.coordinates2').show();
+                    $('.coordinates3').show();
+                    $('.coordinates4').show();
+                    $('.LengthOfMouth').hide();
+                }
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function ChangeDiameterSpeedVolume() {
+        if ($('#DiameterOfMouthOfPipesOrWidth').val() == '' && $('#SpeedOfGasAirMixture').val() != '' && $('#VolumeOfGasAirMixture').val() != '') {
+            $('#DiameterOfMouthOfPipesOrWidth').val($('#VolumeOfGasAirMixture').val() / $('#SpeedOfGasAirMixture').val());
+        }
+        else if ($('#DiameterOfMouthOfPipesOrWidth').val() != '' && $('#SpeedOfGasAirMixture').val() == '' && $('#VolumeOfGasAirMixture').val() != '') {
+            $('#SpeedOfGasAirMixture').val($('#VolumeOfGasAirMixture').val() / $('#DiameterOfMouthOfPipesOrWidth').val());
+        }
+        else if ($('#DiameterOfMouthOfPipesOrWidth').val() != '' && $('#SpeedOfGasAirMixture').val() != '' && $('#VolumeOfGasAirMixture').val() == '') {
+            $('#VolumeOfGasAirMixture').val($('#DiameterOfMouthOfPipesOrWidth').val() * $('#SpeedOfGasAirMixture').val());
+        }
+    };
+
+    $(document).ready(function () {
+        ChangeCompany();
+        ChangeEmissionSourceType();
+        ChangeCoordinates();
+    });
+</script>

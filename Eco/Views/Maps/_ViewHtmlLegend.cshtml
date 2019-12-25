@@ -1,0 +1,745 @@
+﻿@using Eco.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+<div id="tabLegend" style="overflow:auto;">
+    <div id="legend_KazHydrometAirPosts" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_1"]</p>
+        <table>
+            @*<tr><td><svg height="7" width="7"><circle class="legend-opacity" cx="3" cy="3" r="3" stroke=#00ff00 stroke-width="1" fill=#00ff00 opacity="0.5" /></svg></td><td></td></tr>*@
+            <tr><td><img @*class="legend-opacity" *@ src="~/images/KazHydrometAirPosts.png" @*style="opacity: 0.5;" *@ /></td></tr>
+        </table>
+    </div>
+    <div id="legend_AirPosts" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_2"]</p>
+        <table>
+            @*<tr><td><svg height="7" width="7"><circle class="legend-opacity" cx="3" cy="3" r="3" stroke=#ff0000 stroke-width="1" fill=#ff0000 opacity="0.5" /></svg></td><td></td></tr>*@
+            <tr><td><img @*class="legend-opacity" *@ src="~/images/AirPosts.png" @*style="opacity: 0.5;" *@ /></td></tr>
+        </table>
+    </div>
+    <div id="legend_Companies" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_1"]</p>
+        <table>
+            @*<tr><td><svg height="7" width="7"><circle class="legend-opacity" cx="3" cy="3" r="3" stroke=#808040 stroke-width="1" fill=#808040 opacity="0.5" /></svg></td><td></td></tr>*@
+            <tr><td><img @*class="legend-opacity" *@ src="~/images/Companies.png" @*style="opacity: 0.5;" *@ /></td></tr>
+        </table>
+    </div>
+    <div id="legend_EmissionSources" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_2"]</p>
+        <table>
+            @*<tr><td><svg height="7" width="7"><circle cx="3" cy="3" r="3" stroke=#000000 stroke-width="1" fill=#000000 opacity="0.5" /></svg></td><td></td></tr>*@
+            <tr><td><img @*class="legend-opacity" *@ src="~/images/EmissionSources.png" @*style="opacity: 0.5; " *@ /></td></tr>
+        </table>
+    </div>
+    <div class="legend legend_TotalRWinter7_po0301 legend_TotalRWinter7_po0330 legend_TotalRWinter7_po0337 legend_TotalRWinter7_po1071 legend_TotalRWinter7_po1325 legend_TotalRWinter7_po2902 legend_TotalRWinter7_po__02 legend_TotalRWinter7_po__PL legend_TotalRSummer7_po0301 legend_TotalRSummer7_po0330 legend_TotalRSummer7_po0337 legend_TotalRSummer7_po1071 legend_TotalRSummer7_po1325 legend_TotalRSummer7_po2902 legend_TotalRSummer7_po__02 legend_TotalRSummer7_po__PL" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_3"]</p>
+        <table class="table-legend">
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffffff;"></div> </td> <td><= 0,2</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #267300;"></div> </td> <td>0,2 - 0,3</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #38a800;"></div> </td> <td>0,3 - 0,4</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #4ce600;"></div> </td> <td>0,4 - 0,5</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #a3ff73;"></div> </td> <td>0,5 - 0,7</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #e9ffbe;"></div> </td> <td>0,7 - 1</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffff73;"></div> </td> <td>1 - 1,25</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffd37f;"></div> </td> <td>1,25 - 1,5</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffaa00;"></div> </td> <td>1,5 - 1,75</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #e64c00;"></div> </td> <td>1,75 - 2</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #a83800;"></div> </td> <td>2 - 3</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #730000;"></div> </td> <td>3 - 5</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #4c0073;"></div> </td> <td>> 5</td> </tr>
+        </table>
+    </div>
+
+    <div id="legend_windir" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["MapsWind"]</p>
+        <table>
+            <tr><td><img src="~/images/magn_1.png" /></td><td>@SharedLocalizer["ms1"]</td></tr>
+            <tr><td><img src="~/images/magn_2.png" /></td><td>@SharedLocalizer["ms2"]</td></tr>
+            <tr><td><img src="~/images/magn_3.png" /></td><td>@SharedLocalizer["ms3"]</td></tr>
+            <tr><td><img src="~/images/magn_4.png" /></td><td>@SharedLocalizer["ms4"]</td></tr>
+            <tr><td><img src="~/images/magn_5.png" /></td><td>@SharedLocalizer["ms5"]</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_promso2_10_2017022600 legend_promso2_10_2017022609 legend_promso2_10_2017022612 legend_promso2_10_2017022615 legend_promso2_10_2017022618 legend_promso2_10_2017022621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_4_1_1"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ede8e4;"></div></td><td>0,1 - 0,2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#dbd0c8;"></div></td><td>0,2 - 0,3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c7b7ab;"></div></td><td>0,3 - 0,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#b8a595;"></div></td><td>0,5 - 0,7</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a68e7c;"></div></td><td>0,7 - 0,9</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#947a66;"></div></td><td>0,9 - 1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#856952;"></div></td><td>1 - 1,1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#755941;"></div></td><td>1,1 - 1,2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#664830;"></div></td><td>> 1,5</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_promno2_10_2017022600 legend_promno2_10_2017022609 legend_promno2_10_2017022612 legend_promno2_10_2017022615 legend_promno2_10_2017022618 legend_promno2_10_2017022621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_4_1_2"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffefe0;"></div></td><td>0,2 - 0,2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffdfc2;"></div></td><td>0,2 - 0,3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffd0a6;"></div></td><td>0,3 - 0,4</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffbf8a;"></div></td><td>0,4 - 0,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffb170;"></div></td><td>0,5 - 0,6</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffa057;"></div></td><td>0,6 - 0,7</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fa933e;"></div></td><td>0,7 - 0,8</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f58427;"></div></td><td>0,8 - 0,9</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f07604;"></div></td><td>> 1</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_promno_10_2017022600 legend_promno_10_2017022609 legend_promno_10_2017022612 legend_promno_10_2017022615 legend_promno_10_2017022618 legend_promno_10_2017022621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_4_1_3"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,02</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f7dede;"></div></td><td>0,02 - 0,04</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f0bdbd;"></div></td><td>0,04 - 0,06</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#eba2a2;"></div></td><td>0,06 - 0,08</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e38484;"></div></td><td>0,08 - 0,1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#de6a6a;"></div></td><td>0,1 - 0,12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d64f4f;"></div></td><td>0,12 - 0,14</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d13838;"></div></td><td>0,14 - 0,17</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c91f1f;"></div></td><td>0,17 - 0,2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c40a0a;"></div></td><td>> 0,23</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_prompm70_10_2017022600 legend_prompm70_10_2017022609 legend_prompm70_10_2017022612 legend_prompm70_10_2017022615 legend_prompm70_10_2017022618 legend_prompm70_10_2017022621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_4_1_4"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,03</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e9faf2;"></div></td><td>0,03 - 0,06</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d1f5e4;"></div></td><td>0,06 - 0,09</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#bcf0d8;"></div></td><td>0,09 - 0,12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a7ebcb;"></div></td><td>0,12 - 0,15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#91e6bf;"></div></td><td>0,15 - 0,18</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#79e0b4;"></div></td><td>0,18 - 0,21</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#63dba7;"></div></td><td>0,21 - 0,24</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#4ad49d;"></div></td><td>0,24 - 0,27</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#30cf92;"></div></td><td>> 0,31</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_promsum2017022600 legend_promsum2017022609 legend_promsum2017022612 legend_promsum2017022615 legend_promsum2017022618 legend_promsum2017022621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_4_1_5"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,03</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e9faf2;"></div></td><td>0,03 - 0,06</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d1f5e4;"></div></td><td>0,06 - 0,09</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#bcf0d8;"></div></td><td>0,09 - 0,12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a7ebcb;"></div></td><td>0,12 - 0,15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#91e6bf;"></div></td><td>0,15 - 0,18</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#79e0b4;"></div></td><td>0,18 - 0,21</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#63dba7;"></div></td><td>0,21 - 0,24</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#4ad49d;"></div></td><td>0,24 - 0,27</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#30cf92;"></div></td><td>> 0,31</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_promso2_10_2017072600 legend_promso2_10_2017072609 legend_promso2_10_2017072612 legend_promso2_10_2017072615 legend_promso2_10_2017072618 legend_promso2_10_2017072621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_4_2_1"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ede8e4;"></div></td><td>0,1 - 0,2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#dbd0c8;"></div></td><td>0,2 - 0,3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c7b7ab;"></div></td><td>0,3 - 0,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#b8a595;"></div></td><td>0,5 - 0,7</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a68e7c;"></div></td><td>0,7 - 0,9</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#947a66;"></div></td><td>0,9 - 1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#856952;"></div></td><td>1 - 1,1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#755941;"></div></td><td>1,1 - 1,2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#664830;"></div></td><td>> 1,5</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_promno2_10_2017072600 legend_promno2_10_2017072609 legend_promno2_10_2017072612 legend_promno2_10_2017072615 legend_promno2_10_2017072618 legend_promno2_10_2017072621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_4_2_2"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,025</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffefe0;"></div></td><td>0,025 - 0,05</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffdfc2;"></div></td><td>0,05 - 0,075</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffd0a6;"></div></td><td>0,075 - 0,1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffbf8a;"></div></td><td>0,1 - 0,125</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffb170;"></div></td><td>0,125 - 0,15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffa057;"></div></td><td>0,15 - 0,175</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fa933e;"></div></td><td>0,175 - 0,2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f58427;"></div></td><td>0,2 - 0,225</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f07604;"></div></td><td>> 0,25</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_promno_10_2017072600 legend_promno_10_2017072609 legend_promno_10_2017072612 legend_promno_10_2017072615 legend_promno_10_2017072618 legend_promno_10_2017072621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_4_2_3"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,02</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f7dede;"></div></td><td>0,02 - 0,04</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f0bdbd;"></div></td><td>0,04 - 0,06</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#eba2a2;"></div></td><td>0,06 - 0,08</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e38484;"></div></td><td>0,08 - 0,1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#de6a6a;"></div></td><td>0,1 - 0,12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d64f4f;"></div></td><td>0,12 - 0,14</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d13838;"></div></td><td>0,14 - 0,17</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c91f1f;"></div></td><td>0,17 - 0,2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c40a0a;"></div></td><td>> 0,23</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_prompm70_10_2017072600 legend_prompm70_10_2017072609 legend_prompm70_10_2017072612 legend_prompm70_10_2017072615 legend_prompm70_10_2017072618 legend_prompm70_10_2017072621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_4_2_4"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,03</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e9faf2;"></div></td><td>0,03 - 0,06</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d1f5e4;"></div></td><td>0,06 - 0,09</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#bcf0d8;"></div></td><td>0,09 - 0,12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a7ebcb;"></div></td><td>0,12 - 0,15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#91e6bf;"></div></td><td>0,15 - 0,18</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#79e0b4;"></div></td><td>0,18 - 0,21</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#63dba7;"></div></td><td>0,21 - 0,24</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#4ad49d;"></div></td><td>0,24 - 0,27</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#30cf92;"></div></td><td>> 0,31</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_promsum2017072600 legend_promsum2017072609 legend_promsum2017072612 legend_promsum2017072615 legend_promsum2017072618 legend_promsum2017072621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_3_4_2_5"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,03</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e9faf2;"></div></td><td>0,03 - 0,06</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d1f5e4;"></div></td><td>0,06 - 0,09</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#bcf0d8;"></div></td><td>0,09 - 0,12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a7ebcb;"></div></td><td>0,12 - 0,15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#91e6bf;"></div></td><td>0,15 - 0,18</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#79e0b4;"></div></td><td>0,18 - 0,21</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#63dba7;"></div></td><td>0,21 - 0,24</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#4ad49d;"></div></td><td>0,24 - 0,27</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#30cf92;"></div></td><td>> 0,31</td></tr>
+        </table>
+    </div>
+
+    <div id="legend_TransportPosts" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_4_1"]</p>
+        <table>
+            @*<tr><td><svg height="7" width="7"><circle class="legend-opacity" cx="3" cy="3" r="3" stroke=#0080ff stroke-width="1" fill=#0080ff opacity="0.5" /></svg></td><td></td></tr>*@
+            <tr><td><img @*class="legend-opacity" *@ src="~/images/TransportPosts.png" @*style="opacity: 0.5;" *@ /></td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_TotalRTransport7_po0301 legend_TotalRTransport7_po0330 legend_TotalRTransport7_po0337 legend_TotalRTransport7_po1325 legend_TotalRTransport7_po__31" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_4_2"]</p>
+        <table class="table-legend">
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffffff;"></div> </td> <td><= 0,2</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #267300;"></div> </td> <td>0,2 - 0,3</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #38a800;"></div> </td> <td>0,3 - 0,4</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #4ce600;"></div> </td> <td>0,4 - 0,5</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #a3ff73;"></div> </td> <td>0,5 - 0,7</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #e9ffbe;"></div> </td> <td>0,7 - 1</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffff73;"></div> </td> <td>1 - 1,25</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffd37f;"></div> </td> <td>1,25 - 1,5</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffaa00;"></div> </td> <td>1,5 - 1,75</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #e64c00;"></div> </td> <td>1,75 - 2</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #a83800;"></div> </td> <td>2 - 3</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #730000;"></div> </td> <td>3 - 5</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #4c0073;"></div> </td> <td>> 5</td> </tr>
+        </table>
+    </div>
+
+    <div class="legend legend_avtono2_80_2017022600 legend_avtono2_80_2017022609 legend_avtono2_80_2017022612 legend_avtono2_80_2017022615 legend_avtono2_80_2017022618 legend_avtono2_80_2017022621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_4_3_1_1"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffefe0;"></div></td><td>1 - 2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffdfc2;"></div></td><td>2 - 3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffd0a6;"></div></td><td>3 - 5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffbf8a;"></div></td><td>5 - 7</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffb170;"></div></td><td>7 - 10</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffa057;"></div></td><td>10 - 12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fa933e;"></div></td><td>12 - 15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f58427;"></div></td><td>15 - 17</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f07604;"></div></td><td>> 22</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_avtoco_80_2017022600 legend_avtoco_80_2017022609 legend_avtoco_80_2017022612 legend_avtoco_80_2017022615 legend_avtoco_80_2017022618 legend_avtoco_80_2017022621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_4_3_1_2"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#dfe8e7;"></div></td><td>0,5 - 1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c1d1cf;"></div></td><td>1 - 2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a5bdb9;"></div></td><td>2 - 3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#88a8a4;"></div></td><td>3 - 4</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#6f9490;"></div></td><td>4 - 5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#57827d;"></div></td><td>5 - 6</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#41706b;"></div></td><td>6 - 7</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#2a5e59;"></div></td><td>7 - 8</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#154f4a;"></div></td><td>> 9</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_avtono2_80_2017072600 legend_avtono2_80_2017072609 legend_avtono2_80_2017072612 legend_avtono2_80_2017072615 legend_avtono2_80_2017072618 legend_avtono2_80_2017072621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_4_3_2_1"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffefe0;"></div></td><td>0,5 - 1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffdfc2;"></div></td><td>1 - 2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffd0a6;"></div></td><td>2 - 3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffbf8a;"></div></td><td>3 - 4</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffb170;"></div></td><td>4 - 5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffa057;"></div></td><td>5 - 6</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fa933e;"></div></td><td>6 - 7</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f58427;"></div></td><td>7 - 8</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f07604;"></div></td><td>> 9,5</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_avtoco_80_2017072600 legend_avtoco_80_2017072609 legend_avtoco_80_2017072612 legend_avtoco_80_2017072615 legend_avtoco_80_2017072618 legend_avtoco_80_2017072621" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_4_3_2_2"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffff;"></div></td><td><= 0,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#dfe8e7;"></div></td><td>0,5 - 1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c1d1cf;"></div></td><td>1 - 1,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a5bdb9;"></div></td><td>1,5 - 2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#88a8a4;"></div></td><td>2 - 2,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#6f9490;"></div></td><td>2,5 - 3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#57827d;"></div></td><td>3 - 3,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#41706b;"></div></td><td>3,5 - 4</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#2a5e59;"></div></td><td>4 - 4,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#154f4a;"></div></td><td>> 5</td></tr>
+        </table>
+    </div>
+
+    <div class="legend legend_TotalRSummary7_po0184 legend_TotalRSummary7_po0301 legend_TotalRSummary7_po0304 legend_TotalRSummary7_po0328 legend_TotalRSummary7_po0330 legend_TotalRSummary7_po0337 legend_TotalRSummary7_po0703 legend_TotalRSummary7_po1325 legend_TotalRSummary7_po2754 legend_TotalRSummary7_po__02 legend_TotalRSummary7_po__31" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_5_1"]</p>
+        <table class="table-legend">
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffffff;"></div> </td> <td><= 0,2</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #267300;"></div> </td> <td>0,2 - 0,3</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #38a800;"></div> </td> <td>0,3 - 0,4</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #4ce600;"></div> </td> <td>0,4 - 0,5</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #a3ff73;"></div> </td> <td>0,5 - 0,7</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #e9ffbe;"></div> </td> <td>0,7 - 1</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffff73;"></div> </td> <td>1 - 1,25</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffd37f;"></div> </td> <td>1,25 - 1,5</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffaa00;"></div> </td> <td>1,5 - 1,75</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #e64c00;"></div> </td> <td>1,75 - 2</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #a83800;"></div> </td> <td>2 - 3</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #730000;"></div> </td> <td>3 - 5</td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #4c0073;"></div> </td> <td>> 5</td> </tr>
+        </table>
+    </div>
+
+    <div class="legend legend_allsum201702_avg legend_allsum201707_avg" hidden="hidden">
+        <p>@SharedLocalizer["Maps1_5_2"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#37a600;"></div></td><td><= 1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#8bd100;"></div></td><td>1 - 2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f5f500;"></div></td><td>2 - 5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ff8000;"></div></td><td>5 - 7</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f50000;"></div></td><td>> 12,6</td></tr>
+        </table>
+    </div>
+
+    <div id="legend_WaterSurfacePosts" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps2_1"]</p>
+        <table>
+            @*<tr><td><svg height="7" width="7"><circle class="legend-opacity" cx="3" cy="3" r="3" stroke=#2f53f2 stroke-width="1" fill=#2f53f2 opacity="0.5" /></svg></td><td></td></tr>*@
+            <tr><td><img @*class="legend-opacity" *@ src="~/images/WaterSurfacePosts.png" @*style="opacity: 0.5;" *@ /></td></tr>
+        </table>
+    </div>
+
+    <div id="legend_KazHydrometWaterPosts" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps2_2"]</p>
+        <table>
+            @*<tr><td><svg height="7" width="7"><circle class="legend-opacity" cx="3" cy="3" r="3" stroke=#2e8af2 stroke-width="1" fill=#2e8af2 opacity="0.5" /></svg></td><td></td></tr>*@
+            <tr><td><img @*class="legend-opacity" *@ src="~/images/KazHydrometWaterPosts.png" @*style="opacity: 0.5;" *@ /></td></tr>
+        </table>
+    </div>
+
+    <div id="legend_vodoohr_polosa" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps2_3"]</p>
+        <table class="table-legend">
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #29628a;"></div> </td> </tr>
+        </table>
+    </div>
+    <div id="legend_vodoohr_zona" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps2_4"]</p>
+        <table class="table-legend">
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #29628a;"></div> </td> </tr>
+        </table>
+    </div>
+
+    <div id="legend_vegpol" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps3_1"]</p>
+        <table class="table-legend">
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #38a800;"></div> </td> </tr>
+        </table>
+    </div>
+
+    <div id="legend_planvegpol" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps3_2"]</p>
+        <table class="table-legend">
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #aaff00;"></div> </td> <td> @SharedLocalizer["Planvegpol1"] </td> </tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffff73;"></div> </td> <td> @SharedLocalizer["Planvegpol2"] </td></tr>
+            <tr> <td> <div class="legend-opacity" style="opacity: 0.5; background-color: #ffaa00;"></div> </td> <td> @SharedLocalizer["Planvegpol3"] </td></tr>
+        </table>
+    </div>
+
+    <div id="legend_SoilPosts" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_1"]</p>
+        <table>
+            @*<tr><td><svg height="7" width="7"><circle class="legend-opacity" cx="3" cy="3" r="3" stroke=#4f4f25 stroke-width="1" fill=#4f4f25 opacity="0.5" /></svg></td><td></td></tr>*@
+            <tr><td><img @*class="legend-opacity" *@ src="~/images/SoilPosts.png" @*style="opacity: 0.5;" *@ /></td></tr>
+        </table>
+    </div>
+
+    <div id="legend_KazHydrometSoilPosts" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_2"]</p>
+        <table>
+            @*<tr><td><svg height="7" width="7"><circle class="legend-opacity" cx="3" cy="3" r="3" stroke=#49404b stroke-width="1" fill=#49404b opacity="0.5" /></svg></td><td></td></tr>*@
+            <tr><td><img @*class="legend-opacity" *@ src="~/images/KazHydrometSoilPosts.png" @*style="opacity: 0.5;" *@ /></td></tr>
+        </table>
+    </div>
+
+    <div id="legend_soil_consSc3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_1"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#99ffff;"></div></td><td> <= 8</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d6f7a8;"></div></td><td>8 - 10</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffcc;"></div></td><td>10 - 12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fcdf02;"></div></td><td>12 - 14</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f5c2c1;"></div></td><td>14 - 16</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f598c8;"></div></td><td>> 18</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consP3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_2"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#99ffff;"></div></td><td> <= 8</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d6f7a8;"></div></td><td>8 - 10</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffcc;"></div></td><td>10 - 12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fcdf02;"></div></td><td>12 - 14</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f5c2c1;"></div></td><td>14 - 16</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f598c8;"></div></td><td>> 18</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consMn3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_3"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#9ee6f7;"></div></td><td> <= 500</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d6f5f0;"></div></td><td>500 - 550</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#cdffcc;"></div></td><td>550 - 600</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#9acc99;"></div></td><td>600 - 650</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#80b366;"></div></td><td>650 - 700</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#679934;"></div></td><td>> 750</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consPb3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_4"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#00ccff;"></div></td><td> <= 15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c3fafa;"></div></td><td>15 - 20</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d6f0ab;"></div></td><td>20 - 25</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f2f1d3;"></div></td><td>25 - 32</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f7e74f;"></div></td><td>32 - 40</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e6b9b8;"></div></td><td>40 - 60</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ff999b;"></div></td><td>60 - 80</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ff4c4c;"></div></td><td>80 - 100</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#cc3502;"></div></td><td>> 120</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consTi3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_5"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#0294fc;"></div></td><td> <= 2282</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a0e5e8;"></div></td><td>2282 - 2500</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#cdffcc;"></div></td><td>2500 - 3000</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#b2c70e;"></div></td><td>3000 - 3500</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#eaff00;"></div></td><td>3500 - 4000</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffd940;"></div></td><td>4000 - 4500</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fc9492;"></div></td><td>4500 - 5000</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ab1414;"></div></td><td>> 5500</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consZr3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_6"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#00ccff;"></div></td><td> <= 100</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c3fafa;"></div></td><td>100 - 120</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f3f5dc;"></div></td><td>120 - 140</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c7bf2a;"></div></td><td>140 - 160</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c2a263;"></div></td><td>160 - 180</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#eda17d;"></div></td><td>> 190</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consCr3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_7"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#99ff99;"></div></td><td> <= 41</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#cdffcc;"></div></td><td>41 - 50</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffcc;"></div></td><td>50 - 60</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fccbca;"></div></td><td>60 - 70</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ff9896;"></div></td><td>70 - 80</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ba5f8b;"></div></td><td>> 85</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consNi3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_8"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#7be1fa;"></div></td><td> <= 13</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a6e6ed;"></div></td><td>13 - 15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#8bd48a;"></div></td><td>15 - 20</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c5f779;"></div></td><td>20 - 25</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f5ffcc;"></div></td><td>25 - 30</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffee66;"></div></td><td>30 - 35</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#face4a;"></div></td><td>35 - 40</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fab367;"></div></td><td>> 45</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consBa3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_9"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e1f7e2;"></div></td><td> <= 620</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffcc;"></div></td><td>620 - 700</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fcf000;"></div></td><td>700 - 750</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f5d1d1;"></div></td><td>750 - 800</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f2b1b1;"></div></td><td>800 - 850</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ff6666;"></div></td><td>850 - 900</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#cc3502;"></div></td><td>> 950</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consBe3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_10"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d6f2d5;"></div></td><td> <= 2,1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffcc;"></div></td><td>2,1 - 2,3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fcf000;"></div></td><td>2,3 - 2,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fccbca;"></div></td><td>2,5 - 2,7</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f78fb2;"></div></td><td>> 2,9</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consMo3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_11"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#8edced;"></div></td><td> <= 1,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c9f7f7;"></div></td><td>1,5 - 1,8</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#cdffcc;"></div></td><td>1,8 - 2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f7fcc7;"></div></td><td>2 - 2,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffe600;"></div></td><td>2,5 - 3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f5b54f;"></div></td><td>3 - 5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f07a7a;"></div></td><td>> 10</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consSn3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_12"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#99ffff;"></div></td><td> <= 2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#def7f5;"></div></td><td>2 - 3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fbffcc;"></div></td><td>3 - 4</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ded447;"></div></td><td>4 - 5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffd900;"></div></td><td>5 - 7</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e0a772;"></div></td><td>> 8</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consV3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_13"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#258aa3;"></div></td><td> <= 57</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#9ee6f2;"></div></td><td>57 - 60</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e7f9fa;"></div></td><td>60 - 70</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c2dec2;"></div></td><td>70 - 80</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#93e694;"></div></td><td>80 - 90</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#679934;"></div></td><td>> 100</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consLi3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_14"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#99ffff;"></div></td><td> <= 9</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#def7f5;"></div></td><td>9 - 11</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fbffcc;"></div></td><td>11 - 13</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ded447;"></div></td><td>13 - 15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffd900;"></div></td><td>15 - 19</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e0a772;"></div></td><td>> 23</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consCu3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_15"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#99ff99;"></div></td><td> <= 25</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#cdffcc;"></div></td><td>25 - 30</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e4ffcc;"></div></td><td>30 - 35</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f6ffbf;"></div></td><td>35 - 40</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fce516;"></div></td><td>40 - 45</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e8d015;"></div></td><td>45 - 50</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fccbca;"></div></td><td>50 - 60</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ff999b;"></div></td><td>> 70</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consZn3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_16"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#33cc99;"></div></td><td> <= 70</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#99ff99;"></div></td><td>70 - 80</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ccff66;"></div></td><td>80 - 90</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffcd;"></div></td><td>90 - 110</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fccbca;"></div></td><td>110 - 130</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ba99ff;"></div></td><td>130 - 170</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#cc6633;"></div></td><td>> 200</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consAg3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_17"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e1fae1;"></div></td><td> <= 0,06</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f9faec;"></div></td><td>0,06 - 0,1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f5e29d;"></div></td><td>0,1 - 0,15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffea00;"></div></td><td>0,15 - 0,2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fccbca;"></div></td><td>0,2 - 0,3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ff999b;"></div></td><td>0,3 - 0,4</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ff6600;"></div></td><td>> 0,5</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consCo3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_18"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e1fae1;"></div></td><td> <= 7</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d6f7a8;"></div></td><td>7 - 9</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffffcc;"></div></td><td>9 - 11</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fcdf02;"></div></td><td>11 - 13</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f5c2c1;"></div></td><td>13 - 14</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f5b3d5;"></div></td><td>14 - 17</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f23b1a;"></div></td><td>> 20</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consGa3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_19"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#89f5f5;"></div></td><td><= 10</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ccfff4;"></div></td><td>10 - 11</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e1fae1;"></div></td><td>11 - 12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#afe0b0;"></div></td><td>12 - 13</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a7f558;"></div></td><td>> 14</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consGe3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_20"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#b9f0f0;"></div></td><td><= 0,9</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#26dfff;"></div></td><td>0,9 - 1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#cdffcc;"></div></td><td>1 - 1,2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#9acc99;"></div></td><td>1,2 - 1,3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#679934;"></div></td><td>> 1,4</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consNb3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_21"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#89f5f5;"></div></td><td><= 10</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ccfff4;"></div></td><td>10 - 11</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e1fae1;"></div></td><td>11 - 12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#afe0b0;"></div></td><td>12 - 13</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a7f558;"></div></td><td>> 14</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consSr3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_22"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#00ccff;"></div></td><td><= 150</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ace2f2;"></div></td><td>150 - 170</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e7f0f5;"></div></td><td>170 - 200</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#baf2cf;"></div></td><td>200 - 220</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#abf073;"></div></td><td>220 - 250</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#aeb087;"></div></td><td>250 - 270</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#79a37f;"></div></td><td>> 290</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consYb3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_23"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#99ffff;"></div></td><td><= 2,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#def7f5;"></div></td><td>2,5 - 2,7</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fbffcc;"></div></td><td>2,7 - 3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ded447;"></div></td><td>3 - 3,5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffd900;"></div></td><td>3,5 - 4</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e0a772;"></div></td><td>> 5</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consYt3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_24"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#b9edba;"></div></td><td><= 25</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f1f7d3;"></div></td><td>25 - 29</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fae948;"></div></td><td>29 - 35</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#dec856;"></div></td><td>35 - 40</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d9af43;"></div></td><td>40 - 50</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ba9937;"></div></td><td>> 57</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consZc3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_25"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#95e0f0;"></div></td><td> <= 1</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e1eded;"></div></td><td>1 - 2</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c3e3b1;"></div></td><td>2 - 3</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#bab979;"></div></td><td>3 - 5</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#d6b11e;"></div></td><td>5 - 8</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#e88f00;"></div></td><td>> 10</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_Gamma3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_26"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c9f7c9;"></div></td><td><= 0,145</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#a1e8a0;"></div></td><td>0,145 - 0,15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f3ff03;"></div></td><td>0,15 - 0,155</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffea00;"></div></td><td>0,155 - 0,16</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fccbca;"></div></td><td>0,16 - 0,165</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ff999b;"></div></td><td>0,165 - 0,17</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ff0000;"></div></td><td>> 0,175</td></tr>
+        </table>
+    </div>
+    <div id="legend_soil_consNeft3857" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps4_3_27"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#8edced;"></div></td><td><= 36</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c9f7f7;"></div></td><td>36 - 50</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#cdffcc;"></div></td><td>50 - 100</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f7fcc7;"></div></td><td>100 - 200</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#ffe600;"></div></td><td>200 - 300</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f5b54f;"></div></td><td>300 - 400</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f07a7a;"></div></td><td>> 500</td></tr>
+        </table>
+    </div>
+
+    <div id="legend_RawMaterialsCompanies" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps5_1"]</p>
+        <table>
+            @*<tr><td><svg height="7" width="7"><circle class="legend-opacity" cx="3" cy="3" r="3" stroke=#d224be stroke-width="1" fill=#d224be opacity="0.5" /></svg></td><td></td></tr>*@
+            <tr><td><img @*class="legend-opacity" *@ src="~/images/RawMaterialsCompanies.png" @*style="opacity: 0.5;" *@ /></td></tr>
+        </table>
+    </div>
+    <div id="legend_WasteRecyclingCompanies" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps5_2"]</p>
+        <table>
+            @*<tr><td><svg height="7" width="7"><circle class="legend-opacity" cx="3" cy="3" r="3" stroke=#cc5e90 stroke-width="1" fill=#cc5e90 opacity="0.5" /></svg></td><td></td></tr>*@
+            <tr><td><img @*class="legend-opacity" *@ src="~/images/WasteRecyclingCompanies.png" @*style="opacity: 0.5;" *@ /></td></tr>
+        </table>
+    </div>
+
+    <div id="legend_eco_zoning" class="legend" hidden="hidden">
+        <p>@SharedLocalizer["Maps6_1"]</p>
+        <table class="table-legend">
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#00f500;"></div></td><td><= 9</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#5ff700;"></div></td><td>9 - 10</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#94f700;"></div></td><td>10 - 12</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#c6f700;"></div></td><td>12 - 15</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f5f500;"></div></td><td>15 - 20</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fcc100;"></div></td><td>20 - 30</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fc8b00;"></div></td><td>30 - 40</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#fa5700;"></div></td><td>40 - 50</td></tr>
+            <tr><td><div class="legend-opacity" style="opacity: 0.5; background-color:#f50000;"></div></td><td>> 59</td></tr>
+        </table>
+    </div>
+</div>

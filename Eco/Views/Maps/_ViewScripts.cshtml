@@ -1,0 +1,1590 @@
+﻿@*<input id="test" type="text"/>*@
+
+<script>
+    var source = new ol.source.Vector();
+    var layer = new ol.layer.Vector({
+        source: source
+    });
+
+    var map = new ol.Map({
+        target: 'map',
+        layers: layers,
+        view: new ol.View({
+            center: ol.proj.fromLonLat([76.9455, 43.2357]),
+            zoom: 11
+        })
+    });
+
+    var $root = $("#tree")
+        .on('changed.jstree', function (e, data) {
+            var i, selected_layers = [];
+            for (i = 0; i < data.selected.length; i++) {
+                selected_layers.push(data.instance.get_node(data.selected[i]).id);
+            }
+            for (i = 0; i < layers.length; i++) {
+                layers[i].setVisible(false);
+                $('#legend_' + layers[i].get('name')).hide();
+                $('.legend_' + layers[i].get('name')).hide();
+                $('#info_' + layers[i].get('name')).hide();
+            }
+            $('#legend_windir').hide();
+            for (i = 0; i < layers.length; i++) {
+                if ($.inArray(layers[i].get('name'), selected_layers) >= 0 || layers[i].get('name') == 'OSM') {
+                    layers[i].setVisible(true);
+                    $('.legend_' + layers[i].get('name')).show();
+                    $('#legend_' + layers[i].get('name')).show();
+                    $('#info_' + layers[i].get('name')).show();
+                }
+            }
+            if (Layer_vegpol.getVisible()) {
+                Layer_GreemPlantsPassports.setVisible(true);
+                $('#info_GreemPlantsPassports').show();
+            }
+            if (Layer_promso2_10_2017022600.getVisible()
+                || Layer_promno2_10_2017022600.getVisible()
+                || Layer_promno_10_2017022600.getVisible()
+                || Layer_prompm70_10_2017022600.getVisible()
+                || Layer_avtono2_80_2017022600.getVisible()
+                || Layer_avtoco_80_2017022600.getVisible()) {
+                Layer_windir20170226385700.setVisible(true);
+                $('#legend_windir').show();
+            }
+            if (Layer_promso2_10_2017022609.getVisible()
+                || Layer_promno2_10_2017022609.getVisible()
+                || Layer_promno_10_2017022609.getVisible()
+                || Layer_prompm70_10_2017022609.getVisible()
+                || Layer_avtono2_80_2017022609.getVisible()
+                || Layer_avtoco_80_2017022609.getVisible()) {
+                Layer_windir20170226385709.setVisible(true);
+                $('#legend_windir').show();
+            }
+            if (Layer_promso2_10_2017022612.getVisible()
+                || Layer_promno2_10_2017022612.getVisible()
+                || Layer_promno_10_2017022612.getVisible()
+                || Layer_prompm70_10_2017022612.getVisible()
+                || Layer_avtono2_80_2017022612.getVisible()
+                || Layer_avtoco_80_2017022612.getVisible()) {
+                Layer_windir20170226385712.setVisible(true);
+                $('#legend_windir').show();
+            }
+            if (Layer_promso2_10_2017022615.getVisible()
+                || Layer_promno2_10_2017022615.getVisible()
+                || Layer_promno_10_2017022615.getVisible()
+                || Layer_prompm70_10_2017022615.getVisible()
+                || Layer_avtono2_80_2017022615.getVisible()
+                || Layer_avtoco_80_2017022615.getVisible()) {
+                Layer_windir20170226385715.setVisible(true);
+                $('#legend_windir').show();
+            }
+            if (Layer_promso2_10_2017022618.getVisible()
+                || Layer_promno2_10_2017022618.getVisible()
+                || Layer_promno_10_2017022618.getVisible()
+                || Layer_prompm70_10_2017022618.getVisible()
+                || Layer_avtono2_80_2017022618.getVisible()
+                || Layer_avtoco_80_2017022618.getVisible()) {
+                Layer_windir20170226385718.setVisible(true);
+                $('#legend_windir').show();
+            }
+            if (Layer_promso2_10_2017022621.getVisible()
+                || Layer_promno2_10_2017022621.getVisible()
+                || Layer_promno_10_2017022621.getVisible()
+                || Layer_prompm70_10_2017022621.getVisible()
+                || Layer_avtono2_80_2017022621.getVisible()
+                || Layer_avtoco_80_2017022621.getVisible()) {
+                Layer_windir20170226385721.setVisible(true);
+                $('#legend_windir').show();
+            }
+            if (Layer_promso2_10_2017072600.getVisible()
+                || Layer_promno2_10_2017072600.getVisible()
+                || Layer_promno_10_2017072600.getVisible()
+                || Layer_prompm70_10_2017072600.getVisible()
+                || Layer_avtono2_80_2017072600.getVisible()
+                || Layer_avtoco_80_2017072600.getVisible()) {
+                Layer_windir20170726385700.setVisible(true);
+                $('#legend_windir').show();
+            }
+            if (Layer_promso2_10_2017072609.getVisible()
+                || Layer_promno2_10_2017072609.getVisible()
+                || Layer_promno_10_2017072609.getVisible()
+                || Layer_prompm70_10_2017072609.getVisible()
+                || Layer_avtono2_80_2017072609.getVisible()
+                || Layer_avtoco_80_2017072609.getVisible()) {
+                Layer_windir20170726385709.setVisible(true);
+                $('#legend_windir').show();
+            }
+            if (Layer_promso2_10_2017072612.getVisible()
+                || Layer_promno2_10_2017072612.getVisible()
+                || Layer_promno_10_2017072612.getVisible()
+                || Layer_prompm70_10_2017072612.getVisible()
+                || Layer_avtono2_80_2017072612.getVisible()
+                || Layer_avtoco_80_2017072612.getVisible()) {
+                Layer_windir20170726385712.setVisible(true);
+                $('#legend_windir').show();
+            }
+            if (Layer_promso2_10_2017072615.getVisible()
+                || Layer_promno2_10_2017072615.getVisible()
+                || Layer_promno_10_2017072615.getVisible()
+                || Layer_prompm70_10_2017072615.getVisible()
+                || Layer_avtono2_80_2017072615.getVisible()
+                || Layer_avtoco_80_2017072615.getVisible()) {
+                Layer_windir20170726385715.setVisible(true);
+                $('#legend_windir').show();
+            }
+            if (Layer_promso2_10_2017072618.getVisible()
+                || Layer_promno2_10_2017072618.getVisible()
+                || Layer_promno_10_2017072618.getVisible()
+                || Layer_prompm70_10_2017072618.getVisible()
+                || Layer_avtono2_80_2017072618.getVisible()
+                || Layer_avtoco_80_2017072618.getVisible()) {
+                Layer_windir20170726385718.setVisible(true);
+                $('#legend_windir').show();
+            }
+            if (Layer_promso2_10_2017072621.getVisible()
+                || Layer_promno2_10_2017072621.getVisible()
+                || Layer_promno_10_2017072621.getVisible()
+                || Layer_prompm70_10_2017072621.getVisible()
+                || Layer_avtono2_80_2017072621.getVisible()
+                || Layer_avtoco_80_2017072621.getVisible()) {
+                Layer_windir20170726385721.setVisible(true);
+                $('#legend_windir').show();
+            }
+            //if (Layer_promso2_10_2017022600.getVisible()
+            //    || Layer_promso2_10_2017022609.getVisible()
+            //    || Layer_promso2_10_2017022612.getVisible()
+            //    || Layer_promso2_10_2017022615.getVisible()
+            //    || Layer_promso2_10_2017022618.getVisible()
+            //    || Layer_promso2_10_2017022621.getVisible()
+            //    || Layer_promno2_10_2017022600.getVisible()
+            //    || Layer_promno2_10_2017022609.getVisible()
+            //    || Layer_promno2_10_2017022612.getVisible()
+            //    || Layer_promno2_10_2017022615.getVisible()
+            //    || Layer_promno2_10_2017022618.getVisible()
+            //    || Layer_promno2_10_2017022621.getVisible()
+            //    || Layer_promno_10_2017022600.getVisible()
+            //    || Layer_promno_10_2017022609.getVisible()
+            //    || Layer_promno_10_2017022612.getVisible()
+            //    || Layer_promno_10_2017022615.getVisible()
+            //    || Layer_promno_10_2017022618.getVisible()
+            //    || Layer_promno_10_2017022621.getVisible()
+            //    || Layer_prompm70_10_2017022600.getVisible()
+            //    || Layer_prompm70_10_2017022609.getVisible()
+            //    || Layer_prompm70_10_2017022612.getVisible()
+            //    || Layer_prompm70_10_2017022615.getVisible()
+            //    || Layer_prompm70_10_2017022618.getVisible()
+            //    || Layer_prompm70_10_2017022621.getVisible()
+            //    || Layer_promsum2017022600.getVisible()
+            //    || Layer_promsum2017022609.getVisible()
+            //    || Layer_promsum2017022612.getVisible()
+            //    || Layer_promsum2017022615.getVisible()
+            //    || Layer_promsum2017022618.getVisible()
+            //    || Layer_promsum2017022621.getVisible()
+            //    || Layer_promso2_10_2017072600.getVisible()
+            //    || Layer_promso2_10_2017072609.getVisible()
+            //    || Layer_promso2_10_2017072612.getVisible()
+            //    || Layer_promso2_10_2017072615.getVisible()
+            //    || Layer_promso2_10_2017072618.getVisible()
+            //    || Layer_promso2_10_2017072621.getVisible()
+            //    || Layer_promno2_10_2017072600.getVisible()
+            //    || Layer_promno2_10_2017072609.getVisible()
+            //    || Layer_promno2_10_2017072612.getVisible()
+            //    || Layer_promno2_10_2017072615.getVisible()
+            //    || Layer_promno2_10_2017072618.getVisible()
+            //    || Layer_promno2_10_2017072621.getVisible()
+            //    || Layer_promno_10_2017072600.getVisible()
+            //    || Layer_promno_10_2017072609.getVisible()
+            //    || Layer_promno_10_2017072612.getVisible()
+            //    || Layer_promno_10_2017072615.getVisible()
+            //    || Layer_promno_10_2017072618.getVisible()
+            //    || Layer_promno_10_2017072621.getVisible()
+            //    || Layer_prompm70_10_2017072600.getVisible()
+            //    || Layer_prompm70_10_2017072609.getVisible()
+            //    || Layer_prompm70_10_2017072612.getVisible()
+            //    || Layer_prompm70_10_2017072615.getVisible()
+            //    || Layer_prompm70_10_2017072618.getVisible()
+            //    || Layer_prompm70_10_2017072621.getVisible()
+            //    || Layer_promsum2017072600.getVisible()
+            //    || Layer_promsum2017072609.getVisible()
+            //    || Layer_promsum2017072612.getVisible()
+            //    || Layer_promsum2017072615.getVisible()
+            //    || Layer_promsum2017072618.getVisible()
+            //    || Layer_promsum2017072621.getVisible()
+            //    || Layer_avtono2_80_2017022600.getVisible()
+            //    || Layer_avtono2_80_2017022609.getVisible()
+            //    || Layer_avtono2_80_2017022612.getVisible()
+            //    || Layer_avtono2_80_2017022615.getVisible()
+            //    || Layer_avtono2_80_2017022618.getVisible()
+            //    || Layer_avtono2_80_2017022621.getVisible()
+            //    || Layer_avtoco_80_2017022600.getVisible()
+            //    || Layer_avtoco_80_2017022609.getVisible()
+            //    || Layer_avtoco_80_2017022612.getVisible()
+            //    || Layer_avtoco_80_2017022615.getVisible()
+            //    || Layer_avtoco_80_2017022618.getVisible()
+            //    || Layer_avtoco_80_2017022621.getVisible()
+            //    || Layer_avtono2_80_2017072600.getVisible()
+            //    || Layer_avtono2_80_2017072609.getVisible()
+            //    || Layer_avtono2_80_2017072612.getVisible()
+            //    || Layer_avtono2_80_2017072615.getVisible()
+            //    || Layer_avtono2_80_2017072618.getVisible()
+            //    || Layer_avtono2_80_2017072621.getVisible()
+            //    || Layer_avtoco_80_2017072600.getVisible()
+            //    || Layer_avtoco_80_2017072609.getVisible()
+            //    || Layer_avtoco_80_2017072612.getVisible()
+            //    || Layer_avtoco_80_2017072615.getVisible()
+            //    || Layer_avtoco_80_2017072618.getVisible()
+            //    || Layer_avtoco_80_2017072621.getVisible()
+            //    || Layer_allsum201702_avg.getVisible()
+            //    || Layer_allsum201707_avg.getVisible()
+            //    ) {
+            //    $('#opacity').val(100);
+            //    ChangeOpacity();
+            //}
+        })
+        .jstree({
+            "checkbox": {
+                "keep_selected_style": false,
+                "three_state": false
+            },
+            "plugins": ["checkbox"]
+        })
+        // jstree word wrap
+        .bind('hover_node.jstree', function () {
+            var bar = $(this).find('.jstree-wholerow-hovered');
+            bar.css('height',
+                bar.parent().children('a.jstree-anchor').height() + 'px');
+        });
+
+    map.on('singleclick', function (evt) {
+        $("#map").LoadingOverlay("show");
+
+        var viewResolution = (map.getView().getResolution());
+        var pixel = evt.pixel;
+
+        var featuresEcomons = [];
+        var featuresKazHydrometAirPosts = [];
+        var featuresAirPosts = [];
+        var featuresCompanies = [];
+        var featuresEmissionSources = [];
+        var featuresTransportPosts = [];
+        var featuresWaterSurfacePosts = [];
+        var featuresKazHydrometWaterPosts = [];
+        var featuresSoilPosts = [];
+        var featuresKazHydrometSoilPosts = [];
+        var featuresRawMaterialsCompanies = [];
+        var featuresWasteRecyclingCompanies = [];
+        var featuresGreemPlantsPassports = [];
+
+        $("#info_Ecomons").find("tr:gt(0)").remove();
+        $("#info_KazHydrometAirPosts").find("tr:gt(0)").remove();
+        $("#info_AirPosts").find("tr:gt(0)").remove();
+        $("#info_Companies").find("tr:gt(2)").remove();
+        $("#info_EmissionSources").find("tr:gt(0)").remove();
+        $("#info_TransportPosts").find("tr:gt(0)").remove();
+        $("#info_WaterSurfacePosts").find("tr:gt(0)").remove();
+        $("#info_KazHydrometWaterPosts").find("tr:gt(0)").remove();
+        $("#info_SoilPosts").find("tr:gt(0)").remove();
+        $("#info_KazHydrometSoilPosts").find("tr:gt(0)").remove();
+        $("#info_RawMaterialsCompanies").find("tr:gt(0)").remove();
+        $("#info_WasteRecyclingCompanies").find("tr:gt(0)").remove();
+        $("#info_GreemPlantsPassports").find("tr:gt(0)").remove();
+
+        if (Layer_KazHydrometAirPosts.getVisible() ||
+            Layer_Ecomons.getVisible() ||
+            Layer_AirPosts.getVisible() ||
+            Layer_Companies.getVisible() ||
+            Layer_EmissionSources.getVisible() ||
+            Layer_TransportPosts.getVisible() ||
+            Layer_WaterSurfacePosts.getVisible() ||
+            Layer_KazHydrometWaterPosts.getVisible() ||
+            Layer_SoilPosts.getVisible() ||
+            Layer_KazHydrometSoilPosts.getVisible() ||
+            Layer_RawMaterialsCompanies.getVisible() ||
+            Layer_WasteRecyclingCompanies.getVisible() ||
+            Layer_GreemPlantsPassports.getVisible()) {
+            map.forEachFeatureAtPixel(pixel, function (feature, layer) {
+                if (layer == Layer_KazHydrometAirPosts) {
+                    featuresKazHydrometAirPosts.push(feature);
+                }
+                if (layer == Layer_Ecomons) {
+                    featuresEcomons.push(feature);
+                }
+                if (layer == Layer_AirPosts) {
+                    featuresAirPosts.push(feature);
+                }
+                if (layer == Layer_Companies) {
+                    featuresCompanies.push(feature);
+                }
+                if (layer == Layer_EmissionSources) {
+                    featuresEmissionSources.push(feature);
+                }
+                if (layer == Layer_TransportPosts) {
+                    featuresTransportPosts.push(feature);
+                }
+                if (layer == Layer_WaterSurfacePosts) {
+                    featuresWaterSurfacePosts.push(feature);
+                }
+                if (layer == Layer_KazHydrometWaterPosts) {
+                    featuresKazHydrometWaterPosts.push(feature);
+                }
+                if (layer == Layer_SoilPosts) {
+                    featuresSoilPosts.push(feature);
+                }
+                if (layer == Layer_KazHydrometSoilPosts) {
+                    featuresKazHydrometSoilPosts.push(feature);
+                }
+                if (layer == Layer_RawMaterialsCompanies) {
+                    featuresRawMaterialsCompanies.push(feature);
+                }
+                if (layer == Layer_WasteRecyclingCompanies) {
+                    featuresWasteRecyclingCompanies.push(feature);
+                }
+                if (layer == Layer_GreemPlantsPassports) {
+                    featuresGreemPlantsPassports.push(feature);
+                }
+            });
+
+            // Maps1_2 Ecomons
+            var contentEcomons = '';
+            for (var i = 0, ii = featuresEcomons.length; i < ii; ++i) {
+                contentEcomons +=
+                    '<tr>' +
+                    '<td>' +
+                    //'<a href="../Ecomons/Details/' + featuresEcomons[i].get('Id') + '" target="_blank">' + featuresEcomons[i].get('Name') + '</a>' +
+                    featuresEcomons[i].get('Name') +
+                    '</td>' +
+                    '<td>' +
+                    '<a href="../EcomonDatas?EcomonNumber=' + featuresEcomons[i].get('Number') + '" target="_blank">' + $('#Look').val() + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_Ecomons').append(contentEcomons);
+
+            // Maps1_1 KazHydrometAirPosts
+            var contentKazHydrometAirPosts = '';
+            for (var i = 0, ii = featuresKazHydrometAirPosts.length; i < ii; ++i) {
+                contentKazHydrometAirPosts +=
+                    '<tr>' +
+                    '<td>' +
+                    '<a href="../KazHydrometAirPosts/Details/' + featuresKazHydrometAirPosts[i].get('Id') + '" target="_blank">' + featuresKazHydrometAirPosts[i].get('Name') + '</a>' +
+                    '</td>' +
+                    '<td>' +
+                    '<a href="../KazHydrometAirPostDatas?KazHydrometAirPostNumber=' + featuresKazHydrometAirPosts[i].get('Number') + '&KazHydrometAirPostName=' + featuresKazHydrometAirPosts[i].get('Name') + '" target="_blank">' + $('#Look').val() + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_KazHydrometAirPosts').append(contentKazHydrometAirPosts);
+
+            // Maps1_2 AirPosts
+            var contentAirPosts = '';
+            for (var i = 0, ii = featuresAirPosts.length; i < ii; ++i) {
+                contentAirPosts +=
+                    '<tr>' +
+                    '<td>' +
+                    '<a href="../AirPosts/Details/' + featuresAirPosts[i].get('Id') + '" target="_blank">' + featuresAirPosts[i].get('Name') + '</a>' +
+                    '</td>' +
+                    '<td>' +
+                    '<a href="../AirPostDatas?AirPostNumber=' + featuresAirPosts[i].get('Number') + '&AirPostName=' + featuresAirPosts[i].get('Name') + '" target="_blank">' + $('#Look').val() + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_AirPosts').append(contentAirPosts);
+
+            // Maps1_3_1 Companies
+            var contentCompanies = '';
+            for (var i = 0, ii = featuresCompanies.length; i < ii; ++i) {
+                if (featuresCompanies[i].get('Type') == 'Company') {
+                    contentCompanies +=
+                        '<tr>' +
+                        '<td>' +
+                        '<a href="../Companies/Details/' + featuresCompanies[i].get('Id') + '" target="_blank">' + featuresCompanies[i].get('AbbreviatedName') + '</a>' +
+                        '</td>' +
+                        '<td>' +
+                        '<input type="button" value="' + $('#GoTo').val() + '" onclick="GoToCompany(' + featuresCompanies[i].get('Id') + ')"/>'+
+                        '</td>' +
+                        '</tr>';
+                }
+                else if (featuresCompanies[i].get('Type') == 'SubsidiaryCompany') {
+                    contentCompanies +=
+                        '<tr>' +
+                        '<td>' +
+                        '<a href="../SubsidiaryCompanies/Details/' + featuresCompanies[i].get('Id') + '" target="_blank">' + featuresCompanies[i].get('AbbreviatedName') + '</a>' +
+                        '</td>' +
+                        '<td>' +
+                        '<input type="button" value="' + $('#GoTo').val() + '" onclick="GoToCompany(' + featuresCompanies[i].get('Id') + ')"/>'+
+                        '</td>' +
+                        '</tr>';
+                }
+            }
+            $('#info_Companies').append(contentCompanies);
+
+            // Maps1_3_2 EmissionSources
+            var contentEmissionSources = '';
+            for (var i = 0, ii = featuresEmissionSources.length; i < ii; ++i) {
+                contentEmissionSources +=
+                    '<tr>' +
+                    '<td>' +
+                    featuresEmissionSources[i].get('CompanyOrSubsidiaryCompanyAbbreviatedName') +
+                    '</td>' +
+                    '<td>' +
+                    '<a href="../EmissionSources/Details/' + featuresEmissionSources[i].get('Id') + '" target="_blank">' + featuresEmissionSources[i].get('EmissionSourceName') + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_EmissionSources').append(contentEmissionSources);
+
+            // Maps1_4_1 TransportPosts
+            var contentTransportPosts = '';
+            for (var i = 0, ii = featuresTransportPosts.length; i < ii; ++i) {
+                contentTransportPosts +=
+                    '<tr>' +
+                    '<td>' +
+                    '<a href="../TransportPosts/Details/' + featuresTransportPosts[i].get('Id') + '" target="_blank">' + featuresTransportPosts[i].get('Name') + '</a>' +
+                    '</td>' +
+                    '<td>' +
+                    '<a href="../TransportPostDatas?TransportPostName=' + featuresTransportPosts[i].get('Name') + '" target="_blank">' + $('#Look').val() + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_TransportPosts').append(contentTransportPosts);
+
+            // Maps2_1 WaterSurfacePosts
+            var contentWaterSurfacePosts = '';
+            for (var i = 0, ii = featuresWaterSurfacePosts.length; i < ii; ++i) {
+                contentWaterSurfacePosts +=
+                    '<tr>' +
+                    '<td>' +
+                    '<a href="../WaterSurfacePosts/Details/' + featuresWaterSurfacePosts[i].get('Id') + '" target="_blank">' + featuresWaterSurfacePosts[i].get('WaterObjectName') + '</a>' +
+                    '</td>' +
+                    '<td>' +
+                    '<a href="../WaterSurfacePostDatas?WaterSurfacePostNumber=' + featuresWaterSurfacePosts[i].get('Number') + '&WaterObjectId=' + featuresWaterSurfacePosts[i].get('WaterObjectId') + '" target="_blank">' + $('#Look').val() + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_WaterSurfacePosts').append(contentWaterSurfacePosts);
+
+            // Maps2_2 KazHydrometWaterPosts
+            var contentKazHydrometWaterPosts = '';
+            for (var i = 0, ii = featuresKazHydrometWaterPosts.length; i < ii; ++i) {
+                contentKazHydrometWaterPosts +=
+                    '<tr>' +
+                    '<td>' +
+                    '<a href="../KazHydrometWaterPosts/Details/' + featuresKazHydrometWaterPosts[i].get('Id') + '" target="_blank">' + featuresKazHydrometWaterPosts[i].get('Name') + '</a>' +
+                    '</td>' +
+                    '<td>' +
+                    '<a href="../KazHydrometWaterPostDatas?KazHydrometWaterPostNumber=' + featuresKazHydrometWaterPosts[i].get('Number') + '&KazHydrometWaterPostName=' + featuresKazHydrometWaterPosts[i].get('Name') + '" target="_blank">' + $('#Look').val() + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_KazHydrometWaterPosts').append(contentKazHydrometWaterPosts);
+
+            // Maps4_1 SoilPosts
+            var contentSoilPosts = '';
+            for (var i = 0, ii = featuresSoilPosts.length; i < ii; ++i) {
+                contentSoilPosts +=
+                    '<tr>' +
+                    '<td>' +
+                    '<a href="../SoilPosts/Details/' + featuresSoilPosts[i].get('Id') + '" target="_blank">' + featuresSoilPosts[i].get('Name') + '</a>' +
+                    '</td>' +
+                    '<td>' +
+                    '<a href="../SoilPostDatas?SoilPostName=' + featuresSoilPosts[i].get('Name') + '" target="_blank">' + $('#Look').val() + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_SoilPosts').append(contentSoilPosts);
+
+            // Maps4_2 KazHydrometSoilPosts
+            var contentKazHydrometSoilPosts = '';
+            for (var i = 0, ii = featuresKazHydrometSoilPosts.length; i < ii; ++i) {
+                contentKazHydrometSoilPosts +=
+                    '<tr>' +
+                    '<td>' +
+                    '<a href="../KazHydrometSoilPosts/Details/' + featuresKazHydrometSoilPosts[i].get('Id') + '" target="_blank">' + featuresKazHydrometSoilPosts[i].get('Name') + '</a>' +
+                    '</td>' +
+                    '<td>' +
+                    '<a href="../KazHydrometSoilPostDatas?KazHydrometSoilPostName=' + featuresKazHydrometSoilPosts[i].get('Name') + '" target="_blank">' + $('#Look').val() + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_KazHydrometSoilPosts').append(contentKazHydrometSoilPosts);
+
+            // Maps5_1 RawMaterialsCompanies
+            var contentRawMaterialsCompanies = '';
+            for (var i = 0, ii = featuresRawMaterialsCompanies.length; i < ii; ++i) {
+                contentRawMaterialsCompanies +=
+                    '<tr>' +
+                    '<td>' +
+                    '<a href="../RawMaterialsCompanies/Details/' + featuresRawMaterialsCompanies[i].get('Id') + '" target="_blank">' + featuresRawMaterialsCompanies[i].get('Name') + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_RawMaterialsCompanies').append(contentRawMaterialsCompanies);
+
+            // Maps5_2 WasteRecyclingCompanies
+            var contentWasteRecyclingCompanies = '';
+            for (var i = 0, ii = featuresWasteRecyclingCompanies.length; i < ii; ++i) {
+                contentWasteRecyclingCompanies +=
+                    '<tr>' +
+                    '<td>' +
+                    '<a href="../WasteRecyclingCompanies/Details/' + featuresWasteRecyclingCompanies[i].get('Id') + '" target="_blank">' + featuresWasteRecyclingCompanies[i].get('Name') + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_WasteRecyclingCompanies').append(contentWasteRecyclingCompanies);
+
+            // Maps5_2 GreemPlantsPassports
+            var contentGreemPlantsPassports = '';
+            for (var i = 0, ii = featuresGreemPlantsPassports.length; i < ii; ++i) {
+                contentGreemPlantsPassports +=
+                    '<tr>' +
+                    '<td>' +
+                    '<a href="../GreemPlantsPassports/Details/' + featuresGreemPlantsPassports[i].get('Id') + '" target="_blank">' + featuresGreemPlantsPassports[i].get('GreenObject') + '</a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $('#info_GreemPlantsPassports').append(contentGreemPlantsPassports);
+        }
+
+        // tif, shp 1
+        $("#info_TotalRWinter7_po0301").find("tr:gt(0)").remove();
+        $("#info_TotalRWinter7_po0330").find("tr:gt(0)").remove();
+        $("#info_TotalRWinter7_po0337").find("tr:gt(0)").remove();
+        $("#info_TotalRWinter7_po1071").find("tr:gt(0)").remove();
+        $("#info_TotalRWinter7_po1325").find("tr:gt(0)").remove();
+        $("#info_TotalRWinter7_po2902").find("tr:gt(0)").remove();
+        $("#info_TotalRWinter7_po__02").find("tr:gt(0)").remove();
+        $("#info_TotalRWinter7_po__PL").find("tr:gt(0)").remove();
+        $("#info_TotalRSummer7_po0301").find("tr:gt(0)").remove();
+        $("#info_TotalRSummer7_po0330").find("tr:gt(0)").remove();
+        $("#info_TotalRSummer7_po0337").find("tr:gt(0)").remove();
+        $("#info_TotalRSummer7_po1071").find("tr:gt(0)").remove();
+        $("#info_TotalRSummer7_po1325").find("tr:gt(0)").remove();
+        $("#info_TotalRSummer7_po2902").find("tr:gt(0)").remove();
+        $("#info_TotalRSummer7_po__02").find("tr:gt(0)").remove();
+        $("#info_TotalRSummer7_po__PL").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017022600").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017022609").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017022612").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017022615").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017022618").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017022621").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017022600").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017022609").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017022612").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017022615").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017022618").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017022621").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017022600").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017022609").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017022612").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017022615").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017022618").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017022621").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017022600").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017022609").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017022612").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017022615").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017022618").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017022621").find("tr:gt(0)").remove();
+        $("#info_promsum2017022600").find("tr:gt(0)").remove();
+        $("#info_promsum2017022609").find("tr:gt(0)").remove();
+        $("#info_promsum2017022612").find("tr:gt(0)").remove();
+        $("#info_promsum2017022615").find("tr:gt(0)").remove();
+        $("#info_promsum2017022618").find("tr:gt(0)").remove();
+        $("#info_promsum2017022621").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017072600").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017072609").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017072612").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017072615").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017072618").find("tr:gt(0)").remove();
+        $("#info_promso2_10_2017072621").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017072600").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017072609").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017072612").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017072615").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017072618").find("tr:gt(0)").remove();
+        $("#info_promno2_10_2017072621").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017072600").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017072609").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017072612").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017072615").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017072618").find("tr:gt(0)").remove();
+        $("#info_promno_10_2017072621").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017072600").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017072609").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017072612").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017072615").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017072618").find("tr:gt(0)").remove();
+        $("#info_prompm70_10_2017072621").find("tr:gt(0)").remove();
+        $("#info_promsum2017072600").find("tr:gt(0)").remove();
+        $("#info_promsum2017072609").find("tr:gt(0)").remove();
+        $("#info_promsum2017072612").find("tr:gt(0)").remove();
+        $("#info_promsum2017072615").find("tr:gt(0)").remove();
+        $("#info_promsum2017072618").find("tr:gt(0)").remove();
+        $("#info_promsum2017072621").find("tr:gt(0)").remove();
+        $("#info_TotalRTransport7_po0301").find("tr:gt(0)").remove();
+        $("#info_TotalRTransport7_po0330").find("tr:gt(0)").remove();
+        $("#info_TotalRTransport7_po0337").find("tr:gt(0)").remove();
+        $("#info_TotalRTransport7_po1325").find("tr:gt(0)").remove();
+        $("#info_TotalRTransport7_po__31").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017022600").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017022609").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017022612").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017022615").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017022618").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017022621").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017022600").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017022609").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017022612").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017022615").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017022618").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017022621").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017072600").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017072609").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017072612").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017072615").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017072618").find("tr:gt(0)").remove();
+        $("#info_avtono2_80_2017072621").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017072600").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017072609").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017072612").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017072615").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017072618").find("tr:gt(0)").remove();
+        $("#info_avtoco_80_2017072621").find("tr:gt(0)").remove();
+        $("#info_TotalRSummary7_po0184").find("tr:gt(0)").remove();
+        $("#info_TotalRSummary7_po0301").find("tr:gt(0)").remove();
+        $("#info_TotalRSummary7_po0304").find("tr:gt(0)").remove();
+        $("#info_TotalRSummary7_po0328").find("tr:gt(0)").remove();
+        $("#info_TotalRSummary7_po0330").find("tr:gt(0)").remove();
+        $("#info_TotalRSummary7_po0337").find("tr:gt(0)").remove();
+        $("#info_TotalRSummary7_po0703").find("tr:gt(0)").remove();
+        $("#info_TotalRSummary7_po1325").find("tr:gt(0)").remove();
+        $("#info_TotalRSummary7_po2754").find("tr:gt(0)").remove();
+        $("#info_TotalRSummary7_po__02").find("tr:gt(0)").remove();
+        $("#info_TotalRSummary7_po__31").find("tr:gt(0)").remove();
+        $("#info_allsum201702_avg").find("tr:gt(0)").remove();
+        $("#info_allsum201707_avg").find("tr:gt(0)").remove();
+        $("#info_vodoohr_polosa").find("tr:gt(0)").remove();
+        $("#info_vodoohr_zona").find("tr:gt(0)").remove();
+        $("#info_vegpol").find("tr:gt(0)").remove();
+        $("#info_planvegpol").find("tr:gt(0)").remove();
+        $("#info_soil_consSc3857").find("tr:gt(0)").remove();
+        $("#info_soil_consP3857").find("tr:gt(0)").remove();
+        $("#info_soil_consMn3857").find("tr:gt(0)").remove();
+        $("#info_soil_consPb3857").find("tr:gt(0)").remove();
+        $("#info_soil_consTi3857").find("tr:gt(0)").remove();
+        $("#info_soil_consZr3857").find("tr:gt(0)").remove();
+        $("#info_soil_consCr3857").find("tr:gt(0)").remove();
+        $("#info_soil_consNi3857").find("tr:gt(0)").remove();
+        $("#info_soil_consBa3857").find("tr:gt(0)").remove();
+        $("#info_soil_consBe3857").find("tr:gt(0)").remove();
+        $("#info_soil_consMo3857").find("tr:gt(0)").remove();
+        $("#info_soil_consSn3857").find("tr:gt(0)").remove();
+        $("#info_soil_consV3857").find("tr:gt(0)").remove();
+        $("#info_soil_consLi3857").find("tr:gt(0)").remove();
+        $("#info_soil_consCu3857").find("tr:gt(0)").remove();
+        $("#info_soil_consZn3857").find("tr:gt(0)").remove();
+        $("#info_soil_consAg3857").find("tr:gt(0)").remove();
+        $("#info_soil_consCo3857").find("tr:gt(0)").remove();
+        $("#info_soil_consGa3857").find("tr:gt(0)").remove();
+        $("#info_soil_consGe3857").find("tr:gt(0)").remove();
+        $("#info_soil_consNb3857").find("tr:gt(0)").remove();
+        $("#info_soil_consSr3857").find("tr:gt(0)").remove();
+        $("#info_soil_consYb3857").find("tr:gt(0)").remove();
+        $("#info_soil_consYt3857").find("tr:gt(0)").remove();
+        $("#info_soil_consZc3857").find("tr:gt(0)").remove();
+        $("#info_soil_Gamma3857").find("tr:gt(0)").remove();
+        $("#info_soil_consNeft3857").find("tr:gt(0)").remove();
+        $("#info_eco_zoning").find("tr:gt(0)").remove();
+
+        // tif, shp 2
+        if (Layer_TotalRWinter7_po0301.getVisible() ||
+            Layer_TotalRWinter7_po0330.getVisible() ||
+            Layer_TotalRWinter7_po0337.getVisible() ||
+            Layer_TotalRWinter7_po1071.getVisible() ||
+            Layer_TotalRWinter7_po1325.getVisible() ||
+            Layer_TotalRWinter7_po2902.getVisible() ||
+            Layer_TotalRWinter7_po__02.getVisible() ||
+            Layer_TotalRWinter7_po__PL.getVisible() ||
+            Layer_TotalRSummer7_po0301.getVisible() ||
+            Layer_TotalRSummer7_po0330.getVisible() ||
+            Layer_TotalRSummer7_po0337.getVisible() ||
+            Layer_TotalRSummer7_po1071.getVisible() ||
+            Layer_TotalRSummer7_po1325.getVisible() ||
+            Layer_TotalRSummer7_po2902.getVisible() ||
+            Layer_TotalRSummer7_po__02.getVisible() ||
+            Layer_TotalRSummer7_po__PL.getVisible() ||
+            Layer_promso2_10_2017022600.getVisible() ||
+            Layer_promso2_10_2017022609.getVisible() ||
+            Layer_promso2_10_2017022612.getVisible() ||
+            Layer_promso2_10_2017022615.getVisible() ||
+            Layer_promso2_10_2017022618.getVisible() ||
+            Layer_promso2_10_2017022621.getVisible() ||
+            Layer_promno2_10_2017022600.getVisible() ||
+            Layer_promno2_10_2017022609.getVisible() ||
+            Layer_promno2_10_2017022612.getVisible() ||
+            Layer_promno2_10_2017022615.getVisible() ||
+            Layer_promno2_10_2017022618.getVisible() ||
+            Layer_promno2_10_2017022621.getVisible() ||
+            Layer_promno_10_2017022600.getVisible() ||
+            Layer_promno_10_2017022609.getVisible() ||
+            Layer_promno_10_2017022612.getVisible() ||
+            Layer_promno_10_2017022615.getVisible() ||
+            Layer_promno_10_2017022618.getVisible() ||
+            Layer_promno_10_2017022621.getVisible() ||
+            Layer_prompm70_10_2017022600.getVisible() ||
+            Layer_prompm70_10_2017022609.getVisible() ||
+            Layer_prompm70_10_2017022612.getVisible() ||
+            Layer_prompm70_10_2017022615.getVisible() ||
+            Layer_prompm70_10_2017022618.getVisible() ||
+            Layer_prompm70_10_2017022621.getVisible() ||
+            Layer_promsum2017022600.getVisible() ||
+            Layer_promsum2017022609.getVisible() ||
+            Layer_promsum2017022612.getVisible() ||
+            Layer_promsum2017022615.getVisible() ||
+            Layer_promsum2017022618.getVisible() ||
+            Layer_promsum2017022621.getVisible() ||
+            Layer_promso2_10_2017072600.getVisible() ||
+            Layer_promso2_10_2017072609.getVisible() ||
+            Layer_promso2_10_2017072612.getVisible() ||
+            Layer_promso2_10_2017072615.getVisible() ||
+            Layer_promso2_10_2017072618.getVisible() ||
+            Layer_promso2_10_2017072621.getVisible() ||
+            Layer_promno2_10_2017072600.getVisible() ||
+            Layer_promno2_10_2017072609.getVisible() ||
+            Layer_promno2_10_2017072612.getVisible() ||
+            Layer_promno2_10_2017072615.getVisible() ||
+            Layer_promno2_10_2017072618.getVisible() ||
+            Layer_promno2_10_2017072621.getVisible() ||
+            Layer_promno_10_2017072600.getVisible() ||
+            Layer_promno_10_2017072609.getVisible() ||
+            Layer_promno_10_2017072612.getVisible() ||
+            Layer_promno_10_2017072615.getVisible() ||
+            Layer_promno_10_2017072618.getVisible() ||
+            Layer_promno_10_2017072621.getVisible() ||
+            Layer_prompm70_10_2017072600.getVisible() ||
+            Layer_prompm70_10_2017072609.getVisible() ||
+            Layer_prompm70_10_2017072612.getVisible() ||
+            Layer_prompm70_10_2017072615.getVisible() ||
+            Layer_prompm70_10_2017072618.getVisible() ||
+            Layer_prompm70_10_2017072621.getVisible() ||
+            Layer_promsum2017072600.getVisible() ||
+            Layer_promsum2017072609.getVisible() ||
+            Layer_promsum2017072612.getVisible() ||
+            Layer_promsum2017072615.getVisible() ||
+            Layer_promsum2017072618.getVisible() ||
+            Layer_promsum2017072621.getVisible() ||
+            Layer_TotalRTransport7_po0301.getVisible() ||
+            Layer_TotalRTransport7_po0330.getVisible() ||
+            Layer_TotalRTransport7_po0337.getVisible() ||
+            Layer_TotalRTransport7_po1325.getVisible() ||
+            Layer_TotalRTransport7_po__31.getVisible() ||
+            Layer_avtono2_80_2017022600.getVisible() ||
+            Layer_avtono2_80_2017022609.getVisible() ||
+            Layer_avtono2_80_2017022612.getVisible() ||
+            Layer_avtono2_80_2017022615.getVisible() ||
+            Layer_avtono2_80_2017022618.getVisible() ||
+            Layer_avtono2_80_2017022621.getVisible() ||
+            Layer_avtoco_80_2017022600.getVisible() ||
+            Layer_avtoco_80_2017022609.getVisible() ||
+            Layer_avtoco_80_2017022612.getVisible() ||
+            Layer_avtoco_80_2017022615.getVisible() ||
+            Layer_avtoco_80_2017022618.getVisible() ||
+            Layer_avtoco_80_2017022621.getVisible() ||
+            Layer_avtono2_80_2017072600.getVisible() ||
+            Layer_avtono2_80_2017072609.getVisible() ||
+            Layer_avtono2_80_2017072612.getVisible() ||
+            Layer_avtono2_80_2017072615.getVisible() ||
+            Layer_avtono2_80_2017072618.getVisible() ||
+            Layer_avtono2_80_2017072621.getVisible() ||
+            Layer_avtoco_80_2017072600.getVisible() ||
+            Layer_avtoco_80_2017072609.getVisible() ||
+            Layer_avtoco_80_2017072612.getVisible() ||
+            Layer_avtoco_80_2017072615.getVisible() ||
+            Layer_avtoco_80_2017072618.getVisible() ||
+            Layer_avtoco_80_2017072621.getVisible() ||
+            Layer_TotalRSummary7_po0184.getVisible() ||
+            Layer_TotalRSummary7_po0301.getVisible() ||
+            Layer_TotalRSummary7_po0304.getVisible() ||
+            Layer_TotalRSummary7_po0328.getVisible() ||
+            Layer_TotalRSummary7_po0330.getVisible() ||
+            Layer_TotalRSummary7_po0337.getVisible() ||
+            Layer_TotalRSummary7_po0703.getVisible() ||
+            Layer_TotalRSummary7_po1325.getVisible() ||
+            Layer_TotalRSummary7_po2754.getVisible() ||
+            Layer_TotalRSummary7_po__02.getVisible() ||
+            Layer_TotalRSummary7_po__31.getVisible() ||
+            Layer_allsum201702_avg.getVisible() ||
+            Layer_allsum201707_avg.getVisible() ||
+            Layer_vodoohr_polosa.getVisible() ||
+            Layer_vodoohr_zona.getVisible() ||
+            Layer_vegpol.getVisible() ||
+            Layer_planvegpol.getVisible() ||
+            Layer_soil_consSc3857.getVisible() ||
+            Layer_soil_consP3857.getVisible() ||
+            Layer_soil_consMn3857.getVisible() ||
+            Layer_soil_consPb3857.getVisible() ||
+            Layer_soil_consTi3857.getVisible() ||
+            Layer_soil_consZr3857.getVisible() ||
+            Layer_soil_consCr3857.getVisible() ||
+            Layer_soil_consNi3857.getVisible() ||
+            Layer_soil_consBa3857.getVisible() ||
+            Layer_soil_consBe3857.getVisible() ||
+            Layer_soil_consMo3857.getVisible() ||
+            Layer_soil_consSn3857.getVisible() ||
+            Layer_soil_consV3857.getVisible() ||
+            Layer_soil_consLi3857.getVisible() ||
+            Layer_soil_consCu3857.getVisible() ||
+            Layer_soil_consZn3857.getVisible() ||
+            Layer_soil_consAg3857.getVisible() ||
+            Layer_soil_consCo3857.getVisible() ||
+            Layer_soil_consGa3857.getVisible() ||
+            Layer_soil_consGe3857.getVisible() ||
+            Layer_soil_consNb3857.getVisible() ||
+            Layer_soil_consSr3857.getVisible() ||
+            Layer_soil_consYb3857.getVisible() ||
+            Layer_soil_consYt3857.getVisible() ||
+            Layer_soil_consZc3857.getVisible() ||
+            Layer_soil_Gamma3857.getVisible() ||
+            Layer_soil_consNeft3857.getVisible() ||
+            Layer_eco_zoning.getVisible()) {
+            // tif, shp 3
+            var QUERY_LAYERS = 'Eco:TotalRWinter7_po0301' +
+                ',Eco:TotalRWinter7_po0330' +
+                ',Eco:TotalRWinter7_po0337' +
+                ',Eco:TotalRWinter7_po1071' +
+                ',Eco:TotalRWinter7_po1325' +
+                ',Eco:TotalRWinter7_po2902' +
+                ',Eco:TotalRWinter7_po__02' +
+                ',Eco:TotalRWinter7_po__PL' +
+                ',Eco:TotalRSummer7_po0301' +
+                ',Eco:TotalRSummer7_po0330' +
+                ',Eco:TotalRSummer7_po0337' +
+                ',Eco:TotalRSummer7_po1071' +
+                ',Eco:TotalRSummer7_po1325' +
+                ',Eco:TotalRSummer7_po2902' +
+                ',Eco:TotalRSummer7_po__02' +
+                ',Eco:TotalRSummer7_po__PL' +
+                ',Eco:promso2_10_2017022600' +
+                ',Eco:promso2_10_2017022609' +
+                ',Eco:promso2_10_2017022612' +
+                ',Eco:promso2_10_2017022615' +
+                ',Eco:promso2_10_2017022618' +
+                ',Eco:promso2_10_2017022621' +
+                ',Eco:promno2_10_2017022600' +
+                ',Eco:promno2_10_2017022609' +
+                ',Eco:promno2_10_2017022612' +
+                ',Eco:promno2_10_2017022615' +
+                ',Eco:promno2_10_2017022618' +
+                ',Eco:promno2_10_2017022621' +
+                ',Eco:promno_10_2017022600' +
+                ',Eco:promno_10_2017022609' +
+                ',Eco:promno_10_2017022612' +
+                ',Eco:promno_10_2017022615' +
+                ',Eco:promno_10_2017022618' +
+                ',Eco:promno_10_2017022621' +
+                ',Eco:prompm70_10_2017022600' +
+                ',Eco:prompm70_10_2017022609' +
+                ',Eco:prompm70_10_2017022612' +
+                ',Eco:prompm70_10_2017022615' +
+                ',Eco:prompm70_10_2017022618' +
+                ',Eco:prompm70_10_2017022621' +
+                ',Eco:promsum2017022600' +
+                ',Eco:promsum2017022609' +
+                ',Eco:promsum2017022612' +
+                ',Eco:promsum2017022615' +
+                ',Eco:promsum2017022618' +
+                ',Eco:promsum2017022621' +
+                ',Eco:promso2_10_2017072600' +
+                ',Eco:promso2_10_2017072609' +
+                ',Eco:promso2_10_2017072612' +
+                ',Eco:promso2_10_2017072615' +
+                ',Eco:promso2_10_2017072618' +
+                ',Eco:promso2_10_2017072621' +
+                ',Eco:promno2_10_2017072600' +
+                ',Eco:promno2_10_2017072609' +
+                ',Eco:promno2_10_2017072612' +
+                ',Eco:promno2_10_2017072615' +
+                ',Eco:promno2_10_2017072618' +
+                ',Eco:promno2_10_2017072621' +
+                ',Eco:promno_10_2017072600' +
+                ',Eco:promno_10_2017072609' +
+                ',Eco:promno_10_2017072612' +
+                ',Eco:promno_10_2017072615' +
+                ',Eco:promno_10_2017072618' +
+                ',Eco:promno_10_2017072621' +
+                ',Eco:prompm70_10_2017072600' +
+                ',Eco:prompm70_10_2017072609' +
+                ',Eco:prompm70_10_2017072612' +
+                ',Eco:prompm70_10_2017072615' +
+                ',Eco:prompm70_10_2017072618' +
+                ',Eco:prompm70_10_2017072621' +
+                ',Eco:promsum2017072600' +
+                ',Eco:promsum2017072609' +
+                ',Eco:promsum2017072612' +
+                ',Eco:promsum2017072615' +
+                ',Eco:promsum2017072618' +
+                ',Eco:promsum2017072621' +
+                ',Eco:TotalRTransport7_po0301' +
+                ',Eco:TotalRTransport7_po0330' +
+                ',Eco:TotalRTransport7_po0337' +
+                ',Eco:TotalRTransport7_po1325' +
+                ',Eco:TotalRTransport7_po__31' +
+                ',Eco:avtono2_80_2017022600' +
+                ',Eco:avtono2_80_2017022609' +
+                ',Eco:avtono2_80_2017022612' +
+                ',Eco:avtono2_80_2017022615' +
+                ',Eco:avtono2_80_2017022618' +
+                ',Eco:avtono2_80_2017022621' +
+                ',Eco:avtoco_80_2017022600' +
+                ',Eco:avtoco_80_2017022609' +
+                ',Eco:avtoco_80_2017022612' +
+                ',Eco:avtoco_80_2017022615' +
+                ',Eco:avtoco_80_2017022618' +
+                ',Eco:avtoco_80_2017022621' +
+                ',Eco:avtono2_80_2017072600' +
+                ',Eco:avtono2_80_2017072609' +
+                ',Eco:avtono2_80_2017072612' +
+                ',Eco:avtono2_80_2017072615' +
+                ',Eco:avtono2_80_2017072618' +
+                ',Eco:avtono2_80_2017072621' +
+                ',Eco:avtoco_80_2017072600' +
+                ',Eco:avtoco_80_2017072609' +
+                ',Eco:avtoco_80_2017072612' +
+                ',Eco:avtoco_80_2017072615' +
+                ',Eco:avtoco_80_2017072618' +
+                ',Eco:avtoco_80_2017072621' +
+                ',Eco:TotalRSummary7_po0184' +
+                ',Eco:TotalRSummary7_po0301' +
+                ',Eco:TotalRSummary7_po0304' +
+                ',Eco:TotalRSummary7_po0328' +
+                ',Eco:TotalRSummary7_po0330' +
+                ',Eco:TotalRSummary7_po0337' +
+                ',Eco:TotalRSummary7_po0703' +
+                ',Eco:TotalRSummary7_po1325' +
+                ',Eco:TotalRSummary7_po2754' +
+                ',Eco:TotalRSummary7_po__02' +
+                ',Eco:TotalRSummary7_po__31' +
+                ',Eco:allsum201702_avg' +
+                ',Eco:allsum201707_avg' +
+                ',Eco:Vodoohr_polosa' +
+                ',Eco:Vodoohr_zona' +
+                ',Eco:vegpol' +
+                ',Eco:planvegpol' +
+                ',Eco:soil_consSc3857' +
+                ',Eco:soil_consP3857' +
+                ',Eco:soil_consMn3857' +
+                ',Eco:soil_consPb3857' +
+                ',Eco:soil_consTi3857' +
+                ',Eco:soil_consZr3857' +
+                ',Eco:soil_consCr3857' +
+                ',Eco:soil_consNi3857' +
+                ',Eco:soil_consBa3857' +
+                ',Eco:soil_consBe3857' +
+                ',Eco:soil_consMo3857' +
+                ',Eco:soil_consSn3857' +
+                ',Eco:soil_consV3857' +
+                ',Eco:soil_consLi3857' +
+                ',Eco:soil_consCu3857' +
+                ',Eco:soil_consZn3857' +
+                ',Eco:soil_consAg3857' +
+                ',Eco:soil_consCo3857' +
+                ',Eco:soil_consGa3857' +
+                ',Eco:soil_consGe3857' +
+                ',Eco:soil_consNb3857' +
+                ',Eco:soil_consSr3857' +
+                ',Eco:soil_consYb3857' +
+                ',Eco:soil_consYt3857' +
+                ',Eco:soil_consZc3857' +
+                ',Eco:soil_Gamma3857' +
+                ',Eco:soil_consNeft3857' +
+                ',Eco:eco_zoning';
+            var url = Layer_AllMaps.getSource().getGetFeatureInfoUrl(
+                evt.coordinate, viewResolution, 'EPSG:3857',
+                {
+                    'INFO_FORMAT': 'text/javascript',
+                    'FEATURE_COUNT': '10000',
+                    'QUERY_LAYERS': QUERY_LAYERS
+                });
+            if (url) {
+                var parser = new ol.format.GeoJSON();
+
+                $.ajax({
+                    url: url,
+                    dataType: 'jsonp',
+                    jsonpCallback: 'parseResponse',
+                    error: function (xhr, status, error) {
+                        //var err = eval("(" + xhr.responseText + ")");
+                        //alert(err.Message);
+                        $("#map").LoadingOverlay("hide");
+                        $("#sidepanel").tabs({ active: 2 });
+                    }
+                }).then(function (response) {
+                    var result = parser.readFeatures(response);
+                    if (result.length) {
+                        var info = [];
+                        // tif, shp 4
+                        var contentTotalRWinter7_po0301 = '';
+                        var contentTotalRWinter7_po0330 = '';
+                        var contentTotalRWinter7_po0337 = '';
+                        var contentTotalRWinter7_po1071 = '';
+                        var contentTotalRWinter7_po1325 = '';
+                        var contentTotalRWinter7_po2902 = '';
+                        var contentTotalRWinter7_po__02 = '';
+                        var contentTotalRWinter7_po__PL = '';
+                        var contentTotalRSummer7_po0301 = '';
+                        var contentTotalRSummer7_po0330 = '';
+                        var contentTotalRSummer7_po0337 = '';
+                        var contentTotalRSummer7_po1071 = '';
+                        var contentTotalRSummer7_po1325 = '';
+                        var contentTotalRSummer7_po2902 = '';
+                        var contentTotalRSummer7_po__02 = '';
+                        var contentTotalRSummer7_po__PL = '';
+                        var contentpromso2_10_2017022600 = '';
+                        var contentpromso2_10_2017022609 = '';
+                        var contentpromso2_10_2017022612 = '';
+                        var contentpromso2_10_2017022615 = '';
+                        var contentpromso2_10_2017022618 = '';
+                        var contentpromso2_10_2017022621 = '';
+                        var contentpromno2_10_2017022600 = '';
+                        var contentpromno2_10_2017022609 = '';
+                        var contentpromno2_10_2017022612 = '';
+                        var contentpromno2_10_2017022615 = '';
+                        var contentpromno2_10_2017022618 = '';
+                        var contentpromno2_10_2017022621 = '';
+                        var contentpromno_10_2017022600 = '';
+                        var contentpromno_10_2017022609 = '';
+                        var contentpromno_10_2017022612 = '';
+                        var contentpromno_10_2017022615 = '';
+                        var contentpromno_10_2017022618 = '';
+                        var contentpromno_10_2017022621 = '';
+                        var contentprompm70_10_2017022600 = '';
+                        var contentprompm70_10_2017022609 = '';
+                        var contentprompm70_10_2017022612 = '';
+                        var contentprompm70_10_2017022615 = '';
+                        var contentprompm70_10_2017022618 = '';
+                        var contentprompm70_10_2017022621 = '';
+                        var contentpromsum2017022600 = '';
+                        var contentpromsum2017022609 = '';
+                        var contentpromsum2017022612 = '';
+                        var contentpromsum2017022615 = '';
+                        var contentpromsum2017022618 = '';
+                        var contentpromsum2017022621 = '';
+                        var contentpromso2_10_2017072600 = '';
+                        var contentpromso2_10_2017072609 = '';
+                        var contentpromso2_10_2017072612 = '';
+                        var contentpromso2_10_2017072615 = '';
+                        var contentpromso2_10_2017072618 = '';
+                        var contentpromso2_10_2017072621 = '';
+                        var contentpromno2_10_2017072600 = '';
+                        var contentpromno2_10_2017072609 = '';
+                        var contentpromno2_10_2017072612 = '';
+                        var contentpromno2_10_2017072615 = '';
+                        var contentpromno2_10_2017072618 = '';
+                        var contentpromno2_10_2017072621 = '';
+                        var contentpromno_10_2017072600 = '';
+                        var contentpromno_10_2017072609 = '';
+                        var contentpromno_10_2017072612 = '';
+                        var contentpromno_10_2017072615 = '';
+                        var contentpromno_10_2017072618 = '';
+                        var contentpromno_10_2017072621 = '';
+                        var contentprompm70_10_2017072600 = '';
+                        var contentprompm70_10_2017072609 = '';
+                        var contentprompm70_10_2017072612 = '';
+                        var contentprompm70_10_2017072615 = '';
+                        var contentprompm70_10_2017072618 = '';
+                        var contentprompm70_10_2017072621 = '';
+                        var contentpromsum2017072600 = '';
+                        var contentpromsum2017072609 = '';
+                        var contentpromsum2017072612 = '';
+                        var contentpromsum2017072615 = '';
+                        var contentpromsum2017072618 = '';
+                        var contentpromsum2017072621 = '';
+                        var contentTotalRTransport7_po0301 = '';
+                        var contentTotalRTransport7_po0330 = '';
+                        var contentTotalRTransport7_po0337 = '';
+                        var contentTotalRTransport7_po1325 = '';
+                        var contentTotalRTransport7_po__31 = '';
+                        var contentavtono2_80_2017022600 = '';
+                        var contentavtono2_80_2017022609 = '';
+                        var contentavtono2_80_2017022612 = '';
+                        var contentavtono2_80_2017022615 = '';
+                        var contentavtono2_80_2017022618 = '';
+                        var contentavtono2_80_2017022621 = '';
+                        var contentavtoco_80_2017022600 = '';
+                        var contentavtoco_80_2017022609 = '';
+                        var contentavtoco_80_2017022612 = '';
+                        var contentavtoco_80_2017022615 = '';
+                        var contentavtoco_80_2017022618 = '';
+                        var contentavtoco_80_2017022621 = '';
+                        var contentavtono2_80_2017072600 = '';
+                        var contentavtono2_80_2017072609 = '';
+                        var contentavtono2_80_2017072612 = '';
+                        var contentavtono2_80_2017072615 = '';
+                        var contentavtono2_80_2017072618 = '';
+                        var contentavtono2_80_2017072621 = '';
+                        var contentavtoco_80_2017072600 = '';
+                        var contentavtoco_80_2017072609 = '';
+                        var contentavtoco_80_2017072612 = '';
+                        var contentavtoco_80_2017072615 = '';
+                        var contentavtoco_80_2017072618 = '';
+                        var contentavtoco_80_2017072621 = '';
+                        var contentTotalRSummary7_po0184 = '';
+                        var contentTotalRSummary7_po0301 = '';
+                        var contentTotalRSummary7_po0304 = '';
+                        var contentTotalRSummary7_po0328 = '';
+                        var contentTotalRSummary7_po0330 = '';
+                        var contentTotalRSummary7_po0337 = '';
+                        var contentTotalRSummary7_po0703 = '';
+                        var contentTotalRSummary7_po1325 = '';
+                        var contentTotalRSummary7_po2754 = '';
+                        var contentTotalRSummary7_po__02 = '';
+                        var contentTotalRSummary7_po__31 = '';
+                        var contentallsum201702_avg = '';
+                        var contentallsum201707_avg = '';
+                        var contentvodoohr_polosa = '';
+                        var contentvodoohr_zona = '';
+                        var contentvegpol = '';
+                        var contentplanvegpol = '';
+                        var contentsoil_consSc3857 = '';
+                        var contentsoil_consP3857 = '';
+                        var contentsoil_consMn3857 = '';
+                        var contentsoil_consPb3857 = '';
+                        var contentsoil_consTi3857 = '';
+                        var contentsoil_consZr3857 = '';
+                        var contentsoil_consCr3857 = '';
+                        var contentsoil_consNi3857 = '';
+                        var contentsoil_consBa3857 = '';
+                        var contentsoil_consBe3857 = '';
+                        var contentsoil_consMo3857 = '';
+                        var contentsoil_consSn3857 = '';
+                        var contentsoil_consV3857 = '';
+                        var contentsoil_consLi3857 = '';
+                        var contentsoil_consCu3857 = '';
+                        var contentsoil_consZn3857 = '';
+                        var contentsoil_consAg3857 = '';
+                        var contentsoil_consCo3857 = '';
+                        var contentsoil_consGa3857 = '';
+                        var contentsoil_consGe3857 = '';
+                        var contentsoil_consNb3857 = '';
+                        var contentsoil_consSr3857 = '';
+                        var contentsoil_consYb3857 = '';
+                        var contentsoil_consYt3857 = '';
+                        var contentsoil_consZc3857 = '';
+                        var contentsoil_Gamma3857 = '';
+                        var contentsoil_consNeft3857 = '';
+                        var contenteco_zoning = '';
+                        for (var i = 0, ii = result.length; i < ii; ++i) {
+                            if (response.features[i].id.indexOf("Vodoohr_polosa") >= 0) {
+                                contentvodoohr_polosa +=
+                                    '<tr>' +
+                                    '<td>' +
+                                    result[i].get('name') +
+                                    '</td>' +
+                                    '</tr>';
+                            }
+                            else if (response.features[i].id.indexOf("Vodoohr_zona") >= 0) {
+                                contentvodoohr_zona +=
+                                    '<tr>' +
+                                    '<td>' +
+                                    result[i].get('name') +
+                                    '</td>' +
+                                    '</tr>';
+                            }
+                            else if (response.features[i].id.indexOf("planvegpol") >= 0) {
+                                contentplanvegpol +=
+                                    '<tr>' +
+                                    '<td>' +
+                                    result[i].get('type') +
+                                    '</td>' +
+                                    '<td>' +
+                                    result[i].get('sost') +
+                                    '</td>' +
+                                    '</tr>';
+                            }
+                            else if (response.features[i].id.indexOf("vegpol") >= 0) {
+                                contentvegpol +=
+                                    '<tr>' +
+                                    '<td>' +
+                                    result[i].get('name') +
+                                    '</td>' +
+                                    '<td>' +
+                                    result[i].get('area_ga').toString().replace(".", ",") +
+                                    '</td>' +
+                                    '<td>' +
+                                    '<a href="../pdf/vegpol/Passport-' + result[i].get('id').toString() + '.pdf" target="_blank">' + $('#Look').val() + '</a>'
+                                    '</td>' +
+                                    '</tr>';
+                            }
+                            // tif 5
+                            if (response.features[i].id == '') {
+                                if (contentTotalRWinter7_po0301 == '') { contentTotalRWinter7_po0301 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRWinter7_po0330 == '') { contentTotalRWinter7_po0330 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRWinter7_po0337 == '') { contentTotalRWinter7_po0337 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRWinter7_po1071 == '') { contentTotalRWinter7_po1071 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRWinter7_po1325 == '') { contentTotalRWinter7_po1325 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRWinter7_po2902 == '') { contentTotalRWinter7_po2902 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRWinter7_po__02 == '') { contentTotalRWinter7_po__02 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRWinter7_po__PL == '') { contentTotalRWinter7_po__PL += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummer7_po0301 == '') { contentTotalRSummer7_po0301 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummer7_po0330 == '') { contentTotalRSummer7_po0330 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummer7_po0337 == '') { contentTotalRSummer7_po0337 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummer7_po1071 == '') { contentTotalRSummer7_po1071 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummer7_po1325 == '') { contentTotalRSummer7_po1325 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummer7_po2902 == '') { contentTotalRSummer7_po2902 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummer7_po__02 == '') { contentTotalRSummer7_po__02 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummer7_po__PL == '') { contentTotalRSummer7_po__PL += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017022600 == '') { contentpromso2_10_2017022600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017022609 == '') { contentpromso2_10_2017022609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017022612 == '') { contentpromso2_10_2017022612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017022615 == '') { contentpromso2_10_2017022615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017022618 == '') { contentpromso2_10_2017022618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017022621 == '') { contentpromso2_10_2017022621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017022600 == '') { contentpromno2_10_2017022600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017022609 == '') { contentpromno2_10_2017022609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017022612 == '') { contentpromno2_10_2017022612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017022615 == '') { contentpromno2_10_2017022615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017022618 == '') { contentpromno2_10_2017022618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017022621 == '') { contentpromno2_10_2017022621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017022600 == '') { contentpromno_10_2017022600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017022609 == '') { contentpromno_10_2017022609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017022612 == '') { contentpromno_10_2017022612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017022615 == '') { contentpromno_10_2017022615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017022618 == '') { contentpromno_10_2017022618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017022621 == '') { contentpromno_10_2017022621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017022600 == '') { contentprompm70_10_2017022600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017022609 == '') { contentprompm70_10_2017022609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017022612 == '') { contentprompm70_10_2017022612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017022615 == '') { contentprompm70_10_2017022615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017022618 == '') { contentprompm70_10_2017022618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017022621 == '') { contentprompm70_10_2017022621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017022600 == '') { contentpromsum2017022600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017022609 == '') { contentpromsum2017022609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017022612 == '') { contentpromsum2017022612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017022615 == '') { contentpromsum2017022615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017022618 == '') { contentpromsum2017022618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017022621 == '') { contentpromsum2017022621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017072600 == '') { contentpromso2_10_2017072600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017072609 == '') { contentpromso2_10_2017072609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017072612 == '') { contentpromso2_10_2017072612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017072615 == '') { contentpromso2_10_2017072615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017072618 == '') { contentpromso2_10_2017072618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromso2_10_2017072621 == '') { contentpromso2_10_2017072621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017072600 == '') { contentpromno2_10_2017072600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017072609 == '') { contentpromno2_10_2017072609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017072612 == '') { contentpromno2_10_2017072612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017072615 == '') { contentpromno2_10_2017072615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017072618 == '') { contentpromno2_10_2017072618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno2_10_2017072621 == '') { contentpromno2_10_2017072621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017072600 == '') { contentpromno_10_2017072600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017072609 == '') { contentpromno_10_2017072609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017072612 == '') { contentpromno_10_2017072612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017072615 == '') { contentpromno_10_2017072615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017072618 == '') { contentpromno_10_2017072618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromno_10_2017072621 == '') { contentpromno_10_2017072621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017072600 == '') { contentprompm70_10_2017072600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017072609 == '') { contentprompm70_10_2017072609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017072612 == '') { contentprompm70_10_2017072612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017072615 == '') { contentprompm70_10_2017072615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017072618 == '') { contentprompm70_10_2017072618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentprompm70_10_2017072621 == '') { contentprompm70_10_2017072621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017072600 == '') { contentpromsum2017072600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017072609 == '') { contentpromsum2017072609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017072612 == '') { contentpromsum2017072612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017072615 == '') { contentpromsum2017072615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017072618 == '') { contentpromsum2017072618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentpromsum2017072621 == '') { contentpromsum2017072621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRTransport7_po0301 == '') { contentTotalRTransport7_po0301 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRTransport7_po0330 == '') { contentTotalRTransport7_po0330 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRTransport7_po0337 == '') { contentTotalRTransport7_po0337 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRTransport7_po1325 == '') { contentTotalRTransport7_po1325 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRTransport7_po__31 == '') { contentTotalRTransport7_po__31 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017022600 == '') { contentavtono2_80_2017022600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017022609 == '') { contentavtono2_80_2017022609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017022612 == '') { contentavtono2_80_2017022612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017022615 == '') { contentavtono2_80_2017022615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017022618 == '') { contentavtono2_80_2017022618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017022621 == '') { contentavtono2_80_2017022621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017022600 == '') { contentavtoco_80_2017022600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017022609 == '') { contentavtoco_80_2017022609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017022612 == '') { contentavtoco_80_2017022612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017022615 == '') { contentavtoco_80_2017022615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017022618 == '') { contentavtoco_80_2017022618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017022621 == '') { contentavtoco_80_2017022621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017072600 == '') { contentavtono2_80_2017072600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017072609 == '') { contentavtono2_80_2017072609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017072612 == '') { contentavtono2_80_2017072612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017072615 == '') { contentavtono2_80_2017072615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017072618 == '') { contentavtono2_80_2017072618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtono2_80_2017072621 == '') { contentavtono2_80_2017072621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017072600 == '') { contentavtoco_80_2017072600 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017072609 == '') { contentavtoco_80_2017072609 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017072612 == '') { contentavtoco_80_2017072612 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017072615 == '') { contentavtoco_80_2017072615 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017072618 == '') { contentavtoco_80_2017072618 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentavtoco_80_2017072621 == '') { contentavtoco_80_2017072621 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummary7_po0184 == '') { contentTotalRSummary7_po0184 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummary7_po0301 == '') { contentTotalRSummary7_po0301 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummary7_po0304 == '') { contentTotalRSummary7_po0304 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummary7_po0328 == '') { contentTotalRSummary7_po0328 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummary7_po0330 == '') { contentTotalRSummary7_po0330 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummary7_po0337 == '') { contentTotalRSummary7_po0337 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummary7_po0703 == '') { contentTotalRSummary7_po0703 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummary7_po1325 == '') { contentTotalRSummary7_po1325 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummary7_po2754 == '') { contentTotalRSummary7_po2754 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummary7_po__02 == '') { contentTotalRSummary7_po__02 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentTotalRSummary7_po__31 == '') { contentTotalRSummary7_po__31 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentallsum201702_avg == '') { contentallsum201702_avg += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentallsum201707_avg == '') { contentallsum201707_avg += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consSc3857 == '') { contentsoil_consSc3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consP3857 == '') { contentsoil_consP3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consMn3857 == '') { contentsoil_consMn3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consPb3857 == '') { contentsoil_consPb3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consTi3857 == '') { contentsoil_consTi3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consZr3857 == '') { contentsoil_consZr3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consCr3857 == '') { contentsoil_consCr3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consNi3857 == '') { contentsoil_consNi3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consBa3857 == '') { contentsoil_consBa3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consBe3857 == '') { contentsoil_consBe3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consMo3857 == '') { contentsoil_consMo3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consSn3857 == '') { contentsoil_consSn3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consV3857 == '') { contentsoil_consV3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consLi3857 == '') { contentsoil_consLi3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consCu3857 == '') { contentsoil_consCu3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consZn3857 == '') { contentsoil_consZn3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consAg3857 == '') { contentsoil_consAg3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consCo3857 == '') { contentsoil_consCo3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consGa3857 == '') { contentsoil_consGa3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consGe3857 == '') { contentsoil_consGe3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consNb3857 == '') { contentsoil_consNb3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consSr3857 == '') { contentsoil_consSr3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consYb3857 == '') { contentsoil_consYb3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consYt3857 == '') { contentsoil_consYt3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consZc3857 == '') { contentsoil_consZc3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_Gamma3857 == '') { contentsoil_Gamma3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contentsoil_consNeft3857 == '') { contentsoil_consNeft3857 += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+                                else if (contenteco_zoning == '') { contenteco_zoning += '<tr><td>' + result[i].get('GRAY_INDEX') + '</td></tr>'; }
+
+                            }
+                        }
+                        // shp, tif 6
+                        $('#info_TotalRWinter7_po0301').append(contentTotalRWinter7_po0301);
+                        $('#info_TotalRWinter7_po0330').append(contentTotalRWinter7_po0330);
+                        $('#info_TotalRWinter7_po0337').append(contentTotalRWinter7_po0337);
+                        $('#info_TotalRWinter7_po1071').append(contentTotalRWinter7_po1071);
+                        $('#info_TotalRWinter7_po1325').append(contentTotalRWinter7_po1325);
+                        $('#info_TotalRWinter7_po2902').append(contentTotalRWinter7_po2902);
+                        $('#info_TotalRWinter7_po__02').append(contentTotalRWinter7_po__02);
+                        $('#info_TotalRWinter7_po__PL').append(contentTotalRWinter7_po__PL);
+                        $('#info_TotalRSummer7_po0301').append(contentTotalRSummer7_po0301);
+                        $('#info_TotalRSummer7_po0330').append(contentTotalRSummer7_po0330);
+                        $('#info_TotalRSummer7_po0337').append(contentTotalRSummer7_po0337);
+                        $('#info_TotalRSummer7_po1071').append(contentTotalRSummer7_po1071);
+                        $('#info_TotalRSummer7_po1325').append(contentTotalRSummer7_po1325);
+                        $('#info_TotalRSummer7_po2902').append(contentTotalRSummer7_po2902);
+                        $('#info_TotalRSummer7_po__02').append(contentTotalRSummer7_po__02);
+                        $('#info_TotalRSummer7_po__PL').append(contentTotalRSummer7_po__PL);
+                        $('#info_promso2_10_2017022600').append(contentpromso2_10_2017022600);
+                        $('#info_promso2_10_2017022609').append(contentpromso2_10_2017022609);
+                        $('#info_promso2_10_2017022612').append(contentpromso2_10_2017022612);
+                        $('#info_promso2_10_2017022615').append(contentpromso2_10_2017022615);
+                        $('#info_promso2_10_2017022618').append(contentpromso2_10_2017022618);
+                        $('#info_promso2_10_2017022621').append(contentpromso2_10_2017022621);
+                        $('#info_promno2_10_2017022600').append(contentpromno2_10_2017022600);
+                        $('#info_promno2_10_2017022609').append(contentpromno2_10_2017022609);
+                        $('#info_promno2_10_2017022612').append(contentpromno2_10_2017022612);
+                        $('#info_promno2_10_2017022615').append(contentpromno2_10_2017022615);
+                        $('#info_promno2_10_2017022618').append(contentpromno2_10_2017022618);
+                        $('#info_promno2_10_2017022621').append(contentpromno2_10_2017022621);
+                        $('#info_promno_10_2017022600').append(contentpromno_10_2017022600);
+                        $('#info_promno_10_2017022609').append(contentpromno_10_2017022609);
+                        $('#info_promno_10_2017022612').append(contentpromno_10_2017022612);
+                        $('#info_promno_10_2017022615').append(contentpromno_10_2017022615);
+                        $('#info_promno_10_2017022618').append(contentpromno_10_2017022618);
+                        $('#info_promno_10_2017022621').append(contentpromno_10_2017022621);
+                        $('#info_prompm70_10_2017022600').append(contentprompm70_10_2017022600);
+                        $('#info_prompm70_10_2017022609').append(contentprompm70_10_2017022609);
+                        $('#info_prompm70_10_2017022612').append(contentprompm70_10_2017022612);
+                        $('#info_prompm70_10_2017022615').append(contentprompm70_10_2017022615);
+                        $('#info_prompm70_10_2017022618').append(contentprompm70_10_2017022618);
+                        $('#info_prompm70_10_2017022621').append(contentprompm70_10_2017022621);
+                        $('#info_promsum2017022600').append(contentpromsum2017022600);
+                        $('#info_promsum2017022609').append(contentpromsum2017022609);
+                        $('#info_promsum2017022612').append(contentpromsum2017022612);
+                        $('#info_promsum2017022615').append(contentpromsum2017022615);
+                        $('#info_promsum2017022618').append(contentpromsum2017022618);
+                        $('#info_promsum2017022621').append(contentpromsum2017022621);
+                        $('#info_promso2_10_2017072600').append(contentpromso2_10_2017072600);
+                        $('#info_promso2_10_2017072609').append(contentpromso2_10_2017072609);
+                        $('#info_promso2_10_2017072612').append(contentpromso2_10_2017072612);
+                        $('#info_promso2_10_2017072615').append(contentpromso2_10_2017072615);
+                        $('#info_promso2_10_2017072618').append(contentpromso2_10_2017072618);
+                        $('#info_promso2_10_2017072621').append(contentpromso2_10_2017072621);
+                        $('#info_promno2_10_2017072600').append(contentpromno2_10_2017072600);
+                        $('#info_promno2_10_2017072609').append(contentpromno2_10_2017072609);
+                        $('#info_promno2_10_2017072612').append(contentpromno2_10_2017072612);
+                        $('#info_promno2_10_2017072615').append(contentpromno2_10_2017072615);
+                        $('#info_promno2_10_2017072618').append(contentpromno2_10_2017072618);
+                        $('#info_promno2_10_2017072621').append(contentpromno2_10_2017072621);
+                        $('#info_promno_10_2017072600').append(contentpromno_10_2017072600);
+                        $('#info_promno_10_2017072609').append(contentpromno_10_2017072609);
+                        $('#info_promno_10_2017072612').append(contentpromno_10_2017072612);
+                        $('#info_promno_10_2017072615').append(contentpromno_10_2017072615);
+                        $('#info_promno_10_2017072618').append(contentpromno_10_2017072618);
+                        $('#info_promno_10_2017072621').append(contentpromno_10_2017072621);
+                        $('#info_prompm70_10_2017072600').append(contentprompm70_10_2017072600);
+                        $('#info_prompm70_10_2017072609').append(contentprompm70_10_2017072609);
+                        $('#info_prompm70_10_2017072612').append(contentprompm70_10_2017072612);
+                        $('#info_prompm70_10_2017072615').append(contentprompm70_10_2017072615);
+                        $('#info_prompm70_10_2017072618').append(contentprompm70_10_2017072618);
+                        $('#info_prompm70_10_2017072621').append(contentprompm70_10_2017072621);
+                        $('#info_promsum2017072600').append(contentpromsum2017072600);
+                        $('#info_promsum2017072609').append(contentpromsum2017072609);
+                        $('#info_promsum2017072612').append(contentpromsum2017072612);
+                        $('#info_promsum2017072615').append(contentpromsum2017072615);
+                        $('#info_promsum2017072618').append(contentpromsum2017072618);
+                        $('#info_promsum2017072621').append(contentpromsum2017072621);
+                        $('#info_TotalRTransport7_po0301').append(contentTotalRTransport7_po0301);
+                        $('#info_TotalRTransport7_po0330').append(contentTotalRTransport7_po0330);
+                        $('#info_TotalRTransport7_po0337').append(contentTotalRTransport7_po0337);
+                        $('#info_TotalRTransport7_po1325').append(contentTotalRTransport7_po1325);
+                        $('#info_TotalRTransport7_po__31').append(contentTotalRTransport7_po__31);
+                        $('#info_avtono2_80_2017022600').append(contentavtono2_80_2017022600);
+                        $('#info_avtono2_80_2017022609').append(contentavtono2_80_2017022609);
+                        $('#info_avtono2_80_2017022612').append(contentavtono2_80_2017022612);
+                        $('#info_avtono2_80_2017022615').append(contentavtono2_80_2017022615);
+                        $('#info_avtono2_80_2017022618').append(contentavtono2_80_2017022618);
+                        $('#info_avtono2_80_2017022621').append(contentavtono2_80_2017022621);
+                        $('#info_avtoco_80_2017022600').append(contentavtoco_80_2017022600);
+                        $('#info_avtoco_80_2017022609').append(contentavtoco_80_2017022609);
+                        $('#info_avtoco_80_2017022612').append(contentavtoco_80_2017022612);
+                        $('#info_avtoco_80_2017022615').append(contentavtoco_80_2017022615);
+                        $('#info_avtoco_80_2017022618').append(contentavtoco_80_2017022618);
+                        $('#info_avtoco_80_2017022621').append(contentavtoco_80_2017022621);
+                        $('#info_avtono2_80_2017072600').append(contentavtono2_80_2017072600);
+                        $('#info_avtono2_80_2017072609').append(contentavtono2_80_2017072609);
+                        $('#info_avtono2_80_2017072612').append(contentavtono2_80_2017072612);
+                        $('#info_avtono2_80_2017072615').append(contentavtono2_80_2017072615);
+                        $('#info_avtono2_80_2017072618').append(contentavtono2_80_2017072618);
+                        $('#info_avtono2_80_2017072621').append(contentavtono2_80_2017072621);
+                        $('#info_avtoco_80_2017072600').append(contentavtoco_80_2017072600);
+                        $('#info_avtoco_80_2017072609').append(contentavtoco_80_2017072609);
+                        $('#info_avtoco_80_2017072612').append(contentavtoco_80_2017072612);
+                        $('#info_avtoco_80_2017072615').append(contentavtoco_80_2017072615);
+                        $('#info_avtoco_80_2017072618').append(contentavtoco_80_2017072618);
+                        $('#info_avtoco_80_2017072621').append(contentavtoco_80_2017072621);
+                        $('#info_TotalRSummary7_po0184').append(contentTotalRSummary7_po0184);
+                        $('#info_TotalRSummary7_po0301').append(contentTotalRSummary7_po0301);
+                        $('#info_TotalRSummary7_po0304').append(contentTotalRSummary7_po0304);
+                        $('#info_TotalRSummary7_po0328').append(contentTotalRSummary7_po0328);
+                        $('#info_TotalRSummary7_po0330').append(contentTotalRSummary7_po0330);
+                        $('#info_TotalRSummary7_po0337').append(contentTotalRSummary7_po0337);
+                        $('#info_TotalRSummary7_po0703').append(contentTotalRSummary7_po0703);
+                        $('#info_TotalRSummary7_po1325').append(contentTotalRSummary7_po1325);
+                        $('#info_TotalRSummary7_po2754').append(contentTotalRSummary7_po2754);
+                        $('#info_TotalRSummary7_po__02').append(contentTotalRSummary7_po__02);
+                        $('#info_TotalRSummary7_po__31').append(contentTotalRSummary7_po__31);
+                        $('#info_allsum201702_avg').append(contentallsum201702_avg);
+                        $('#info_allsum201707_avg').append(contentallsum201707_avg);
+                        $('#info_vodoohr_polosa').append(contentvodoohr_polosa);
+                        $('#info_vodoohr_zona').append(contentvodoohr_zona);
+                        $('#info_vegpol').append(contentvegpol);
+                        $('#info_planvegpol').append(contentplanvegpol);
+                        $('#info_soil_consSc3857').append(contentsoil_consSc3857);
+                        $('#info_soil_consP3857').append(contentsoil_consP3857);
+                        $('#info_soil_consMn3857').append(contentsoil_consMn3857);
+                        $('#info_soil_consPb3857').append(contentsoil_consPb3857);
+                        $('#info_soil_consTi3857').append(contentsoil_consTi3857);
+                        $('#info_soil_consZr3857').append(contentsoil_consZr3857);
+                        $('#info_soil_consCr3857').append(contentsoil_consCr3857);
+                        $('#info_soil_consNi3857').append(contentsoil_consNi3857);
+                        $('#info_soil_consBa3857').append(contentsoil_consBa3857);
+                        $('#info_soil_consBe3857').append(contentsoil_consBe3857);
+                        $('#info_soil_consMo3857').append(contentsoil_consMo3857);
+                        $('#info_soil_consSn3857').append(contentsoil_consSn3857);
+                        $('#info_soil_consV3857').append(contentsoil_consV3857);
+                        $('#info_soil_consLi3857').append(contentsoil_consLi3857);
+                        $('#info_soil_consCu3857').append(contentsoil_consCu3857);
+                        $('#info_soil_consZn3857').append(contentsoil_consZn3857);
+                        $('#info_soil_consAg3857').append(contentsoil_consAg3857);
+                        $('#info_soil_consCo3857').append(contentsoil_consCo3857);
+                        $('#info_soil_consGa3857').append(contentsoil_consGa3857);
+                        $('#info_soil_consGe3857').append(contentsoil_consGe3857);
+                        $('#info_soil_consNb3857').append(contentsoil_consNb3857);
+                        $('#info_soil_consSr3857').append(contentsoil_consSr3857);
+                        $('#info_soil_consYb3857').append(contentsoil_consYb3857);
+                        $('#info_soil_consYt3857').append(contentsoil_consYt3857);
+                        $('#info_soil_consZc3857').append(contentsoil_consZc3857);
+                        $('#info_soil_Gamma3857').append(contentsoil_Gamma3857);
+                        $('#info_soil_consNeft3857').append(contentsoil_consNeft3857);
+                        $('#info_eco_zoning').append(contenteco_zoning);
+
+                    }
+                    $("#map").LoadingOverlay("hide");
+                    $("#sidepanel").tabs({ active: 2 });
+                });
+            }
+        }
+        else {
+            $("#map").LoadingOverlay("hide");
+            $("#sidepanel").tabs({ active: 2 });
+        }
+    });
+
+    $('#map').height(window.innerHeight - 150);
+    map.updateSize();
+
+    $('#sidepanel').height($('#map').height());
+    $('#tabLayers').height($('#map').height() - $('#tabLinks').height());
+    $('#tabLegend').height($('#map').height() - $('#tabLinks').height());
+    $('#tabInfo').height($('#map').height() - $('#tabLinks').height());
+
+    function SearchCompany() {
+        //alert($('#SearchCompany').val() + ': ' + $('#SearchCompany option:selected').text());
+        $("#info_Companies").find("tr:gt(2)").remove();
+        var contentCompanies =
+                '<tr>' +
+                '<td>' +
+                '<a href="../Companies/Details/' + $('#SearchCompany').val() + '" target="_blank">' + $('#SearchCompany option:selected').text() + '</a>' +
+                '</td>' +
+                '<td>' +
+                '<input type="button" value="' + $('#GoTo').val() + '" onclick="GoToCompany(' + $('#SearchCompany').val() + ')"/>' +
+                '</td>' +
+                '</tr>';
+        $('#info_Companies').append(contentCompanies);
+    };
+
+    function GoToCompany(id) {
+        features = Layer_Companies.getSource().getFeatures();
+        found = false;
+        for (i = 0; i < features.length && !found; i++) {
+            if (features[i].get('Id') === id) {
+                found = true;
+                map.getView().setCenter(features[i].getGeometry().getCoordinates());
+                map.getView().setZoom(18);
+            }
+        }
+    };
+
+    $(document).ready(function (e) {
+        //document.getElementById("divbody").style.overflowY = "scroll";
+        if ($('#Map').val() == '1') {
+            $.jstree.reference('#tree').check_node('allsum201702_avg');
+        }
+        if ($('#Map').val() == '2') {
+            $.jstree.reference('#tree').check_node('vodoohr_polosa');
+            $.jstree.reference('#tree').check_node('vodoohr_zona');
+        }
+        if ($('#Map').val() == '3') {
+            $.jstree.reference('#tree').check_node('vegpol');
+        }
+        if ($('#Map').val() == '4') {
+            $.jstree.reference('#tree').check_node('soil_consZc3857');
+        }
+        if ($('#Map').val() == '5') {
+            $.jstree.reference('#tree').check_node('RawMaterialsCompanies');
+            $.jstree.reference('#tree').check_node('WasteRecyclingCompanies');
+        }
+        if ($('#Map').val() == '6') {
+            $.jstree.reference('#tree').check_node('eco_zoning');
+        }
+    });
+</script>
